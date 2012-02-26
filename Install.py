@@ -1,13 +1,13 @@
-#================================================
-#
-# michael.havart@gmail.com
 # Install.py
-#
-# Nuke & Maya dmpTools Windows local install file
-# This will install Nuke and Maya source code
-# in the user respective folders.
-#
-#================================================
+
+"""
+ Nuke & Maya dmpTools Windows local install file
+ This will install Nuke and Maya source code
+ in the user respective folders.
+
+ platform: Windows
+
+"""
 
 import os
 import sys
@@ -18,22 +18,6 @@ from shutil import *
 # test if we are on Windows
 if not os.name == 'nt' and not len(sys.argv) == 4:
     raise UserWarning('This install only works on windows!')
-
-__author__ = "Michael Havart"
-__copyright__ = "Copyright (C) 2012 Michael Havart"
-__license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
-__maintainer__ = "Michael Havart"
-__email__ = "michael.havart@gmail.com"
-__status__ = "Production"
-__all__ = [
-    "installNuke",
-    "installMaya",
-    "replacements",
-    "createUserSetup",
-    "install",
-    "errorMsg",
-    "install_dmptools",
-    ]
 
 # globals
 MODULE_NAME = 'dmptools'
