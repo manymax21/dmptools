@@ -200,16 +200,19 @@ def errorMsg(message):
     MessageBox = prototype(("MessageBoxA", windll.user32), paramflags)
     MessageBox(text=message)
 
+def install_dmptools():
+    # install Nuke dmptools
+    installNuke()
+    # install Maya dmptools
+    installMaya()
+
 def main():
     # if the project name is 'dmptools'
     # and the active file is in the project path
     # then run the install
     if PROJECT_NAME and ACTIVE_FILE_IN_PROJECT:
         print 'excuting python.exe',' '.join(sys.argv)
-        # install Nuke dmptools
-        installNuke()
-        # install Maya dmptools
-        installMaya()
+        install_dmptools()
     else:
         # yield a windows error message
         errorMsg('You need to install from here:\n\
