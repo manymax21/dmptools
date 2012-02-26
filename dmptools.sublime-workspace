@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"icon",
+				"iconPrefix"
+			],
+			[
 				"sublime",
 				"sublimeTextPath"
 			],
@@ -128,51 +132,19 @@
 			}
 		},
 		{
-			"file": "python/maya/createHotkeys.py",
+			"file": "python/nuke/menu.py",
 			"settings":
 			{
-				"buffer_size": 8882,
+				"buffer_size": 6581,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "python/maya/dmptoolsShelf.py",
+			"file": "README",
 			"settings":
 			{
-				"buffer_size": 2633,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "python/maya/mayaToNuke.py",
-			"settings":
-			{
-				"buffer_size": 33995,
+				"buffer_size": 155,
 				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "python/maya/mayaToNuke_old.py",
-			"settings":
-			{
-				"buffer_size": 43210,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "python/maya/maya3ddmpCommands.py",
-			"settings":
-			{
-				"buffer_size": 20316,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "python/nuke/macros/presets.py",
-			"settings":
-			{
-				"buffer_size": 2987,
-				"line_ending": "Windows"
 			}
 		}
 	],
@@ -224,7 +196,134 @@
 	},
 	"file_history":
 	[
-
+		"/S/work/code/workspace/dmptools/python/nuke/macros/nukeCommands.py",
+		"/S/work/code/workspace/dmptools/python/maya/createHotkeys.py",
+		"/S/work/code/workspace/dmptools/python/maya/mayaCommands.py",
+		"/S/work/code/workspace/dmptools/python/maya/dmptoolsShelf.py",
+		"/S/work/code/workspace/dmptools/.git/description",
+		"/S/work/code/workspace/dmptools/python/maya/maya3ddmpCommands.py",
+		"/S/work/code/workspace/dmptools/python/maya/mayaToNuke_old.py",
+		"/S/work/code/workspace/dmptools/dmptools.sublime-project",
+		"/S/work/code/workspace/dmptools/python/nuke/macros/nuke3ddmpCommands.py",
+		"/S/work/code/workspace/dmptools/python/nuke/tools/bakeProjToUV.py",
+		"/S/work/code/workspace/dmptools/python/nuke/tools/exportNukeToMaya.py",
+		"/S/work/code/workspace/dmptools/python/nuke/menu.py",
+		"/S/work/code/workspace/dmptools/python/nuke/mikaMenu.py",
+		"/S/work/code/workspace/dmptools/python/nuke/macros/presets.py",
+		"/S/work/code/workspace/dmptools/python/maya/mayaToNuke.py",
+		"/S/work/code/workspace/tools/tools.sublime-workspace",
+		"/S/work/code/workspace/tools/.gitignore",
+		"/C/Users/mika/.nuke/menu.py",
+		"/C/Users/mika/Documents/maya/2012-x64/scripts/dmptools/maya3ddmpCommands.py",
+		"/C/Users/mika/Documents/maya/2012-x64/scripts/dmptools/dmptools.presets",
+		"/C/Users/mika/Documents/maya/2012-x64/scripts/dmptools/presets.py",
+		"/S/work/code/workspace/dmptools/python/maya/presets.py",
+		"/C/Users/mika/Documents/maya/2012-x64/scripts/dmptools/presetsManager.py",
+		"/S/work/code/workspace/dmptools/python/maya/presetsManager.py",
+		"/C/Users/mika/Documents/maya/2012-x64/scripts/dmptools/dmptoolsShelf.py",
+		"/C/Users/mika/Documents/maya/2012-x64/scripts/dmptools/__init__.py",
+		"/C/tmp/asdasd",
+		"/C/Users/mika/Documents/maya/2012-x64/scripts/dmptools/createHotkeys.py",
+		"/C/Users/mika/Documents/maya/2012-x64/scripts/userSetup.mel",
+		"/C/Users/mika/.nuke/dmptools/macros/nuke3ddmpCommands.py",
+		"/C/Users/mika/Documents/maya/2012-x64/scripts/dmptools/maya3ddmpTickleCommands.py",
+		"/S/work/code/workspace/dmptools/python/maya/ratioCalculator.py",
+		"/C/Program Files/sublime_text/Data/Packages/Package Control/Package Control.py",
+		"/C/Program Files/sublime_text/Data/Packages/User/Package Control.sublime-settings",
+		"/C/Program Files/sublime_text/Data/Packages/User/HtmlExport.py",
+		"/C/Program Files/sublime_text/Data/Packages/User/Preferences.sublime-settings",
+		"/C/Program Files/sublime_text/Data/Packages/Default/Default.sublime-commands",
+		"/C/Program Files/sublime_text/Data/Packages/User/Default.sublime-commands",
+		"/C/Program Files/sublime_text/Data/Packages/User/Default.sublime_commands",
+		"/C/Program Files/sublime_text/Data/Packages/User/Default (Windows).sublime-keymap",
+		"/S/work/code/python/exportSublimeToHtml.py",
+		"/C/Users/mika/Downloads/arcSystem.py",
+		"/C/Program Files/sublime_text/PackageSetup.py",
+		"/C/Program Files/sublime_text/sublime_plugin.py",
+		"/C/Program Files/Sublime Text 2/sublime_text.lnk",
+		"/S/work/code/workspace/dmptools/python/maya/maya3ddmpTickleCommands.py",
+		"/S/work/code/sublime_text/Data/Packages/User/Default (Windows).sublime-keymap",
+		"/S/work/code/sublime_text/Data/Packages/Default/Default (Windows).sublime-keymap",
+		"/S/work/code/sublime_text/Data/Packages/User/Distraction Free.sublime-settings",
+		"/S/work/code/workspace/dmptools/python/nuke/tools/nukePopulate.py",
+		"/S/work/code/workspace/dmptools/mel/shelf/shelf_dmptools.mel",
+		"/C/Users/mika/Documents/maya/2012-x64/prefs/shelves/shelf_dmptools.mel",
+		"/C/Users/mika/Documents/maya/2012-x64/prefs/shelves/shelf_GoZBrush.mel",
+		"/S/work/code/workspace/dmptools/make.py",
+		"/C/Users/mika/Documents/maya/2012-x64/scripts/dmptools/camConstraint.py",
+		"/C/Users/mika/Documents/maya/2012-x64/prefs/userHotkeys.mel",
+		"/C/Users/mika/Documents/maya/2012-x64/prefs/userNamedCommands.mel",
+		"/C/Users/mika/Documents/maya/2012-x64/scripts/dmptools/userSetup.mel",
+		"/S/work/code/workspace/dmptools/mel/userSetup.mel",
+		"/C/Users/mika/Documents/maya/2012-x64/prefs/userPrefs.mel",
+		"/S/work/code/python/env/createHotkeys.py",
+		"/C/Program Files/Autodesk/Maya2012/scripts/startup/shelf.mel",
+		"/S/work/code/workspace/dmptools/mel/shelf/pythonWrappers_dmptools.mel",
+		"/S/work/code/workspace/dmptools/mel/shelf/dmptools_shelf.mel",
+		"/S/work/code/workspace/dmptools/python/maya/projectionInspector.py",
+		"/S/work/code/workspace/dmptools/mel/shelf/shelf_mpc3ddmp.mel",
+		"/S/work/code/workspace/dmptools/mel/shelf/dmptoold_shelf.mel",
+		"/C/Users/mika/AppData/Roaming/Sublime Text 2/Packages/Python/Python.sublime-settings",
+		"/C/Users/mika/AppData/Roaming/Sublime Text 2/Packages/Default/Global.sublime-settings",
+		"/C/Users/mika/AppData/Roaming/Sublime Text 2/Packages/User/Global.sublime-settings",
+		"/C/Users/mika/AppData/Roaming/Sublime Text 2/Packages/User/Python.sublime-settings",
+		"/C/Users/mika/AppData/Roaming/Sublime Text 2/Packages/User/Distraction Free.sublime-settings",
+		"/C/Users/mika/AppData/Roaming/Sublime Text 2/Packages/Default/Base File.sublime-settings",
+		"/C/Users/mika/AppData/Roaming/Sublime Text 2/Packages/User/Base File.sublime-settings",
+		"/C/Users/mika/AppData/Roaming/Sublime Text 2/Packages/User/JSON.sublime-settings",
+		"/C/Users/mika/Documents/maya/2012-x64/scripts/dmptools/mpcLoad.mel",
+		"/S/work/code/workspace/dmptools/mel/shelf/mpc3ddmp_pythonWrappers.mel",
+		"/S/work/code/workspace/dmptools/mel/mpcLoad.mel",
+		"/C/Users/mika/.nuke/dmptools/menu.py",
+		"/S/work/code/workspace/dmptools/python/nuke/__init__.py",
+		"/C/Users/mika/.nuke/dmptools/__init__.py",
+		"/S/work/code/workspace/dmptools/python/maya/__init__.py",
+		"/S/work/code/workspace/dmptools/python/nuke/tools/nukeAlfredRender_dev.py",
+		"/S/work/code/workspace/dmptools/python/nuke/tools/__init__.py",
+		"/S/work/code/workspace/dmptools/Makefile",
+		"/S/work/code/workspace/dmptools/dmptools.sublime-build",
+		"/S/work/code/workspace/dmptools/dmptools.sublime-workspace",
+		"/S/work/code/workspace/dmptools/dmpTools.sublime-project",
+		"/S/work/code/workspace/dmptools/__init__.py",
+		"/S/work/code/workspace/dmpTools/make.py",
+		"/S/work/code/workspace/dmpTools/python/maya/__init__.py",
+		"/S/work/code/workspace/dmpTools/python/maya/mayaToNuke.py",
+		"/S/work/code/workspace/dmpTools/python/nuke/menu.py",
+		"/S/work/code/workspace/dmpTools/dmpTools.sublime-project",
+		"/S/work/code/workspace/dmpTools/python/nuke/tools/nukePopulate.py",
+		"/S/work/code/workspace/dmpTools/python/nuke/macros/nuke3ddmpCommands.py",
+		"/S/work/code/workspace/dmpTools/python/maya/init.py",
+		"/D/jeux/Install/Mojam/Fists of Resistance/controls/keyboard_a.sfg",
+		"/S/work/code/workspace/dmpTools/python/maya/maya3ddmpTickleCommands.py",
+		"/C/Users/mika/.nuke/menu_local.py",
+		"/C/Users/mika/.nuke/menu_tmp.py",
+		"/C/Users/mika/.nuke/init.py",
+		"/C/Users/mika/.nuke/fillMenu.py",
+		"/C/Users/mika/.nuke/3ddmp_menu.py",
+		"/C/Users/mika/.nuke/__init__.py",
+		"/C/Users/mika/.nuke/dmpTools/menu.py",
+		"/C/Users/mika/server.log",
+		"/C/Users/mika/Documents/maya/2012-x64/scripts/dmpTools/maya3ddmpTickleCommands.py",
+		"/C/Users/mika/Documents/maya/2012-x64/scripts/dmpTools/mayaToNuke.py",
+		"/C/Users/mika/AppData/Roaming/Sublime Text 2/Packages/Default/Base File (Windows).sublime-settings",
+		"/S/work/code/workspace/dmpTools/.make_log",
+		"/S/work/code/workspace/dmpTools/python/.make_log",
+		"/S/work/code/workspace/dmpTools/python/nuke/__init__.py",
+		"/C/Users/mika/.nuke/dmpTools/__init__.py",
+		"/C/Users/mika/AppData/Roaming/Sublime Text 2/Packages/Java/JavaC.sublime-build",
+		"/C/Users/mika/AppData/Roaming/Sublime Text 2/Packages/Python/Python.sublime-build",
+		"/C/Users/mika/.nuke/test/__init__.py",
+		"/S/work/code/workspace/dmpTools/python/nuke/mikaMenu.py",
+		"/S/work/code/workspace/dmpTools/python/nuke/macros/__init__.py",
+		"/S/work/code/workspace/dmpTools/.gitignore",
+		"/S/work/code/workspace/dmpTools/__init__.py",
+		"/S/work/code/workspace/dmpTools/python/nuke/tools/nukeRatioCalculator.py",
+		"/S/work/code/workspace/dmpTools/dmpTools.sublime-workspace",
+		"/S/work/code/workspace/dmpTools/python/__init__.py",
+		"/S/work/code/python/checkForPath.py",
+		"/D/jeux/Steam/steamapps/common/skyrim/Data/Scripts/Source/Action.psc",
+		"/D/jeux/Steam/steamapps/common/skyrim/Data/Scripts/Source/ActiveMagicEffect.psc",
+		"/S/work/code/python/addAlias.py"
 	],
 	"find":
 	{
@@ -242,6 +341,16 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"maya3ddmpCommands",
+			"nuke3ddmpCommands",
+			"3ddmp_",
+			"dmptools",
+			"''+",
+			"!NUKE_SHARE!",
+			"!VERSION!",
+			"!",
+			"TFCLASSES",
+			"tfclasses",
 			"sublimeTextPath",
 			"sublime_text_path",
 			"sublime",
@@ -355,9 +464,14 @@
 		"highlight": true,
 		"in_selection": false,
 		"preserve_case": false,
-		"regex": true,
+		"regex": false,
 		"replace_history":
 		[
+			"mayaCommands",
+			"nukeCommands",
+			"",
+			"'+NUKE_SHARE+'",
+			"VERSION",
 			",",
 			";",
 			"MAYA_VERSION",
@@ -385,7 +499,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -400,8 +514,8 @@
 						"selection":
 						[
 							[
-								1477,
-								1477
+								1844,
+								1844
 							]
 						],
 						"settings":
@@ -411,181 +525,59 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 28.0,
+						"translation.y": 315.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "python/maya/createHotkeys.py",
+					"file": "python/nuke/menu.py",
 					"settings":
 					{
-						"buffer_size": 8882,
+						"buffer_size": 6581,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5693,
-								5710
+								3284,
+								3284
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/Python/Python.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 1980.0,
+						"translation.y": 900.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "python/maya/dmptoolsShelf.py",
+					"file": "README",
 					"settings":
 					{
-						"buffer_size": 2633,
+						"buffer_size": 155,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								862,
-								862
+								155,
+								155
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "python/maya/mayaToNuke.py",
-					"settings":
-					{
-						"buffer_size": 33995,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								381,
-								381
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 495.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "python/maya/mayaToNuke_old.py",
-					"settings":
-					{
-						"buffer_size": 43210,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								33165,
-								33165
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 4308.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 1,
-			"sheets":
-			[
-				{
-					"buffer": 5,
-					"file": "python/maya/maya3ddmpCommands.py",
-					"settings":
-					{
-						"buffer_size": 20316,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1453,
-								1453
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "python/nuke/macros/presets.py",
-					"settings":
-					{
-						"buffer_size": 2987,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2122,
-								2122
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 720.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -610,18 +602,11 @@
 				0,
 				1,
 				1
-			],
-			[
-				1,
-				0,
-				2,
-				1
 			]
 		],
 		"cols":
 		[
 			0.0,
-			0.494270833333,
 			1.0
 		],
 		"rows":
@@ -633,7 +618,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 118.0
+		"height": 111.0
 	},
 	"replace":
 	{
@@ -667,7 +652,7 @@
 	"show_minimap": true,
 	"show_open_files": false,
 	"show_tabs": true,
-	"side_bar_visible": false,
+	"side_bar_visible": true,
 	"side_bar_width": 241.0,
 	"status_bar_visible": true
 }
