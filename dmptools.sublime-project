@@ -2,7 +2,7 @@
 	"build_systems":
 	[
 		{
-			"cmd": "c:/Python27/python.exe $project_path/Make.py $project_path $file $project_name",
+			"cmd": "c:/Python27/python.exe $project_path/Install.py $project_path $file $project_name",
 			"name": "dmptools"
 		}
 	],
