@@ -7,7 +7,7 @@ Maya and Nuke python tools.
 REQUIREMENTS:
 - NukeX.X and MayaX installed
 - python2.7 installed in c:/python27
-- sublime text editor to build
+- sublime text editor to be able to build and install
 
 INSTALL:
 - clone dmptools: git clone git://github.com/michael-ha/dmptools.git
