@@ -10,7 +10,7 @@ REQUIREMENTS:
 - sublime text editor to build
 
 INSTALL:
-- clone dmptools: clone git://github.com/michael-ha/dmptools.git
+- clone dmptools: git clone git://github.com/michael-ha/dmptools.git
 - in dmptools/dmptools.sublime-project file, change the "path" value to the one where you clone dmptools
 - project > open > dmptools.sublime-project
 - tools > build system > dmptools
