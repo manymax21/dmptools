@@ -31,9 +31,6 @@ nukeCommands.autoCheckAlpha()
 # auto check gl_light on viewers 
 nukeCommands.viewerSettings()
 
-# create default 3ddmp favorite folder 
-nukeCommands.createFavoriteDir()
-
 # add a latestAutosave menu item 
 nuke.menu("Nuke").addCommand('File/Recent Files/Latest autosave', 'import dmptools.macros.nukeCommands as nukeCommands ; nuke.scriptOpen(nukeCommands.getLatestAutosave())')
 
@@ -71,8 +68,6 @@ pane = nuke.menu("Pane")
 pane.addCommand( "scanlineRenderManager", sc.addToPane)
 nukescripts.registerPanel('ScanlineRenderManager', sc.addToPane)
 toolbar.addCommand('Tools/Scanline Render Manager', sc.show, icon = NUKE_SHARE+'/scanline.png')
-# populate geo on 3d selection
-toolbar.addCommand('Tools/Populate 3d Geo ...', 'import dmptools.tools.nukePopulate as nukePopulate ; nukePopulate.main()')
 
 #===================
 #    NODES MENU
@@ -89,6 +84,8 @@ toolbar.addCommand('Nodes/2d/Apply Lut', 'nuke.createNode("ApplyLUT")')
 toolbar.addCommand('Nodes/3d/Bake-Create Camera', 'import dmptools.nodes.bakeCamera as bakeCamera ; bakeCamera.BakeCamera()')
 # 3d image plane
 toolbar.addCommand('Nodes/3d/Image plane', 'nuke.createNode("imagePlane")')
+# populate geo on 3d selection
+toolbar.addCommand('Nodes/3d/Populate 3d Geo ...', 'import dmptools.tools.nukePopulate as nukePopulate ; nukePopulate.main()')
 # sequence manager (dev)
 toolbar.addCommand('Nodes/3d/Sequence Manager', 'nuke.createNode("sequenceManager")')
 

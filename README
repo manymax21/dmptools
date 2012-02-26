@@ -1,1 +1,7 @@
-Maya and Nuke tools
+Maya and Nuke python tools.
+
+install:
+- Install Sublime Text
+- project > open > dmptools.sublime-project
+- tools > build system > dmptools
+- tools > build
