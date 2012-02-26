@@ -31,7 +31,7 @@ def launchSublimeText():
             sublimeTextPath = str(filedialog[0])
             if os.path.exists(sublimeTextPath):
                 # setting preset
-                presets.setPreset('sublime_text_path', sublimeTextPath)
+                presets.addPreset('sublime_text_path', sublimeTextPath)
                 # launch sublime text
                 subprocess.Popen(sublimeTextPath)
         else:
@@ -56,7 +56,7 @@ def launchNuke():
             nukePath = str(filedialog[0])
             if os.path.exists(nukePath):
                 # setting preset
-                presets.setPreset('nuke_path', nukePath)
+                presets.addPreset('nuke_path', nukePath)
                 # launch sublime text
                 subprocess.Popen(nukePath+" --nukex")
         else:

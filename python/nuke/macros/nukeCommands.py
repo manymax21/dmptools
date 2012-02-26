@@ -13,12 +13,9 @@ import commands as cmd
 import sys
 import time
 import re
-
-# ======================
-# DEFINITIONS
-# ======================
    
-class PrintPath(nukescripts.PythonPanel):                   # panel the printPath tool
+class PrintPath(nukescripts.PythonPanel):
+    """panel the printPath tool"""
     def __init__(self):
         self.reads = nuke.selectedNodes('Read')
         
@@ -53,11 +50,13 @@ class PrintPath(nukescripts.PythonPanel):                   # panel the printPat
             
             self.textKnob.setValue(readStr)
             
-def printPath():                                            # return a panel with the path of the selected nodes
+def printPath():
+    """return a panel with the path of the selected nodes"""
     nukescripts.registerPanel( 'printpath', printPath)
     PrintPath().show()
         
-def frameRangeOverrideTab():                                # add an frame override field to a write node
+def frameRangeOverrideTab():
+    """add an frame override field to a write node"""
     
     node = nuke.thisNode()
     
@@ -72,11 +71,12 @@ def frameRangeOverrideTab():                                # add an frame overr
     
     node.knob('file').setFlag(True)
 
-def updateWrite():                                          # update the write node
-
+def updateWrite():
+    # update the write node
     pass
 
-def fetchReadNode():                                        # ...
+def fetchReadNode():
+    # ...
     node = nuke.thisNode()
     print str(node.name())
     read = fetchReadNodeInTree(node)
@@ -86,7 +86,7 @@ def fetchReadNode():                                        # ...
             print str(nuke.frame())
             print str(read.name()), 'the file '+str(read['file'].getEvaluatedValue())+' exists ...'
         
-def checkDependencies(node):                                # ...
+def checkDependencies(node):
     #print node.name()
     depNodes = nuke.dependencies(node, nuke.INPUTS | nuke.HIDDEN_INPUTS | nuke.EXPRESSIONS)
     #print depNodes
@@ -103,11 +103,12 @@ def checkDependencies(node):                                # ...
             result = checkDependencies(dep)
     return result
 
-def fetchReadNodeInTree(node):                              # return read node in the branch
+def fetchReadNodeInTree(node):
+    """return read node in the branch"""
     readNode = checkDependencies(node)
     return readNode
 
-def loopnodes(knobs={}):                                    # function to set values on multiple knobs on mulitple nodes (see doc of def)
+def loopnodes(knobs={}):
     """
     will iterate through a selection of nodes and set values on knobs
     loopnodes({<knobname>:<value>})
@@ -123,7 +124,8 @@ def loopnodes(knobs={}):                                    # function to set va
             except:
                 print 'FAILED', node.name(), knob, knobs[knob]
                 
-def unselectAll():                                          # selection utils
+def unselectAll():
+    """selection utils"""
     for node in nuke.allNodes():
         node['selected'].setValue(False)
         if node.Class() == 'Group':
@@ -132,7 +134,8 @@ def unselectAll():                                          # selection utils
                 child['selected'].setValue(False)
             node.end()
 
-def selectReplace(sel):                                     # select replace
+def selectReplace(sel):
+    """select replace"""
     if type(sel).__name__ == 'str':
         unselectAll()
         sel['selected'].setValue(True)
@@ -141,11 +144,12 @@ def selectReplace(sel):                                     # select replace
         for node in sel:
             node['selected'].setValue(True)
     
-def selectAdd(node):                                        # add to actual selection
-
+def selectAdd(node):
+    """add to actual selection"""
     node['selected'].setValue(True)
 
-def closeAllControlPanel():                                 # close all node control panel
+def closeAllControlPanel():
+    """close all node control panel"""
     for node in nuke.allNodes():
         node.hideControlPanel()
         if node.Class() == 'Group':
@@ -155,8 +159,8 @@ def closeAllControlPanel():                                 # close all node con
                 child['selected'].setValue(False)
             node.end()
 
-def clearAnim():											# clear animation of all the knobs in the selected nodes
-
+def clearAnim():
+    """clear animation of all the knobs in the selected nodes"""
     for node in nuke.selectedNodes():
         # rotopaint
         if node.Class() == "RotoPaint":
@@ -172,7 +176,8 @@ def clearAnim():											# clear animation of all the knobs in the selected no
                     nuke.Knob.clearAnimated(node[knob])            
                     print "clearing animation of: "+node.name()+" "+node[knob].name()
 
-def bclone():												# create a transparent clone to clean the node tree
+def bclone():
+    """create a transparent clone to clean the node tree"""
     node = nuke.selectedNodes()
     if len(node)==1:
         clone1 = nuke.createNode("NoOp", inpanel = False)
@@ -212,7 +217,8 @@ def bclone():												# create a transparent clone to clean the node tree
     if len(node)!=0 and len(node)!=1:
         nuke.message('Just select one node to clone !')
 
-def setDisplayWireframe():								    # set all 3d to wireframe mode
+def setDisplayWireframe():
+    """set all 3d to wireframe mode"""
     for node in nuke.allNodes():
         print node.name()
         goodGeo = ["Group", "ReadGeo","ReadGeo2","Sphere","Cube","Cylinder","Card", "Card2"]
@@ -226,7 +232,8 @@ def setDisplayWireframe():								    # set all 3d to wireframe mode
             else:
                 node['display'].setValue(1)
                 
-def setDisplayShaded():									    # set all 3d to shaded mode
+def setDisplayShaded():
+    """set all 3d to shaded mode"""
     for node in nuke.allNodes():
         print node.name()
         goodGeo = ["Group", "ReadGeo","ReadGeo2","Sphere","Cube","Cylinder","Card", "Card2"]
@@ -240,7 +247,8 @@ def setDisplayShaded():									    # set all 3d to shaded mode
             else:
                 node['display'].setValue(2)
                 
-def setDisplayTextured():									# set all 3d to textured mode
+def setDisplayTextured():
+    """set all 3d to textured mode"""
     for node in nuke.allNodes():
         print node.name()
         goodGeo = ["Group", "ReadGeo","ReadGeo2","Sphere","Cube","Cylinder","Card", "Card2"]
@@ -254,7 +262,8 @@ def setDisplayTextured():									# set all 3d to textured mode
             else:
                 node['display'].setValue(4)
                 
-def setDisplayTexturedLines():								# set all 3d to textured mode
+def setDisplayTexturedLines():
+    """set all 3d to textured mode"""
     for node in nuke.allNodes():
         print node.name()
         goodGeo = ["Group", "ReadGeo","ReadGeo2","Sphere","Cube","Cylinder","Card", "Card2"]
@@ -268,7 +277,8 @@ def setDisplayTexturedLines():								# set all 3d to textured mode
             else:
                 node['display'].setValue(5)
                 
-def setFrameRangeFromSel():								    # set the timeline with the handles of the selected node.
+def setFrameRangeFromSel():
+    """set the timeline with the handles of the selected node."""
     sel = nuke.selectedNodes()
     if sel:
         nuke.root()['first_frame'].setValue(sel[0]['first'].getValue())
@@ -276,7 +286,8 @@ def setFrameRangeFromSel():								    # set the timeline with the handles of th
     else:
         nuke.message("please select one node.")
 
-def setReadFrameRange():								    # set nuke frame range according to a read node
+def setReadFrameRange():
+    """set nuke frame range according to a read node"""
     readNodes = nuke.selectedNodes("Read")
     rawInput = nuke.getInput("StartFrame-EndFrame:",str(int(nuke.root()['first_frame'].getValue()))+"-"+str(int(nuke.root()['last_frame'].getValue())))
     if rawInput:
@@ -292,7 +303,8 @@ def setReadFrameRange():								    # set nuke frame range according to a read n
                 n['last'].setValue(int(endFrame))
                 print "Read node '"+n.name()+"' is set to: "+str(firstFrame)+"-"+str(endFrame)
 
-def setAllReadsFrameRange():                                # same as above ...
+def setAllReadsFrameRange():
+    """same as above ..."""
     p = nuke.Panel("Frame range ")
     p.addSingleLineInput("start", int(nuke.root()['first_frame'].getValue()))
     p.addSingleLineInput("end", int(nuke.root()['last_frame'].getValue()))
@@ -307,7 +319,8 @@ def setAllReadsFrameRange():                                # same as above ...
             n['origlast'].setValue(last)
             print n.name(), "is set to:", firstFrame, "-", endFrame
 
-def initAlignValues(mode):									# align tool 
+def initAlignValues(mode):
+    """align tool"""
     yMin = -100000000
     yMax = 100000000
 
@@ -327,29 +340,34 @@ def initAlignValues(mode):									# align tool
     if mode == "down":
         return yMin
 
-def centerAlignSelectedNodes():                             # align center
+def centerAlignSelectedNodes():
+    """align center"""
     yCenter = initAlignValues("center")
 
     for node in nuke.selectedNodes():
         node["ypos"].setValue(yCenter)
 
-def upAlignSelectedNodes():                                 # align up
+def upAlignSelectedNodes():
+    """align up"""
     yMax = initAlignValues("up")
 
     for node in nuke.selectedNodes():
         node["ypos"].setValue(yMax)
 
-def downAlignSelectedNodes():                               # align down
+def downAlignSelectedNodes():
+    """align down"""
     yMin = initAlignValues("down")
 
     for node in nuke.selectedNodes():
         node["ypos"].setValue(yMin)
 
-def hideInputs():											# hide inputs on selection
+def hideInputs():
+    """hide inputs on selection"""
     for node in nuke.selectedNodes():
         node.knob('hide_input').setValue(not node.knob('hide_input').value())
        
-def toggleCamGeoDisplay():								    # toggle the display of the 3d cameras and 3d geos
+def toggleCamGeoDisplay():
+    """toggle the display of the 3d cameras and 3d geos"""
 
     sel = nuke.selectedNodes()
 
@@ -414,16 +432,16 @@ def toggleCamGeoDisplay():								    # toggle the display of the 3d cameras and
         if not nodeL:
             nuke.message("there is no cameras or readGeos in this scene")
    
-def goToFirstFrame():										# go to first frame a la maya
-
+def goToFirstFrame():
+    """go to first frame a la maya"""
     nuke.frame(int(nuke.root()["first_frame"].getValue()))
     
-def nukePlay():											    # play a la maya
-
+def nukePlay():
+    """play a la maya"""
     nuke.activeViewer().play(1)
 
-def setColorspace():										# set colorspace to selection
-
+def setColorspace():
+    """set colorspace to selection"""
     availableColorspace = 'none(raw) linear Cineon sRGB'
     panelColor = nuke.Panel('Select colorspace')
     panelColor.addEnumerationPulldown("Colorspaces", availableColorspace)
@@ -444,7 +462,8 @@ def setColorspace():										# set colorspace to selection
                 except:
                     print node.name(), "doesn't have colorspace..."
 
-def copySpecial():										    # copy selection, paste and reconnect (just one node)
+def copySpecial():
+    """copy selection, paste and reconnect (just one node)"""
     depNode = nuke.dependencies(nuke.selectedNode())
     dependNode = nuke.dependentNodes(nuke.INPUTS or nuke.HIDDEN_INPUTS or nuke.EXPRESSIONS, [nuke.selectedNode()])
     i = 0
@@ -462,8 +481,8 @@ def copySpecial():										    # copy selection, paste and reconnect (just one 
     newNode.setInput(0, depNode[0])
     dependNode[0].setInput(i+1, newNode)
 
-def replaceStringInFile():									# replace string in file knob
-    
+def replaceStringInFile():
+    """replace string in file knob"""
     sel = nuke.selectedNodes()
     pane = nuke.Panel('replace string in file knob')
     pane.addSingleLineInput('replace this', '')
@@ -482,7 +501,8 @@ def replaceStringInFile():									# replace string in file knob
                 except:
                     print 'failed'
 
-def importScript():                                         # import exported nuke script from maya
+def importScript():
+    """import exported nuke script from maya"""
     crosswalkFile = 'mayaToNuke.info'
     if os.path.exists(crosswalkFile):
         fileInfo = open(crosswalkFile, 'r')
@@ -495,14 +515,17 @@ def importScript():                                         # import exported nu
     else:
         print 'nuke script not found...'
 
-def replaceStereoStr(node, view):                           # used for openTerminal
+def replaceStereoStr(node, view):
+    """used for openTerminal"""
     inputPath = node['file'].value()
     strToRemove = '%V'
     strToReplace = view
     outputPath = re.sub(strToRemove, strToReplace, inputPath)
     return outputPath
 
-def openTerminal():										    # open a gnome-terminal with the correct job set. if there a read or a write node selected, it will go to the file directory
+def openTerminal():
+    """open a gnome-terminal with the correct job set.
+     if there a read or a write node selected, it will go to the file directory"""
     sel = nuke.selectedNodes()
     job = os.environ['JOB']
     shot = os.environ['SHOT']
@@ -535,16 +558,16 @@ def openTerminal():										    # open a gnome-terminal with the correct job se
     else:
         os.system('gnome-terminal --title '+job+'--'+shot+' -x tcsh -c "'+jobCmd+';tcsh"&')
 
-def getLatestAutosave():                                    # returns the latest autosave nuke script
-
+def getLatestAutosave():
+    """returns the latest autosave nuke script"""
     nukeautosavePath = '/disk1/nuke/'+os.environ['USERNAME']+'/autosave/'
     latestAutosave = cmd.getstatusoutput('ls -1tr '+nukeautosavePath+' | tail -1')[1]
     latestAutosavePy = latestAutosave.split('.')[0]+'.nk'
     cmd.getstatusoutput('cp '+nukeautosavePath+latestAutosave+' '+nukeautosavePath+latestAutosavePy)
     return nukeautosavePath+latestAutosavePy
 
-def showModules():                                          # this is a simple function to print all the modules available in nuke
-
+def showModules():
+    """this is a simple function to print all the modules available in nuke"""
     keys, values = sys.modules.keys(), sys.modules.values()
     keys.sort()
     modulesList = ''
@@ -566,20 +589,23 @@ def showModules():                                          # this is a simple f
                 exec('import '+moduleToLoad)
                 exec('reload('+moduleToLoad+')')
 
-def reloadReadNodes():                                      # hit the reload button if possible
+def reloadReadNodes():
+    """hit the reload button if possible"""
     for node in nuke.selectedNodes():
         try:
             node['reload'].execute()
         except:
             pass
 
-def togglePostageStamps():                                  # toggle the poststamps on the read nodes
+def togglePostageStamps():
+    """toggle the poststamps on the read nodes"""
     for node in nuke.allNodes('Read'):
         node['selected'].setValue(True)
         nukescripts.toggle("postage_stamp")
         node['selected'].setValue(False)
 
-def flipViewer():                                           # input process to flip the viewer
+def flipViewer():
+    """input process to flip the viewer"""
     allV = nuke.allNodes('Viewer')
     pV = allV[0]
     List = nuke.selectedNodes()
@@ -612,7 +638,8 @@ def flipViewer():                                           # input process to f
         for i in List:
             i['selected'].setValue(True)
 
-def flopViewer():                                           # input process to flop the viewer
+def flopViewer():
+    """input process to flop the viewer"""
     allV = nuke.allNodes('Viewer')
     pV = allV[0]
     List = nuke.selectedNodes()
@@ -645,13 +672,14 @@ def flopViewer():                                           # input process to f
     for i in List:
         i['selected'].setValue(True)
     
-def gl_lighting():                                          # switch the global lighting on a 3d viewer
-
+def gl_lighting():
+    """switch the global lighting on a 3d viewer"""
     for viewer in nuke.allNodes('Viewer'):
         val = int(viewer.knob('gl_lighting').getValue())
         viewer.knob('gl_lighting').setValue(not val)
         
-def viewerSettings():                                       # set some default values on the viewer
+def viewerSettings():
+    """set some default values on the viewer"""
     node = nuke.thisNode()
     print "set default value on", node.name()
     node.knob('near').setValue(100)
@@ -659,7 +687,8 @@ def viewerSettings():                                       # set some default v
     node.knob('grid_display').setValue(False)
     node.knob('gl_lighting').setValue(1)
 
-def nukeExecute():                                          # try to execute (reload, render) the selected nodes
+def nukeExecute():
+    """try to execute (reload, render) the selected nodes"""
     if nuke.selectedNodes():
         for node in nuke.selectedNodes():
             try:
@@ -671,7 +700,8 @@ def nukeExecute():                                          # try to execute (re
             except:
                 pass
 
-def checkAlpha():                                           # check the alpha channel
+def checkAlpha():
+    """check the alpha channel"""
     node = nuke.thisNode()
     file_type = node.knob('file_type').value()
     channels = node.knob('channels').value()
@@ -687,7 +717,8 @@ def checkAlpha():                                           # check the alpha ch
         if not file_type == 'dpx' and not channels == 'all':
             node.knob('channels').setValue('rgba')
             
-def createViewerInput():                                    # create the color check node
+def createViewerInput():
+    """create the color check node"""
     if 'VIEWER_INPUT' not in [node.name() for node in nuke.allNodes()]:
         for node in nuke.allNodes():
             node['selected'].setValue(False)
@@ -699,7 +730,8 @@ def createViewerInput():                                    # create the color c
         nuke.toNode('VIEWER_INPUT').showControlPanel()
         #nuke.delete(nuke.toNode('VIEWER_INPUT'))
 
-def printNodeKnobsExpressions():                            # return nodes that have expression and the expression
+def printNodeKnobsExpressions():
+    """return nodes that have expression and the expression"""
     nodes = {}
     for node in nuke.allNodes():
         nodes[node] = {}
@@ -713,13 +745,16 @@ def printNodeKnobsExpressions():                            # return nodes that 
 # CALLBACKS
 # ======================
 
-def viewerSettings():                                       # set default values at the creation of a viewer node
+def viewerSettings():#
+    """set default values at the creation of a viewer node"""
     nuke.callbacks.addOnCreate(viewerSettings, args=(), kwargs={}, nodeClass='Viewer')
     
-def autoCheckAlpha():                                       # auto check the alpha channel at the creation of write nodes
+def autoCheckAlpha():
+    """auto check the alpha channel at the creation of write nodes"""
     nuke.callbacks.addOnUserCreate(checkAlpha, args=(), kwargs={}, nodeClass='Write')
     
-def addFrameRangeOverride():                                # auto add the frame range override tab on write nodes
+def addFrameRangeOverride():
+    """auto add the frame range override tab on write nodes"""
     nuke.callbacks.addOnUserCreate(frameRangeOverrideTab, args=(), kwargs={}, nodeClass='Write')
 
 # end

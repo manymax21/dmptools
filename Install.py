@@ -135,7 +135,7 @@ def replacements(path):
 
 def createUserSetup():
     '''
-        create the userSetup file for Maya startup
+    create the userSetup file for Maya startup
     '''
     userSetup = MAYA_PATH+'/userSetup.mel'
     if os.path.exists(userSetup):
@@ -148,7 +148,7 @@ def createUserSetup():
 
 def install(src, dst, symlinks=False, ignore=None):
     '''
-        slightly different shutil.copytree
+    slightly different shutil.copytree
     '''
     names = os.listdir(src)
     if ignore is not None:
