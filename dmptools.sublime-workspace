@@ -1,0 +1,673 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"sublime",
+				"sublimeTextPath"
+			],
+			[
+				"new",
+				"newPresetList"
+			],
+			[
+				"preset",
+				"presetfile"
+			],
+			[
+				"subli",
+				"sublimeTextPath"
+			],
+			[
+				"MODUL",
+				"MODULE_PATH"
+			],
+			[
+				"ACTI",
+				"ACTIVE_FILE"
+			],
+			[
+				"ACTIVE",
+				"ACTIVE_FILE_PATH"
+			],
+			[
+				"set",
+				"setDefaultRenderer"
+			],
+			[
+				"model",
+				"modelPanel"
+			],
+			[
+				"panel",
+				"panelsDisplay"
+			],
+			[
+				"mesh",
+				"meshes"
+			],
+			[
+				"py",
+				"pyFile"
+			],
+			[
+				"MAYA",
+				"MAYA_SHARE"
+			],
+			[
+				"main",
+				"main"
+			],
+			[
+				"ratio",
+				"ratioCalculator"
+			],
+			[
+				"button",
+				"button"
+			],
+			[
+				"shelf",
+				"shelf"
+			],
+			[
+				"if",
+				"ifmain	if __name__ == '__main__'"
+			],
+			[
+				"ex",
+				"exists"
+			],
+			[
+				"maya",
+				"mayalog"
+			],
+			[
+				"may",
+				"mayalog"
+			],
+			[
+				"nu",
+				"nukelog"
+			],
+			[
+				"src",
+				"srcname"
+			],
+			[
+				"dst",
+				"dstname"
+			],
+			[
+				"copy",
+				"copytree"
+			],
+			[
+				"N",
+				"NUKE_PATH"
+			],
+			[
+				"MA",
+				"MAYA_PATH"
+			],
+			[
+				"cop",
+				"copyNukeStuff"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "Make.py",
+			"settings":
+			{
+				"buffer_size": 8160,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "python/maya/createHotkeys.py",
+			"settings":
+			{
+				"buffer_size": 8882,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "python/maya/dmptoolsShelf.py",
+			"settings":
+			{
+				"buffer_size": 2633,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "python/maya/mayaToNuke.py",
+			"settings":
+			{
+				"buffer_size": 33995,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "python/maya/mayaToNuke_old.py",
+			"settings":
+			{
+				"buffer_size": 43210,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "python/maya/maya3ddmpCommands.py",
+			"settings":
+			{
+				"buffer_size": 20316,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "python/nuke/macros/presets.py",
+			"settings":
+			{
+				"buffer_size": 2987,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "dmptools",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"package",
+				"Package Control: Add Repository"
+			],
+			[
+				"Packa",
+				"Package Control: Add Repository"
+			],
+			[
+				"Package",
+				"Preferences: Browse Packages"
+			],
+			[
+				"Class",
+				"Snippet: New Class"
+			],
+			[
+				"Snippet: ",
+				"Snippet: New Class"
+			],
+			[
+				"",
+				"Indentation: Convert to Spaces"
+			]
+		],
+		"width": 400.0
+	},
+	"console":
+	{
+		"height": 168.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": false,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"sublimeTextPath",
+			"sublime_text_path",
+			"sublime",
+			"PresetsManager",
+			"IS_ACTIVE_FILE_IN_PROJECT",
+			"IS_",
+			"IS_ACTIVE_FILE",
+			"print",
+			"setPreset",
+			"sublimeTextPath",
+			"sublime_text_path",
+			"SUBLIME_TEXT_PATH",
+			"sublime_text_path",
+			"SUBLIME_TEXT_PATH",
+			"MAYA_PRESET_FILE",
+			"presets",
+			"Presets",
+			"presets",
+			"cmds.fileDialog2",
+			"cmds.file",
+			"                '!MAYA_SHELF!' : MAYA_PATH+MODULE_NAME+'/pictures/shelf',\n",
+			"+'\\",
+			"+'')",
+			"run",
+			"ACTIVE_FILE",
+			"sys.argv[-2]",
+			"setDefaultRenderer",
+			"MAYA_SHARE",
+			"COMMANDNAMEFILE",
+			"VERSION",
+			"VERSIOn",
+			"MEL_PATH",
+			", ",
+			" ; ",
+			"IS_ACTIVE_FILE",
+			"MODULE_NAME",
+			"MAYA_USERSETUP_FILE",
+			".",
+			"getDisplayItems",
+			"getDisplay",
+			"getDisplay*",
+			"getDisplay",
+			"getDisplayItems",
+			"getDisplay",
+			"                ",
+			"        passes = tkl.getAllPass()\n",
+			"getPres",
+			"!",
+			"file.close",
+			"file.op",
+			"            # install nuke dmptools\n",
+			"MAYAVERSION",
+			"MAYAVERSION = '2012-x64'\n",
+			"os.environ['MAYA_VERSION']",
+			"MAKE",
+			"                    ",
+			"    FILE.write('// create shelf\\n')\n",
+			"MAYA_PATH",
+			"hotkeyDict",
+			"mpc.maya.dmpTools",
+			"            'command':'python(\"import dmptools.mayaToNuke as mayaToNuke;mayaToNuke.mayaToNuke()\");',\n",
+			"\"",
+			"            \"annotation\":\"Maya to Nuke Exporter.\"\n",
+			"mpc.maya.dmpTools",
+			"f",
+			"mpc3ddmp",
+			"indent",
+			"// ",
+			"\\t",
+			"mpc3ddmp",
+			"copytree",
+			"SOURCE_",
+			"    copytree(SOURCE_PATH+'/nuke', NUKE_PATH+MODULE_NAME)\n",
+			"MAYA_SHARE",
+			"                '!MAYA_SHARE!' : MAYA_PATH+MODULE_NAME+'/pictures',\n",
+			"SHARE_PATH",
+			"dmpTools",
+			"!NUKE_SHARE!",
+			"!SHARE_PATH!",
+			"SHARE_PATH",
+			"!",
+			"REPLACEMENTS",
+			"sys",
+			"	\"font_face\": \"Courier New\",\n",
+			"font",
+			"symlinks",
+			"log",
+			"    ",
+			"LOG",
+			"\\t",
+			"	LOG += '=============================='\n	LOG += '           +NUKE+             '\n	LOG += '=============================='\n	LOG += 'installing nuke '+MODULE_NAME+' in '+NUKE_PATH+'...'	\n",
+			"srcname",
+			"maya",
+			"from shutil import copytree\n",
+			"\"Error\"",
+			"copytree",
+			"python.nuke.",
+			" = []",
+			"nukepath",
+			"exclude_files",
+			"root",
+			"for",
+			"	\"\"\"",
+			"print 'copying nuke python stuff...'\n	",
+			"crosswalkFile",
+			"importScript",
+			"replaceStereoStr",
+			"sys",
+			"time"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			",",
+			";",
+			"MAYA_VERSION",
+			"hotkey",
+			"dmptools",
+			"'",
+			"dmptools",
+			"    ",
+			"MAYA_SHELF",
+			"MAYA_SHARE",
+			"dmptools",
+			"/pictures",
+			"pictures",
+			"./pictures",
+			"../pictures",
+			"    ",
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "Make.py",
+					"settings":
+					{
+						"buffer_size": 8160,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1477,
+								1477
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 28.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "python/maya/createHotkeys.py",
+					"settings":
+					{
+						"buffer_size": 8882,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5693,
+								5710
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1980.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "python/maya/dmptoolsShelf.py",
+					"settings":
+					{
+						"buffer_size": 2633,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								862,
+								862
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "python/maya/mayaToNuke.py",
+					"settings":
+					{
+						"buffer_size": 33995,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								381,
+								381
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 495.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "python/maya/mayaToNuke_old.py",
+					"settings":
+					{
+						"buffer_size": 43210,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								33165,
+								33165
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 4308.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 5,
+					"file": "python/maya/maya3ddmpCommands.py",
+					"settings":
+					{
+						"buffer_size": 20316,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1453,
+								1453
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "python/nuke/macros/presets.py",
+					"settings":
+					{
+						"buffer_size": 2987,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2122,
+								2122
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 720.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.494270833333,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 118.0
+	},
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"nuke3ddmp",
+				"python/nuke/macros/nuke3ddmpCommands.py"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 596.0,
+		"selected_items":
+		[
+			[
+				"",
+				"/D/jeux/Steam/steamapps/common/skyrim/Data/Scripts/SkyrimPapyrus.sublime-project"
+			]
+		],
+		"width": 425.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 241.0,
+	"status_bar_visible": true
+}
