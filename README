@@ -11,7 +11,6 @@ REQUIREMENTS:
 
 INSTALL:
 - clone dmptools: git clone git://github.com/michael-ha/dmptools.git
-- in dmptools/dmptools.sublime-project file, change the "path" value to the one you clone dmptools to.
 - open Sublime Text
 - project > open > dmptools.sublime-project
 - open dmptools/Install.py
