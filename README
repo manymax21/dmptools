@@ -18,5 +18,5 @@ INSTALL:
 - tools > build
 
 RESULT:
-In Maya you should new see a new shelf
+In Maya you should now see a new shelf
 In Nuke you should now see a new toolbar
