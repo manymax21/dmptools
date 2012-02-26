@@ -1,7 +1,21 @@
+===============================
+
 Maya and Nuke python tools.
 
-install:
-- Install Sublime Text
+===============================
+
+REQUIREMENTS:
+- NukeX.X and MayaX installed
+- python2.7 installed in c:/python27
+- sublime text editor to build
+
+INSTALL:
+- clone dmptools: clone git://github.com/michael-ha/dmptools.git
+- in dmptools/dmptools.sublime-project file, change the "path" value to the one where you clone dmptools
 - project > open > dmptools.sublime-project
 - tools > build system > dmptools
 - tools > build
+
+RESULT:
+In Maya you should new see a new shelf
+In Nuke you should now see a new toolbar
