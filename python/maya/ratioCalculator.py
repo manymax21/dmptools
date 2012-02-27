@@ -1,7 +1,7 @@
 #=================================================
 #
-# Maya Ratio calculator according to a given Camera node
-# michael-ha@moving-picture.com
+# Calculate the camera ratio from an offset
+# michael.havart@gmail.com
 #
 #=================================================
 

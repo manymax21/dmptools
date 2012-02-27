@@ -105,7 +105,6 @@ CLASSES = {
             "Now hear this, camper: you are not WANTED on my beloved battlefield!",
             "You will NOT turn my battlefield into a camp ground!",
         ],
-
     'red_sniper' : [
             "G'day!",
             "Crikey!",

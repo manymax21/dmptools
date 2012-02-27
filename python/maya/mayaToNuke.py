@@ -1,7 +1,7 @@
 #========================================================
 #
 # Generates a Nuke .nk file from Maya (animated) objects cameras and locators 
-# michael-ha@moving-picture.com
+# michael.havart@gmail.com
 #
 # __name__ = 'dmptools.mayaToNuke'
 #
