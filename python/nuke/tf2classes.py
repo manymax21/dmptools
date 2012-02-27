@@ -14,7 +14,7 @@ CLASSES = {
             "I appear to have burst into flames!",
             "I do believe I'm on fire.",
             "It seems I am not the only spy.",
-            "(upon dominating scout) Here lies scout. He ran fast, and died a virgin.",
+            "Here lies scout. He ran fast, and died a virgin.",
             "After you.",
             "Shall we?",
             "Peekaboo!",
