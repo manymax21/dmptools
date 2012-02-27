@@ -17,10 +17,9 @@ def launchSublimeText():
     # get the sublime text path preset if exists
     presets = PresetsManager()
     sublimeTextPath = presets.getPreset('sublime_text_path')
-    if sublimeTextPath:
-        if os.path.exists(sublimeTextPath[0]):
-            # launch sublime text
-            subprocess.Popen(sublimeTextPath[0])
+    if sublimeTextPath and os.path.exists(sublimeTextPath[0]):
+        # launch sublime text
+        subprocess.Popen(sublimeTextPath[0])
     else:
         # ask for the sublime text exe path
         filedialog = cmds.fileDialog2(cap='Please give me the path of Sublime Text.exe !',
