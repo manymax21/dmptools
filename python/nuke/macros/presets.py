@@ -21,6 +21,10 @@ class PresetsManager(object):
     presets = PresetsManager()
     newpresets = presets.removePreset(key='')
 
+    to get a preset value (returns a list):
+    presets = PresetsManager()
+    preset = presets.getPreset(key='')
+
     """
     def __init__(self):
         """
@@ -121,6 +125,7 @@ class PresetsManager(object):
                     pass
 
         return dictList
+        
     def openPresetFile(self):
         """
         open the preset file with notepad
