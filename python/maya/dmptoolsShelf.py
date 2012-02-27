@@ -14,31 +14,37 @@ CONFIGPATH = '!MAYA_SHELF!'
 VERSION = '!VERSION!'
 ICONSPATH = '!MAYA_SHELF!'
 BUTTONS = [
-            {
-                'name' : 'SublimeText',
-                'command' : 'import dmptools.mayaCommands as mayaCommands;mayaCommands.launchSublimeText()',
-                'icon' : ICONSPATH+'/SublimeText.xpm',
-                'annotation' : 'Launch the Sublime Text editor.'
-            },
-            {
-                'name' : 'Nuke',
-                'command' : 'import dmptools.mayaCommands as mayaCommands;mayaCommands.launchNuke()',
-                'icon' : ICONSPATH+'/Nuke.xpm',
-                'annotation' : 'Launch Nuke.'
-            },
-            {
-                'name' : 'mayaToNuke',
-                'command' : 'import dmptools.mayaToNuke as mayaToNuke;mayaToNuke.mayaToNuke()',
-                'icon' : ICONSPATH+'/MayaToNuke.xpm',
-                'annotation' : 'Maya to Nuke Exporter.'
-            },
-            {
-                'name' : 'ratioCalculator',
-                'command' : 'import dmptools.ratioCalculator as ratioCalculator;ratioCalculator.main()',
-                'icon' : ICONSPATH+'/RatioCalculator.xpm',
-                'annotation' : 'Camera-Image ratio calculator.'
-            },
-          ]
+    {
+        'name' : 'SublimeText',
+        'command' : 'import dmptools.mayaCommands as mayaCommands;mayaCommands.launchSublimeText()',
+        'icon' : ICONSPATH+'/SublimeText.xpm',
+        'annotation' : 'Launch the Sublime Text editor.'
+    },
+    {
+        'name' : 'Terminator',
+        'command' : 'import dmptools.mayaCommands as mayaCommands;mayaCommands.launchConsole()',
+        'icon' : ICONSPATH+'/Console.xpm',
+        'annotation' : 'Launch the Console2 terminal.'
+    },
+    {
+        'name' : 'Nuke',
+        'command' : 'import dmptools.mayaCommands as mayaCommands;mayaCommands.launchNuke()',
+        'icon' : ICONSPATH+'/Nuke.xpm',
+        'annotation' : 'Launch Nuke.'
+    },
+    {
+        'name' : 'mayaToNuke',
+        'command' : 'import dmptools.mayaToNuke as mayaToNuke;mayaToNuke.mayaToNuke()',
+        'icon' : ICONSPATH+'/MayaToNuke.xpm',
+        'annotation' : 'Maya to Nuke Exporter.'
+    },
+    {
+        'name' : 'ratioCalculator',
+        'command' : 'import dmptools.ratioCalculator as ratioCalculator;ratioCalculator.main()',
+        'icon' : ICONSPATH+'/RatioCalculator.xpm',
+        'annotation' : 'Camera-Image ratio calculator.'
+    },
+  ]
 
 def createShelf():
     # delete the shelf is already exists

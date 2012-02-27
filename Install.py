@@ -33,7 +33,6 @@ SOFTLIST = \
         'nuke',
         'maya',
         ]
-
 MODULE_NAME = 'dmptools'
 VERSION = '1.0.0'
 PROJECT_NAME = sys.argv[-1] == 'dmptools.sublime-project'
@@ -52,13 +51,13 @@ for root, dirs, files in os.walk(MODULE_PATH):
             break
 USER = os.environ['USERNAME']
 EXCLUDE_DIRS = \
-            [
-                '.git',
-                'csh',
-                'mel',
-                'documentation',
-                'gizmos',
-            ]
+    [
+        '.git',
+        'csh',
+        'mel',
+        'documentation',
+        'gizmos',
+    ]
 EXCLUDE_FILES = ['pyc']
 # nuke globals
 NUKE_PATH = 'c:/users/'+USER+'/.nuke/'
@@ -78,16 +77,16 @@ python ("import dmptools.createHotkeys as createHotkeys;createHotkeys.main()");\
 
 # string replacements
 REPLACEMENTS = \
-            {
-                '!VERSION!' : VERSION,
-                '!NUKE_SHARE!' : NUKE_PATH+MODULE_NAME+'/pictures',
-                '!NUKE_PRESET_FILE!' : NUKE_PRESET_FILE,
-                '!MAYA_GLOBAL!' : MAYA_GLOBAL,
-                '!MAYA_PATH!' : MAYA_PATH+MODULE_NAME,
-                '!MAYA_PICTURES!' : MAYA_PATH+MODULE_NAME+'/pictures',
-                '!MAYA_SHELF!' : MAYA_PATH+MODULE_NAME+'/pictures/shelf',
-                '!MAYA_PRESET_FILE!' : MAYA_PRESET_FILE,
-            }
+    {
+        '!VERSION!' : VERSION,
+        '!NUKE_SHARE!' : NUKE_PATH+MODULE_NAME+'/pictures',
+        '!NUKE_PRESET_FILE!' : NUKE_PRESET_FILE,
+        '!MAYA_GLOBAL!' : MAYA_GLOBAL,
+        '!MAYA_PATH!' : MAYA_PATH+MODULE_NAME,
+        '!MAYA_PICTURES!' : MAYA_PATH+MODULE_NAME+'/pictures',
+        '!MAYA_SHELF!' : MAYA_PATH+MODULE_NAME+'/pictures/shelf',
+        '!MAYA_PRESET_FILE!' : MAYA_PRESET_FILE,
+    }
 
 def installNuke():
     # install maya process

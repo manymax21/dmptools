@@ -12,10 +12,53 @@ import subprocess
 
 from dmptools.presets import PresetsManager
 
-def launchSublimeText():
-
-    # get the sublime text path preset if exists
+def launchConsole():
+    """launch console2 from maya"""
     presets = PresetsManager()
+    
+    # get the sublime text path from default
+    defaultConsolePath = [
+        'C:/Program Files/Console2/Console.exe',
+        'C:/Program Files (x86)/Console2/Console.exe',
+        ]
+    for path in defaultConsolePath:
+        if os.path.exists(path):
+            presets.addPreset('sublime_text_path', path)
+
+    consolePath = presets.getPreset('sublime_text_path')
+    if consolePath and os.path.exists(consolePath[0]):
+        # launch sublime text
+        subprocess.Popen(consolePath[0])
+    else:
+        # ask for the sublime text exe path
+        filedialog = cmds.fileDialog2(cap='Please give me the path of Console.exe !',
+                        fm=1,
+                        dir='C:\\Program Files\\',
+                        ff='*.exe')
+        if filedialog:
+            consolePath = str(filedialog[0])
+            if os.path.exists(consolePath):
+                # setting preset
+                presets.addPreset('sublime_text_path', consolePath)
+                # launch sublime text
+                subprocess.Popen(consolePath)
+        else:
+            raise UserWarning('No exe found !')
+
+def launchSublimeText():
+    """launch sublime text from maya"""
+    presets = PresetsManager()
+    
+    # get the sublime text path from default
+    defaultSublimePath = [
+        'C:/Program Files/sublime_text/sublime_text.exe',
+        'C:/Program Files/Sublime Text 2/sublime_text.exe',
+        'C:/Program Files (x86)/Sublime Text 2/sublime_text.exe',
+        ]
+    for path in defaultSublimePath:
+        if os.path.exists(path):
+            presets.addPreset('sublime_text_path', path)
+
     sublimeTextPath = presets.getPreset('sublime_text_path')
     if sublimeTextPath and os.path.exists(sublimeTextPath[0]):
         # launch sublime text
@@ -37,9 +80,21 @@ def launchSublimeText():
             raise UserWarning('No exe found !')
 
 def launchNuke():
-
-    # get the sublime text path preset if exists
+    """launch nuke from maya"""
     presets = PresetsManager()
+
+    # get the nuke text path from default
+    defaultNukePath = [
+        'C:/Program Files/Nuke6.3v4/Nuke6.3.exe',
+        'C:/Program Files (x86)/Nuke6.3v4/Nuke6.3.exe',
+        'C:/Program Files/Nuke6.3v2/Nuke6.3.exe',
+        'C:/Program Files (x86)/Nuke6.3v2/Nuke6.3.exe',
+        ]
+    for path in defaultNukePath:
+        if os.path.exists(path):
+            presets.addPreset('nuke_path', path)
+            
+    # get the sublime text path preset if exists
     nukePath = presets.getPreset('nuke_path')
     if nukePath:
         if os.path.exists(nukePath[0]):
