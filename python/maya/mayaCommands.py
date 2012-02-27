@@ -45,6 +45,8 @@ def launchNuke():
         if os.path.exists(nukePath[0]):
             # launch sublime text
             subprocess.Popen(nukePath[0]+" --nukex")
+        else:
+            raise UserWarning('No exe found !')
     else:
         # ask for the sublime text exe path
         filedialog = cmds.fileDialog2(cap='Please give me the path of Nuke.exe !',
@@ -58,6 +60,8 @@ def launchNuke():
                 presets.addPreset('nuke_path', nukePath)
                 # launch sublime text
                 subprocess.Popen(nukePath+" --nukex")
+            else:
+                raise UserWarning('No exe found !')
         else:
             raise UserWarning('No exe found !')
 
