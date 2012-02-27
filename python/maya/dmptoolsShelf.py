@@ -9,42 +9,13 @@ import maya.cmds as cmds
 import maya.mel as mel
 import os
 
+import dmptools.shelfButtons as shelfButtons
+
 # globals
 CONFIGPATH = '!MAYA_SHELF!'
 VERSION = '!VERSION!'
 ICONSPATH = '!MAYA_SHELF!'
-BUTTONS = [
-    {
-        'name' : 'SublimeText',
-        'command' : 'import dmptools.mayaCommands as mayaCommands;mayaCommands.launchSublimeText()',
-        'icon' : ICONSPATH+'/SublimeText.xpm',
-        'annotation' : 'Launch the Sublime Text editor.'
-    },
-    {
-        'name' : 'Terminator',
-        'command' : 'import dmptools.mayaCommands as mayaCommands;mayaCommands.launchConsole()',
-        'icon' : ICONSPATH+'/Console.xpm',
-        'annotation' : 'Launch the Console2 terminal.'
-    },
-    {
-        'name' : 'Nuke',
-        'command' : 'import dmptools.mayaCommands as mayaCommands;mayaCommands.launchNuke()',
-        'icon' : ICONSPATH+'/Nuke.xpm',
-        'annotation' : 'Launch Nuke.'
-    },
-    {
-        'name' : 'mayaToNuke',
-        'command' : 'import dmptools.mayaToNuke as mayaToNuke;mayaToNuke.mayaToNuke()',
-        'icon' : ICONSPATH+'/MayaToNuke.xpm',
-        'annotation' : 'Maya to Nuke Exporter.'
-    },
-    {
-        'name' : 'ratioCalculator',
-        'command' : 'import dmptools.ratioCalculator as ratioCalculator;ratioCalculator.main()',
-        'icon' : ICONSPATH+'/RatioCalculator.xpm',
-        'annotation' : 'Camera-Image ratio calculator.'
-    },
-  ]
+BUTTONS = shelfButtons.BUTTONS
 
 def createShelf():
     # delete the shelf is already exists
@@ -57,6 +28,9 @@ def createShelf():
     # create shelf buttons
     for button in BUTTONS:
         b = addButton(button)
+    # select the last created shelf 
+    i = cmds.shelfTabLayout(shelfParent, numberOfChildren=True, q=True)
+    cmds.shelfTabLayout(shelfParent, selectTabIndex=i, e=True)
 
 def addButton(button):
     # create dmptools shelf button
@@ -67,7 +41,7 @@ def addButton(button):
                     height=34,
                     manage=True,
                     visible=True,
-                    image1=button['icon'],
+                    image1=ICONSPATH+'/'+button['icon'],
                     label=button['name'],
                     style='iconOnly',
                     annotation=button['annotation'],

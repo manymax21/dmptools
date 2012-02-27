@@ -12,6 +12,54 @@ import subprocess
 
 from dmptools.presets import PresetsManager
 
+def newScriptEditor():
+    """new script editor test"""
+    win = cmds.window(t='New Script Editor', menuBar= True, w = 650, h = 300)
+    form = cmds.formLayout()
+    pane = cmds.paneLayout(configuration='horizontal2', paneSize=[[1,100,40],[2,100,60]])
+    """top layout"""
+    formTop = cmds.formLayout()
+    reporter = cmds.cmdScrollFieldReporter('reporter')
+    cmds.setParent('..')
+    cmds.formLayout(formTop, e=True,
+            attachForm=\
+                [
+                    (reporter, "top", 5),
+                    (reporter, "bottom", 5),
+                    (reporter, "left", 5),
+                    (reporter, "right", 5),
+                ]
+        )
+    cmds.paneLayout(pane, edit=True, setPane = [formTop, 2])
+    """bottom layout"""
+    formBottom = cmds.formLayout()
+    shelf = cmds.shelfTabLayout()
+    tab1 = cmds.cmdScrollFieldExecuter('python1', sourceType="python")
+    cmds.setParent('..')
+    cmds.formLayout(formBottom, e=True,
+            attachForm=\
+                [
+                    (shelf, "top", 5),
+                    (shelf, "bottom", 5),
+                    (shelf, "left", 5),
+                    (shelf, "right", 5),
+                ]
+        )
+    
+    cmds.paneLayout(pane, edit=True, setPane = [formTop, 1])
+    
+    cmds.formLayout(form, e=True,
+            attachForm=\
+                [
+                    (pane, "top", 5),
+                    (pane, "bottom", 5),
+                    (pane, "left", 5),
+                    (pane, "right", 5),
+                ]
+        )
+    
+    cmds.showWindow()
+
 def launchConsole():
     """launch console2 from maya"""
     presets = PresetsManager()
@@ -227,7 +275,7 @@ def setDefaultMaterial():
     cmds.modelEditor(panel, edit = True, useDefaultMaterial = not cmds.modelEditor(panel, query = True, useDefaultMaterial = True))
 
 def bufMove():
-    'enter the Buf move vertex mode'
+    """enter the Buf move vertex mode"""
     sel = cmds.ls(sl = True)
     if cmds.nodeType(sel) == 'transform':
         if cmds.nodeType(cmds.listRelatives(sel)) == 'mesh':
@@ -261,7 +309,7 @@ def bufMove():
     #cmds.selectPref(useDepth = True)
     
 def bufMoveRelease():
-    
+    """release the Buf move vertex mode"""
     cmds.selectMode(object = True)
     panel = cmds.getPanel(withFocus = True)
     cmds.modelEditor(panel, e = True, manipulators = True)
@@ -270,7 +318,7 @@ def bufMoveRelease():
     #cmds.selectPref(useDepth = False)
 
 def importScene():
-    'import scene exported from nuke'
+    """import scene exported from nuke"""
     
     crosswalkFile = 'nukeToMaya.info'
     if os.path.exists(crosswalkFile):
@@ -283,13 +331,14 @@ def importScene():
             mel.eval('warning "File '+mayaFile+' not found !"')
 
 def isolateSelection():
-    'isolate selection'
+    """isolate selection"""
     
     activePanel = cmds.getPanel(wf = True)
     cmds.isolateSelect(activePanel, state = not cmds.isolateSelect(activePanel, q = True, state = True))
     #cmds.isolateSelect(activePanel, as = True)
     
 def isolateSelectionRelease():
+    """isolate selection release"""
     
     activePanel = cmds.getPanel(wf = True)
     cmds.isolateSelect(activePanel, state = not cmds.isolateSelect(activePanel, q = True, state = True))
