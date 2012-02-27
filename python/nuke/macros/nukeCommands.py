@@ -13,7 +13,7 @@ import commands as cmd
 import sys
 import time
 import re
-   
+
 class PrintPath(nukescripts.PythonPanel):
     """panel the printPath tool"""
     def __init__(self):
@@ -560,11 +560,14 @@ def openTerminal():
 
 def getLatestAutosave():
     """returns the latest autosave nuke script"""
-    nukeautosavePath = '/disk1/nuke/'+os.environ['USERNAME']+'/autosave/'
-    latestAutosave = cmd.getstatusoutput('ls -1tr '+nukeautosavePath+' | tail -1')[1]
-    latestAutosavePy = latestAutosave.split('.')[0]+'.nk'
-    cmd.getstatusoutput('cp '+nukeautosavePath+latestAutosave+' '+nukeautosavePath+latestAutosavePy)
-    return nukeautosavePath+latestAutosavePy
+    nukeAutoSavePath = nuke.toNode("preferences").knob('AutoSaveName').evaluate()
+    if os.exists(nukeAutoSavePath):
+        latestAutosave = cmd.getstatusoutput('ls -1tr '+nukeAutoSavePath+' | tail -1')[1]
+        latestAutosavePy = latestAutosave.split('.')[0]+'.nk'
+        cmd.getstatusoutput('cp '+nukeAutoSavePath+latestAutosave+' '+nukeAutoSavePath+latestAutosavePy)
+        return nukeAutoSavePath+latestAutosavePy
+    else:
+        pass
 
 def showModules():
     """this is a simple function to print all the modules available in nuke"""
