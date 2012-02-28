@@ -1,6 +1,7 @@
 import maya.cmds as cmds
 
 import dmptools.presets as presets
+import dmptools.mayaToNuke.exporter as exporter
 import dmptools.mayaToNuke.utils as utils
 
 WINDOW_NAME = 'exportMayaToNukeWindow'
@@ -32,18 +33,20 @@ class MayaToNukeUI(object):
         self.textField = cmds.textField('fileInput')
         cmds.textField('fileInput', e = True, text = 'c:/tmp', annotation = 'This is the output file')
         # open filedialog button
-        outputButton = cmds.button(label = " ... ", c = "print 'dialog'")
+        outputButton = cmds.button(label = " ... ", c = self.selectOutputFile)
+        print self.selectOutputFile
+        print help(self.selectOutputFile)
         cmds.button(outputButton, e = True, annotation = 'Browse for a Nuke file - please type the .nk extension')
         # separators
         separator1 = cmds.separator()
         separatorTop = cmds.separator()
         separatorBottom = cmds.separator()
         # export, close and refresh buttons
-        exportButton = cmds.button(label = "Export", c = "")
+        exportButton = cmds.button(label = "Export", c = self.export)
         cmds.button(exportButton, e = True, annotation = 'Generate Nuke script from selected items')
-        closeButton = cmds.button(label = "Close", c = "")
+        closeButton = cmds.button(label = "Close", c = self.closeUI)
         cmds.button(closeButton, e = True, annotation = 'Close the mayaToNuke interface - Have a nice day -')
-        reloadButton = cmds.iconTextButton(label = "Refresh", st = 'iconOnly', i = 'refresh.png', c = self.refresh)
+        reloadButton = cmds.iconTextButton(label = "Refresh", st = 'iconOnly', i = 'refresh.png', c = self.refreshUI)
         cmds.iconTextButton(reloadButton, e = True, annotation = 'Refresh the UI with the current selection')
         # build options panel (create left and right panes)
         paneForm = self.doublePane()
@@ -106,7 +109,7 @@ class MayaToNukeUI(object):
         cmds.setParent('..')
         # main frame layout
         frameL = cmds.frameLayout("optionsMainFrameL",
-                                label = '-Stuff that are going to be exported:',
+                                label = 'Items good for export:',
                                 cll = False,
                                 cl = False,
                                 bv = True)
@@ -240,8 +243,7 @@ class MayaToNukeUI(object):
         """create the top menubar"""
         cmds.menu( label='File', allowOptionBoxes = False )
         # add items
-        exitC = 'import maya.cmds as cmds;cmds.deleteUI('+WINDOW_NAME+', window = True);\
-            cmds.windowPref('+WINDOW_NAME+', remove = True)'
+        exitC = 'import maya.cmds as cmds;cmds.deleteUI('+WINDOW_NAME+', window = True)'
         cmds.menuItem(label = 'Exit', c = exitC)
         
         cmds.menu(label = 'Help', helpMenu = True)
@@ -257,27 +259,83 @@ class MayaToNukeUI(object):
         aboutC = 'import maya.cmds as cmds;cmds.confirmDialog(title = "about", message = "version v1.0", button = "OK")'
         cmds.menuItem(label = 'About', c = aboutC)
 
-    def selectOutputFile(self):
-        
-        textfieldValue = cmds.textField(self.textfield, q = True)
+    def selectOutputFile(self, none=None):
+        """opens a file dialog to point to the output path"""
+        textfieldValue = cmds.textField(self.textField, q = True)
         if textfieldValue:
             directoryMask = os.path.dirname(textfieldValue+"/*.nk")
         else:
-            directoryMask = self.outputPath+"/*.nk"
+            directoryMask = "/*.nk"
             
-        outputFile = cmds.fileDialog(m = 1, dm  = directoryMask)
-                
-        cmds.textField(textfield, e = True, text = outputFile)
-
-    def refresh(self):
+        filedialog = cmds.fileDialog2(cap='Where to save the nuke script?',
+                                    fm=0,
+                                    ff='*.nk',
+                                    dir=directoryMask,
+                                    )   
+        if filedialog:
+            outputFile = str(filedialog[0])
+            try:
+                ext = outputFile.split('.')[-1]
+            except:
+                ext = ''
+                pass
+            if ext == 'nk':
+                cmds.textField(self.textField, e = True, text = outputFile)
+            else:
+                cmds.confirmDialog(t = 'Error', m = 'The output file is not correct.\nex: /<path>/nukefile.nk')
+        else:
+            print 'nothing found'
+    
+    def refreshUI(self):
         """method to refresh the interface from a new selection"""
         # get the new selection
         objects = UTILS.filterSelection()[0]
         cameras = UTILS.filterSelection()[1]
         locators = UTILS.filterSelection()[2]
         lights = UTILS.filterSelection()[3]
-        # refresh some ui
+        # refresh objects ui
         cmds.text(self.objectsTxt, e=True, label = UTILS.strFromList(objects)[1])
+        cmds.frameLayout(self.objectsfrmLayout,
+                            e=True,
+                            label = str(len(objects))+' objects:',
+                            cll = True,
+                            cl = True if not objects else False,
+                            bv = False,
+                            annotation = 'Valid objects to export')
+        # refresh cameras ui
         cmds.text(self.camerasTxt, e=True, label = UTILS.strFromList(cameras)[1])
+        cmds.frameLayout(self.camerasfrmLayout,
+                            e=True,
+                            label = str(len(cameras))+' cameras:',
+                            cll = True,
+                            cl = True if not cameras else False,
+                            bv = False,
+                            annotation = 'Valid cameras to export')
+        # refresh locators ui
         cmds.text(self.locatorsTxt, e=True, label = UTILS.strFromList(locators)[1])
-        cmds.text(self.lightsTxt, e=True, label = UTILS.strFromList(lights)[1])        
+        cmds.frameLayout(self.locatorsfrmLayout,
+                            e=True,
+                            label = str(len(locators))+' locators:',
+                            cll = True,
+                            cl = True if not locators else False,
+                            bv = False,
+                            annotation = 'Valid locators to export')
+        # refresh lights ui
+        cmds.text(self.lightsTxt, e=True, label = UTILS.strFromList(lights)[1])
+        cmds.frameLayout(self.lightsfrmLayout,
+                            e=True,
+                            label = str(len(lights))+' lights:',
+                            cll = True,
+                            cl = True if not lights else False,
+                            bv = False,
+                            annotation = 'Valid lights to export')
+    def closeUI(self, none=None):
+        """delete the main window"""
+        cmds.deleteUI(WINDOW_NAME, window = True)
+
+    def export(self, selection):
+        """start the export procedure"""
+        outputpath = cmds.textField(self.textField, q=True)
+        EXPORTER = exporter.Exporter(selection, outputpath)
+        EXPORTER.startExport()
+

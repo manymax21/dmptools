@@ -55,7 +55,7 @@ class Utils(object):
         meshes = [cmds.listRelatives(node, p = True)[0] for node in selection if cmds.nodeType(node) == "mesh"]
         cameras = [cmds.listRelatives(node, p = True)[0] for node in selection if cmds.nodeType(node) == "camera"]
         locators = [cmds.listRelatives(node, p = True)[0] for node in selection if cmds.nodeType(node) == "locator"]
-        lights = [cmds.listRelatives(node, p = True)[0] for node in selection if cmds.nodeType(node) == "light"]
+        lights = [cmds.listRelatives(node, p = True)[0] for node in selection if 'Light' in cmds.nodeType(node)]
         
         return (meshes, cameras, locators, lights)
 

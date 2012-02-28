@@ -4,22 +4,12 @@ class Exporter(object):
     """
         generate a nuke script (.nk) from a selection.
     """
-    def __init__(self, selection=[], filePath=None):
+    def __init__(self, selection=[], outputpath=None):
         '''
             init of maya to nuke
         '''
-        self.path = filePath
-        
-        # get playback time
-        self.currentFrame = int(cmds.currentTime(q = True))
-        self.firstFrame = int(cmds.playbackOptions(q = True, min = True))
-        self.lastFrame = int(cmds.playbackOptions(q = True, max = True))
-        self.frames = int((self.lastFrame - self.firstFrame) + 1)
-        
-        # get time
-        self.currTime = time.strftime('%d%m%y_%H%M%S')
-        self.timeStr = str(time.strftime('%d/%m/%y at %H:%M:%S'))
-        
+        self.selection = selection
+        self.outputpath = outputpath        
     def startExport(self):
         '''
             write the python file which will be used
