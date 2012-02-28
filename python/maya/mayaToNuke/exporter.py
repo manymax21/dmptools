@@ -1,123 +1,144 @@
 import maya.cmds as cmds
+import time
+import os
+import subprocess
+
+from dmptools.presets import PresetsManager
+presets = PresetsManager()
 
 class Exporter(object):
     """
         generate a nuke script (.nk) from a selection.
     """
-    def __init__(self, selection=[], outputpath=None):
-        '''
-            init of maya to nuke
-        '''
-        self.selection = selection
-        self.outputpath = outputpath        
+    def __init__(self, stuff={}, outputFile='', framerange={}):
+        # get the stuff to export and the outputFile
+        self.stuff = stuff
+        self.outputFile = outputFile
+        # get the framerange info
+        self.currentFrame = framerange['currentFrame']
+        self.firstFrame = framerange['first']
+        self.lastFrame = framerange['last']
+        # get time
+        self.currTime = time.strftime('%d%m%y_%H%M%S')
+        self.timeStr = str(time.strftime('%d/%m/%y at %H:%M:%S'))
+        # get the nuke.exe path
+        self.nukeexe = self.getNukeExe()
+
+    def getNukeExe(self):
+
+        defaultNukePath = [
+        'C:/Program Files/Nuke6.3v4/Nuke6.3.exe',
+        'C:/Program Files (x86)/Nuke6.3v4/Nuke6.3.exe',
+        ]
+        for path in defaultNukePath:
+            if os.path.exists(path):
+                presets.addPreset('nukeexe', path)
+                
+        # get the nuke path preset if exists
+        nukeexe = presets.getPreset('nukeexe')
+        if nukeexe:
+            if os.path.exists(nukeexe[0]):
+                return nukeexe[0]
+            else:
+                raise UserWarning('No exe found !')
+        else:
+            # ask for the sublime text exe path
+            filedialog = cmds.fileDialog2(cap='Please give me the path of Nuke.exe !',
+                            fm=1,
+                            dir='C:\\Program Files\\',
+                            ff='*.exe')
+            if filedialog:
+                nukeexe = str(filedialog[0])
+                if os.path.exists(nukeexe):
+                    # setting preset
+                    presets.addPreset('nukeexe', nukeexe)
+                    return nukeexe
+                else:
+                    raise UserWarning('No exe found !')
+            else:
+                raise UserWarning('No exe found !')
+
     def startExport(self):
-        '''
+        """
             write the python file which will be used
             to generate the nuke script.
-        '''
-        try:
-            ext = self.path.split('.')[-1]
-        except:
-            ext = ''
-            pass
-        if ext == 'nk':
-            if os.name == 'nt':
-                pyFile = "c:/tmp/"+self.path.split('/')[-1].split('.')[-2]+"_"+self.currTime+".py"
-            else:
-                pyFile = "/tmp/"+self.path.split('/')[-1].split('.')[-2]+"_"+self.currTime+".py"
-                        
-            # get display values
-            self.getDisplayItems()
-            
-            #set display off
-            self.setDisplayOff()
-            
-            # writing header of the python file
-            self.filePy = open(pyFile, "a")
-            
-            self.filePy.write("# this python file is generated automatically by the 'mayaToNuke.py' tool.\n")
-            self.filePy.write("# it will be processed by mayapy and will create a .nk file.\n\n")
-            self.filePy.write("# name of the python file: "+pyFile+"\n")
-            self.filePy.write("# name of the maya file: "+self.path+"\n")
-            self.filePy.write("# generated the : "+self.timeStr+"\n\n")
-            self.filePy.write('import nuke\n\n')
-            self.filePy.write('nuke.root().knob("first_frame").setValue('+str(self.firstFrame)+')\n')
-            self.filePy.write('nuke.root().knob("last_frame").setValue('+str(self.lastFrame)+')\n\n')
-                        
-            if objects:
-                print "-exporting "+str(len(objects))+" objects:"
-                self.writeObjectsToPyFile(objects, self.filePy)
-            
-            if cameras:
-                print "-exporting "+str(len(cameras))+" cameras:"
-                self.writeCamerasToPyFile(cameras, self.filePy)
+        """
+        print "----------------| start |----------------"
 
-            if locators:
-                print "-exporting "+str(len(locators))+" locators:"
-                self.writeLocatorsToPyFile(locators, self.filePy)
-                
-            self.filePy.write('\n')
-            self.filePy.write('nuke.frame('+str(self.currentFrame)+')\n\n')             
-            self.filePy.write('nuke.scriptSave("'+self.path+'")\n\n\n') 
-            self.filePy.close()
+        pyFile = "c:/tmp/"+self.outputFile.split('/')[-1].split('.')[-2]+"_"+self.currTime+".py"
+        generateNukeScript = '"'+self.nukeexe+'" -t '+pyFile+''
+
+        # writing header of the python file
+        self.filePy = open(pyFile, "a")
+        
+        self.filePy.write("# this python file is generated automatically by the 'mayaToNuke.py' tool.\n")
+        self.filePy.write("# it will be processed by mayapy and will create a .nk file.\n\n")
+        self.filePy.write("# name of the python file: "+pyFile+"\n")
+        self.filePy.write("# name of the maya file: "+self.outputFile+"\n")
+        self.filePy.write("# generated the : "+self.timeStr+"\n\n")
+        self.filePy.write('import nuke\n\n')
+        self.filePy.write('nuke.root().knob("first_frame").setValue('+str(self.firstFrame)+')\n')
+        self.filePy.write('nuke.root().knob("last_frame").setValue('+str(self.lastFrame)+')\n\n')
+        
+        # get the items
+        objects = self.stuff['objects']
+        cameras = self.stuff['cameras']
+        locators = self.stuff['objects']
+        lights = self.stuff['lights']
+
+        if objects:
+            print "-exporting "+str(len(objects))+" objects:"
+            self.writeObjectsToPyFile(objects, self.filePy)
+        
+        if cameras:
+            print "-exporting "+str(len(cameras))+" cameras:"
+            self.writeCamerasToPyFile(cameras, self.filePy)
+
+        if locators:
+            print "-exporting "+str(len(locators))+" locators:"
+            self.writeLocatorsToPyFile(locators, self.filePy)
             
-            # if there is something to export, generate the nuke script file (.nk) from the python script
-            if objects or cameras or locators or lights:
-                try:
-                    # wait loop
-                    print " > generating and saving the nuke script ..."
-                    t = 0
-                    if os.path.exists(self.path):
-                        os.remove(self.path)
-                    while not os.path.exists(self.path):
-                        print ' > time spent: '+str(t)+' second(s)...'
-                        
-                        # generating the nuke script in the first iteration of the wait loop
-                        if t == 0:
-                            if os.name == 'nt':
-                                eval(nukeexe+' -t '+pyFile+'')
-                            else:
-                                os.system('nuke -t '+pyFile+' &')
-
-                        # check if the nuke script is generated. else pause 1 second and go again in the wait loop
-                        if os.path.exists(self.path):
-                            break
-                        else:
-                            time.sleep(1)
-                            t += 1
-                    if os.path.exists(self.path):
-                        print "export successfully: "+self.path
-                        print "os.system('scite "+pyFile+" &')"
-                        print "nuke "+self.path
-                        print "os.system('nuke "+self.path+" &')"
-
-                        cmds.confirmDialog(t = 'Success !', m = 'The nuke script has been generated.\nSee script editor for more informations.')
+        self.filePy.write('\n')
+        self.filePy.write('nuke.frame('+str(self.currentFrame)+')\n\n')             
+        self.filePy.write('nuke.scriptSave("'+self.outputFile+'")\n\n\n') 
+        self.filePy.close()
+        
+        # if there is something to export, generate the nuke script file (.nk) from the python script
+        if objects or cameras or locators or lights:
+            # wait loop
+            print " > generating and saving the nuke script ..."
+            if os.path.exists(self.outputFile):
+                os.remove(self.outputFile)
+            t=0
+            while not os.path.exists(self.outputFile):
+                print ' > time spent: '+str(t)+' second(s)...'
+                # generating the nuke script in the first iteration of the wait loop
+                if t == 0:
+                    if os.name == 'nt':
+                        subprocess.Popen(generateNukeScript)
                     else:
-                        print 'failed to save the file...'
-                        print "os.system('scite "+pyFile+" &')"
-                        
-                        cmds.confirmDialog(t = 'Error !', m = 'The nuke script has NOT been generated.\nSee script editor for more informations.')
-                except:
-                    print 'failed to save the file...'
-                    print "os.system('scite "+pyFile+" &')"
-                    
-                    cmds.confirmDialog(t = 'Error !', m = 'The nuke script has NOT been generated.\nSee script editor for more informations.')
-            else:
-                cmds.confirmDialog(t = 'Warning', m = 'There is nothing to export !')          
-        else:
-            cmds.confirmDialog(t = 'Error', m = 'The output file is not correct.\nex: /<path>/nukefile.nk')
-        
-        #set display back on
-        self.setDisplayOn()
-        
-        # set playback at the original frame
-        cmds.currentTime(self.currentFrame)
+                        subprocess.Popen('nuke -t '+pyFile+' &')
+                if os.path.exists(self.outputFile):
+                        break
+                if t == 10:
+                    break
+                else:
+                    time.sleep(1)
+                    t += 1
+            if os.path.exists(self.outputFile):
+                print "export successfully: "+self.outputFile
+                print "os.system('scite "+pyFile+" &')"
+                print "nuke "+self.outputFile
+                print "os.system('nuke "+self.outputFile+" &')"
 
-        #select original selection
-        if self.originalSel:
-            cmds.select(self.originalSel, r = True)
+                cmds.confirmDialog(t = 'Success !', m = 'The nuke script has been generated.\nSee script editor for more informations.')
+            else:
+                print 'failed to save the file...'
+                print "os.system('scite "+pyFile+" &')"
+                
+                cmds.confirmDialog(t = 'Error !', m = 'The nuke script has NOT been generated.\nSee script editor for more informations.')
         else:
-            pass
+            cmds.confirmDialog(t = 'Warning', m = 'There is nothing to export !')          
         
         #end
         print "----------------| end |----------------"
@@ -182,7 +203,7 @@ class Exporter(object):
             print '--static: '+str(staticMeshes)
             
             # mesh path
-            meshPath = os.path.dirname(self.path)+'/'+os.path.basename(self.path).split('.')[-0]+'/'
+            meshPath = os.path.dirname(self.outputFile)+'/'+os.path.basename(self.outputFile).split('.')[-0]+'/'
             if not os.path.exists(meshPath):
                 os.makedirs(meshPath)
 

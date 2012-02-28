@@ -64,7 +64,7 @@ def launchConsole():
     """launch console2 from maya"""
     presets = PresetsManager()
     
-    # get the sublime text path from default
+    # get the console path from default
     defaultConsolePath = [
         'C:/Program Files/Console2/Console.exe',
         'C:/Program Files (x86)/Console2/Console.exe',
@@ -75,10 +75,10 @@ def launchConsole():
 
     consolePath = presets.getPreset('sublime_text_path')
     if consolePath and os.path.exists(consolePath[0]):
-        # launch sublime text
+        # launch console
         subprocess.Popen(consolePath[0])
     else:
-        # ask for the sublime text exe path
+        # ask for the console exe path
         filedialog = cmds.fileDialog2(cap='Please give me the path of Console.exe !',
                         fm=1,
                         dir='C:\\Program Files\\',
@@ -88,7 +88,7 @@ def launchConsole():
             if os.path.exists(consolePath):
                 # setting preset
                 presets.addPreset('sublime_text_path', consolePath)
-                # launch sublime text
+                # launch console
                 subprocess.Popen(consolePath)
         else:
             raise UserWarning('No exe found !')
@@ -142,16 +142,16 @@ def launchNuke():
         if os.path.exists(path):
             presets.addPreset('nuke_path', path)
             
-    # get the sublime text path preset if exists
+    # get the nuke path preset if exists
     nukePath = presets.getPreset('nuke_path')
     if nukePath:
         if os.path.exists(nukePath[0]):
-            # launch sublime text
+            # launch nuke
             subprocess.Popen(nukePath[0]+" --nukex")
         else:
             raise UserWarning('No exe found !')
     else:
-        # ask for the sublime text exe path
+        # ask for the nuke exe path
         filedialog = cmds.fileDialog2(cap='Please give me the path of Nuke.exe !',
                         fm=1,
                         dir='C:\\Program Files\\',
@@ -161,7 +161,7 @@ def launchNuke():
             if os.path.exists(nukePath):
                 # setting preset
                 presets.addPreset('nuke_path', nukePath)
-                # launch sublime text
+                # launch nuke
                 subprocess.Popen(nukePath+" --nukex")
             else:
                 raise UserWarning('No exe found !')
