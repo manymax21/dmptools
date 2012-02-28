@@ -42,8 +42,8 @@ BUTTONS = [
     },
     {
         'name' : 'mayaToNuke',
-        'command' : 'import dmptools.mayaToNuke.launcher as mtnlauncher;\
-            mtnlauncher.main()',
+        'command' : 'import dmptools.mayaToNuke.launcher as mayaToNukeLauncher;\
+            mayaToNukeLauncher.main()',
         'icon' : 'MayaToNuke.xpm',
         'annotation' : 'Maya to Nuke Exporter.'
     },

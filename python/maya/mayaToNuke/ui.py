@@ -1,5 +1,7 @@
 import maya.cmds as cmds
-import utils
+
+import dmptools.presets as presets
+import dmptools.mayaToNuke.utils as utils
 
 WINDOW_NAME = 'exportMayaToNukeWindow'
 UTILS = utils.Utils()
@@ -43,8 +45,8 @@ class MayaToNukeUI(object):
         cmds.button(closeButton, e = True, annotation = 'Close the mayaToNuke interface - Have a nice day -')
         reloadButton = cmds.iconTextButton(label = "Refresh", st = 'iconOnly', i = 'refresh.png', c = self.refresh)
         cmds.iconTextButton(reloadButton, e = True, annotation = 'Refresh the UI with the current selection')
-        # build options panel
-        paneForm = self.doublePaneLayout()
+        # build options panel (create left and right panes)
+        paneForm = self.doublePane()
         # attachForm
         cmds.formLayout(mainform,
                         edit = True,
@@ -95,7 +97,7 @@ class MayaToNukeUI(object):
                     )
         cmds.showWindow(WINDOW_NAME)
         
-    def doublePaneLayout(self):
+    def doublePane(self):
         """build the double pane layout for the selection display"""
         # create the main form
         form = cmds.formLayout("optionsForm")
@@ -113,9 +115,9 @@ class MayaToNukeUI(object):
                                     configuration='vertical2',
                                     paneSize=[[1,0,100],[2,100,100]])
         # build the left panelayout
-        leftPanel = self.passesLayout()
+        leftPanel = self.leftPane()
         # build the right panelayout
-        rightPanel = self.itemsFrameLayout()
+        rightPanel = self.rightPane()
         # set the panes on their good position
         cmds.paneLayout("doublePaneLayout", edit=True, setPane = [ leftPanel, 1])
         cmds.paneLayout("doublePaneLayout", edit=True, setPane = [ rightPanel, 2])
@@ -141,7 +143,7 @@ class MayaToNukeUI(object):
                         )
         return form
     
-    def passesLayout(self):
+    def leftPane(self):
         """obsolete pane but maybe useful"""
         # pass scroll layout on the left side of the pane layout
         passesL = cmds.formLayout("passForm")
@@ -160,7 +162,7 @@ class MayaToNukeUI(object):
                                             ])
         return passesL
     
-    def itemsFrameLayout(self):
+    def rightPane(self):
         """main layout where the selection is displayed"""
         # framelayoutTitle
         form = cmds.formLayout("titleForm")
@@ -269,10 +271,12 @@ class MayaToNukeUI(object):
 
     def refresh(self):
         """method to refresh the interface from a new selection"""
+        # get the new selection
         objects = UTILS.filterSelection()[0]
         cameras = UTILS.filterSelection()[1]
         locators = UTILS.filterSelection()[2]
         lights = UTILS.filterSelection()[3]
+        # refresh some ui
         cmds.text(self.objectsTxt, e=True, label = UTILS.strFromList(objects)[1])
         cmds.text(self.camerasTxt, e=True, label = UTILS.strFromList(cameras)[1])
         cmds.text(self.locatorsTxt, e=True, label = UTILS.strFromList(locators)[1])
