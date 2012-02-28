@@ -335,15 +335,7 @@ def isolateSelection():
     
     activePanel = cmds.getPanel(wf = True)
     cmds.isolateSelect(activePanel, state = not cmds.isolateSelect(activePanel, q = True, state = True))
-    #cmds.isolateSelect(activePanel, as = True)
     
-def isolateSelectionRelease():
-    """isolate selection release"""
-    
-    activePanel = cmds.getPanel(wf = True)
-    cmds.isolateSelect(activePanel, state = not cmds.isolateSelect(activePanel, q = True, state = True))
-    #cmds.isolateSelect(activePanel, as = True)
-
 def hideSel():
     
     sel = cmds.ls(sl = True)
@@ -361,15 +353,6 @@ def hideSelRelease():
     sel = cmds.ls(sl = True, dag = True)
     for node in sel:
         cmds.setAttr(node+'.visibility', 1)
-
-def openTerminal():
-    
-    job = os.environ['JOB']
-    shot = os.environ['SHOT']
-    discipline = os.environ['DISCIPLINE']
-    jobCmd = 'job -d '+discipline+' '+job+' '+shot
-    #os.system('gnome-terminal --title '+job+'--'+shot+' -x tcsh -c "'+jobCmd+';tcsh"&')
-    os.system('mpxterm -e "'+jobCmd+';tcsh"&')
 
 def assignBlackShader():
 

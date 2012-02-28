@@ -55,7 +55,7 @@ class Infos:
             
         return hubData, hubVersion, hubStart, hubEnd  
         
-class OptionPanel:	
+class OptionPanel:
     def __init__(self):
         
         self.originalSel = cmds.ls(sl = True)
@@ -610,8 +610,6 @@ class ExportMayaToNuke:
                 filePy.write('cameraToAnimate.knob("vaperture").setValueAt('+str(vap)+', '+str(float(frame))+', 0)\n')
                 filePy.write('cameraToAnimate.knob("vaperture").setKeyAt('+str(frame)+')\n')
                 
-        
-        
     def writeLocatorsToPyFile(self, locators, filePy):
 
         print locators

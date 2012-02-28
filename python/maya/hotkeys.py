@@ -23,14 +23,12 @@ HOTKEYS = \
     },
     {
         'name':'isolateSelection',
-        'key':'H',
+        'key':'h',
         'alt':True,
         'ctl':False,
-        'release':True,
+        'release':False,
         'command':'python("import dmptools.mayaCommands as mayaCommands;\
             reload(mayaCommands);mayaCommands.isolateSelection()");',
-        'releaseCommand':'python("import dmptools.mayaCommands as mayaCommands;\
-            reload(mayaCommands);mayaCommands.isolateSelectionRelease()");'
     },
     {
         'name':'toggleNormals',
