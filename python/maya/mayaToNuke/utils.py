@@ -2,8 +2,7 @@ import maya.cmds as cmds
 
 class Utils(object):
     """
-        some utility methods for mayaToNuke main class
-        and for the UI class.
+        some utility methods for mayaToNuke tool
     """
     def __init__(self):
         # display data
