@@ -5,13 +5,7 @@
 #
 #=========================================================
 
-import maya.cmds as cmds
-import os
-import time
-import commands as cmd
-
 import dmptools.mayaToNuke.ui as ui
-import dmptools.mayaToNuke.utils as utils
                     
 def main():
     # run the maya to nuke UI
