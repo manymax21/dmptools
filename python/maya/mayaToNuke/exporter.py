@@ -71,7 +71,7 @@ class Exporter(object):
         # writing header of the python file
         self.filePy = open(pyFile, "a")
         
-        self.filePy.write("# this python file is generated automatically by the 'mayaToNuke.py' tool.\n")
+        self.filePy.write("# this python file is generated automatically by the mayaToNuke.py tool.\n")
         self.filePy.write("# it will be processed by mayapy and will create a .nk file.\n\n")
         self.filePy.write("# name of the python file: "+pyFile+"\n")
         self.filePy.write("# name of the maya file: "+self.outputFile+"\n")
