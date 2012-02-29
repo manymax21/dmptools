@@ -5,5 +5,5 @@
 *.pyc
 *.swp
 *.*~
-.settings
-.sublime-workspace
+*.settings
+*.sublime-workspace
