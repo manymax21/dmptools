@@ -1,11 +1,14 @@
 import maya.cmds as cmds
+import os
 
-import dmptools.presets as presets
 import dmptools.mayaToNuke.exporter as exporter
-import dmptools.mayaToNuke.utils as utils
+
+from dmptools.mayaToNuke.utils import utils
+from dmptools.presets import PresetsManager
 
 WINDOW_NAME = 'exportMayaToNukeWindow'
-UTILS = utils.Utils()
+PRESETS = PresetsManager()
+UTILS = Utils()
 
 class MayaToNukeUI(object):
     def __init__(self):
@@ -16,9 +19,9 @@ class MayaToNukeUI(object):
         self.originalSel = cmds.ls(sl=True)
         # framerange info
         self.framerange = {}
-        self.framerange['currentFrame'] = UTILS.getFramerange()[0]
-        self.framerange['first'] = UTILS.getFramerange()[1]
-        self.framerange['last'] = UTILS.getFramerange()[2]
+        self.framerange['currentFrame'] = UTILS.getFramerange('currentFrame')
+        self.framerange['first'] = UTILS.getFramerange('first')
+        self.framerange['last'] = UTILS.getFramerange('last')
 
     def buildUI(self):
         """ build the interface UI """
@@ -282,7 +285,7 @@ class MayaToNukeUI(object):
                                     )
         if filedialog:
             outputpath = filedialog[0]
-            cmds.textField(self.textField, e=True, text=outputFile)
+            cmds.textField(self.textField, e=True, text=outputpath)
 
     def textfieldValidator(self, inputText=''):
         """check if the input has an nk extension"""

@@ -1,3 +1,7 @@
+import os
+import sys
+import time
+
 import maya.cmds as cmds
 
 class Utils(object):
@@ -5,8 +9,12 @@ class Utils(object):
         some utility methods for mayaToNuke tool
     """
     def __init__(self):
-        # display data
+        # os infos
+        self.os = os.name
+        self.platform = sys.platform
+        self.user = os.environ['USERNAME']
         self.panelsDisplay = {}
+        # maya display
         self.modelPanelObjects = [
                     'cameras', 'deformers',
                     'dimensions', 'dynamics',
@@ -22,16 +30,31 @@ class Utils(object):
                     'strokes', 'subdivSurfaces',
                     ]
 
-    def getFramerange(self):
+    def getTime(self, arg=''):
+        # get time
+        if arg == 'str':
+            timeStr = str(time.strftime('%d/%m/%y at %H:%M:%S'))
+            return timeStr
+        if arg == 'current':
+            currTime = time.strftime('%d%m%y_%H%M%S')
+            return currTime
+
+    def getFramerange(self, arg=''):
         """
             return the actual frame, first and last frame.
         """
-        current = int(cmds.currentTime(q = True))
-        first = int(cmds.playbackOptions(q = True, min = True))
-        last = int(cmds.playbackOptions(q = True, max = True))
-        frames = int((last - first) + 1)
-
-        return (current, first, last, frames)
+        if arg == 'currentFrame':
+            current = int(cmds.currentTime(q = True))
+            return current
+        if arg == 'first':
+            first = int(cmds.playbackOptions(q = True, min = True))
+            return first
+        if arg == 'last':
+            last = int(cmds.playbackOptions(q = True, max = True))
+            return last
+        if arg == 'frames':
+            frames = int((last - first) + 1)
+            return frames
 
     def strFromList(self, inputlist=[]):
         """

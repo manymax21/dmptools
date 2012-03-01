@@ -1,6 +1,7 @@
 #========================================================
 #
-# Generates a Nuke .nk file from Maya (animated) objects cameras and locators 
+# Generates a Nuke .nk file from Maya 
+# objects cameras and locators (animated)
 # michael.havart@gmail.com
 #
 #=========================================================

@@ -3,8 +3,12 @@ import time
 import os
 import subprocess
 
+from dmptools.mayaToNuke.utils import Utils
 from dmptools.presets import PresetsManager
-presets = PresetsManager()
+
+PRESETS = PresetsManager()
+UTILS = Utils()
+
 
 class Exporter(object):
     """
@@ -19,8 +23,8 @@ class Exporter(object):
         self.firstFrame = framerange['first']
         self.lastFrame = framerange['last']
         # get time
-        self.currTime = time.strftime('%d%m%y_%H%M%S')
-        self.timeStr = str(time.strftime('%d/%m/%y at %H:%M:%S'))
+        self.currTime = UTILS.getTime()[0]
+        self.timeStr = UTILS.getTime()[0]
         # get the nuke.exe path
         self.nukeexe = self.getNukeExe()
 
@@ -32,10 +36,10 @@ class Exporter(object):
         ]
         for path in defaultNukePath:
             if os.path.exists(path):
-                presets.addPreset('nukeexe', path)
+                PRESETS.addPreset('nukeexe', path)
                 
         # get the nuke path preset if exists
-        nukeexe = presets.getPreset('nukeexe')
+        nukeexe = PRESETS.getPreset('nukeexe')
         if nukeexe:
             if os.path.exists(nukeexe[0]):
                 return nukeexe[0]
@@ -51,7 +55,7 @@ class Exporter(object):
                 nukeexe = str(filedialog[0])
                 if os.path.exists(nukeexe):
                     # setting preset
-                    presets.addPreset('nukeexe', nukeexe)
+                    PRESETS.addPreset('nukeexe', nukeexe)
                     return nukeexe
                 else:
                     raise UserWarning('No exe found !')
