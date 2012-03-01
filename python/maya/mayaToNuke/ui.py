@@ -24,18 +24,13 @@ class MayaToNukeUI(object):
         # get selection
         self.originalSel = cmds.ls(sl=True)
         # framerange info
-        self.framerange = {}
-        self.framerange['currentFrame'] = UTILS.getFramerange('currentFrame')
-        self.framerange['first'] = UTILS.getFramerange('first')
-        self.framerange['last'] = UTILS.getFramerange('last')
-        user = UTILS.user
-        platform = UTILS.platform
-        computer = UTILS.computer
-        self.headerText = \
-                'infos: '+platform+' | '+user+'@'+computer\
-                ' ++ frame range: ['\
-                +str(self.framerange['first'])+' - '\
-                +str(self.framerange['last'])+']'
+        self.framerange = UTILS.getFramerange()
+        # user info
+        self.user = UTILS.user
+        self.platform = UTILS.platform
+        self.computer = UTILS.computer
+        self.headerText = self.generateHeader()
+
 
     def buildUI(self):
         """ build the interface UI """
@@ -388,6 +383,10 @@ class MayaToNukeUI(object):
                             cl = True if not self.stuff['lights'] else False,
                             bv = False,
                             annotation = 'Valid lights to export')
+        # refresh header
+        self.framerange = UTILS.getFramerange()
+        headerText = self.generateHeader()
+        cmds.text(self.header, label=headerText, e=True)
 
     def closeUI(self, none=None):
         """delete the main window"""
@@ -417,7 +416,7 @@ class MayaToNukeUI(object):
             #set display back on
             UTILS.setDisplayOn()
             # set playback at the original frame
-            cmds.currentTime(self.framerange['currentFrame'])
+            cmds.currentTime(self.framerange['current'])
             #select original selection
             if self.originalSel:
                 cmds.select(self.originalSel, r = True)
@@ -436,3 +435,10 @@ class MayaToNukeUI(object):
         """UI of mayaToNuke settings """
         print PRESETS.getPreset('settings')
 
+    def generateHeader(self):
+        headerText = \
+                'infos: '+self.platform+' | '+self.user+'@'+self.computer.lower()+\
+                ' | frame range: ['\
+                +str(self.framerange['first'])+' - '\
+                +str(self.framerange['last'])+']'
+        return headerText

@@ -49,22 +49,17 @@ class Utils(object):
             currTime = time.strftime('%d%m%y_%H%M%S')
             return currTime
 
-    def getFramerange(self, arg=''):
+    def getFramerange(self):
         """
             return the actual frame, first and last frame.
         """
-        if arg == 'currentFrame':
-            current = int(cmds.currentTime(q = True))
-            return current
-        if arg == 'first':
-            first = int(cmds.playbackOptions(q = True, min = True))
-            return first
-        if arg == 'last':
-            last = int(cmds.playbackOptions(q = True, max = True))
-            return last
-        if arg == 'frames':
-            frames = int((last - first) + 1)
-            return frames
+        framerange = {}
+        framerange['current'] = int(cmds.currentTime(q = True))
+        framerange['first'] = int(cmds.playbackOptions(q = True, min = True))
+        framerange['last'] = int(cmds.playbackOptions(q = True, max = True))
+        framerange['frames'] = int((framerange['last'] - framerange['first']) + 1)
+
+        return framerange
 
     def strFromList(self, inputlist=[]):
         """
