@@ -4,11 +4,7 @@ import os
 import subprocess
 
 from dmptools.mayaToNuke.utils import Utils
-from dmptools.presets import PresetsManager
-
-PRESETS = PresetsManager()
 UTILS = Utils()
-
 
 class Exporter(object):
     """
@@ -23,44 +19,10 @@ class Exporter(object):
         self.firstFrame = framerange['first']
         self.lastFrame = framerange['last']
         # get time
-        self.currTime = UTILS.getTime()[0]
-        self.timeStr = UTILS.getTime()[0]
+        self.currTime = UTILS.getTime('current')
+        self.timeStr = UTILS.getTime('str')
         # get the nuke.exe path
-        self.nukeexe = self.getNukeExe()
-
-    def getNukeExe(self):
-
-        defaultNukePath = [
-        'C:/Program Files/Nuke6.3v4/Nuke6.3.exe',
-        'C:/Program Files (x86)/Nuke6.3v4/Nuke6.3.exe',
-        ]
-        for path in defaultNukePath:
-            if os.path.exists(path):
-                PRESETS.addPreset('nukeexe', path)
-                
-        # get the nuke path preset if exists
-        nukeexe = PRESETS.getPreset('nukeexe')
-        if nukeexe:
-            if os.path.exists(nukeexe[0]):
-                return nukeexe[0]
-            else:
-                raise UserWarning('No exe found !')
-        else:
-            # ask for the sublime text exe path
-            filedialog = cmds.fileDialog2(cap='Please give me the path of Nuke.exe !',
-                            fm=1,
-                            dir='C:\\Program Files\\',
-                            ff='*.exe')
-            if filedialog:
-                nukeexe = str(filedialog[0])
-                if os.path.exists(nukeexe):
-                    # setting preset
-                    PRESETS.addPreset('nukeexe', nukeexe)
-                    return nukeexe
-                else:
-                    raise UserWarning('No exe found !')
-            else:
-                raise UserWarning('No exe found !')
+        self.nukeexe = UTILS.nukeexe
 
     def startExport(self):
         """
@@ -154,15 +116,9 @@ class Exporter(object):
         # load objExport plugin if not already loaded
         loaded = False
         
-        if not "objExport" in cmds.pluginInfo( query=True, listPlugins=True ):
-            objExportPlugin = cmd.getstatusoutput('echo $SOFTWARE/maya/$MAYA_MAJOR_VERSION/"$UNAME"."$DIST"."$SARCH"/bin/plug-ins/objExport.so ')[1]
-            if os.path.exists(objExportPlugin):
-                print cmds.loadPlugin(objExportPlugin, quiet = True)
-                loaded = cmds.pluginInfo( "objExport", l = True, query = True)
-                if not loaded:
-                    print 'objExport plugin not loaded !'
-                    cmds.confirmDialog(t = 'Warning', m = 'You need to load the objExport plugin.\ngoto Window>Settings Preferences>Plug-in Manager')
-                    loaded = False
+        if not "objExport" in cmds.pluginInfo(query=True, listPlugins=True):
+            cmds.loadPlugin('objExport')      
+            loaded = True
         else:
             print 'objExport already loaded...'
             loaded = True

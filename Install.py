@@ -61,9 +61,11 @@ EXCLUDE_DIRS = \
 EXCLUDE_FILES = ['pyc']
 # nuke globals
 NUKE_PATH = 'c:/users/'+USER+'/.nuke/'
+IS_NUKE_PATH = os.path.exists(NUKE_PATH)
 NUKE_PRESET_FILE = NUKE_PATH+MODULE_NAME+'/dmptools.presets'
 # maya globals
 MAYA_GLOBAL = 'c:/users/'+USER+'/documents/maya/'
+IS_MAYA_GLOBAL = os.path.exists(MAYA_GLOBAL)
 MAYA_PATH = MAYA_GLOBAL+'/scripts/'
 MAYA_PRESET_FILE = MAYA_PATH+MODULE_NAME+'/dmptools.presets'
 MAYA_USERSETUP_FILE = '\
@@ -101,11 +103,11 @@ def installNuke():
         shutil.rmtree(NUKE_PATH+MODULE_NAME)
     # install nuke tools
     install(PYTHON_SOURCE_PATH+'/nuke', NUKE_PATH+MODULE_NAME)
-    # copy preset file in the maya source path
-    if os.path.exists(PYTHON_SOURCE_PATH+'/nuke/macros/presets.py'):
-        if os.path.exists(PYTHON_SOURCE_PATH+'/maya/presets.py'):
-            os.remove(PYTHON_SOURCE_PATH+'/maya/presets.py')
-        shutil.copy2(PYTHON_SOURCE_PATH+'/nuke/macros/presets.py', PYTHON_SOURCE_PATH+'/maya')
+    # copy stuff from dmptools/python root to respective modules
+    for f in os.listdir(PYTHON_SOURCE_PATH):
+        if '.py' in f:
+            print ' > installing file', PYTHON_SOURCE_PATH+f, 'to', NUKE_PATH+MODULE_NAME+'/'+f
+            shutil.copy2(PYTHON_SOURCE_PATH+f, NUKE_PATH+MODULE_NAME+'/'+f)
     # replacements
     print ' > doing replacements...'
     replacements(NUKE_PATH+MODULE_NAME)
@@ -117,7 +119,7 @@ def installMaya():
     print '=============================='
     print '           M A Y A            '
     print '=============================='
-    print 'installing maya '+MODULE_NAME+' in '+MAYA_PATH+MODULE_NAME+' ...'    
+    print 'installing maya '+MODULE_NAME+' in '+MAYA_PATH+MODULE_NAME+' ...'
 
     # delete old dmpTools
     if os.path.exists(MAYA_PATH+MODULE_NAME):
@@ -125,9 +127,11 @@ def installMaya():
         shutil.rmtree(MAYA_PATH+MODULE_NAME)
     # install maya tools (python & mel)
     install(PYTHON_SOURCE_PATH+'/maya', MAYA_PATH+MODULE_NAME)
-    # remove preset file from the maya source path
-    if os.path.exists(PYTHON_SOURCE_PATH+'/maya/presets.py'):
-        os.remove(PYTHON_SOURCE_PATH+'/maya/presets.py')
+    # copy stuff from dmptools/python root to respective modules
+    for f in os.listdir(PYTHON_SOURCE_PATH):
+        if '.py' in f:
+            print ' > installing file', PYTHON_SOURCE_PATH+f, 'to', MAYA_PATH+MODULE_NAME+'/'+f
+            shutil.copy2(PYTHON_SOURCE_PATH+f, MAYA_PATH+MODULE_NAME+'/'+f)
     # replacements
     print ' > doing replacements...'
     replacements(MAYA_PATH+MODULE_NAME)
@@ -135,6 +139,7 @@ def installMaya():
     createUserSetup()
 
     print ' > done.'
+
 
 def replacements(path):
     # check the files in the install path
@@ -219,11 +224,15 @@ def errorMsg(message):
 
 def install_dmptools():
     # install Nuke dmptools
-    if 'nuke' in SOFTLIST:
+    if 'nuke' in SOFTLIST and IS_NUKE_PATH:
         installNuke()
+    else:
+        print 'Error: nuke path not found!'
     # install Maya dmptools
-    if 'maya' in SOFTLIST:
+    if 'maya' in SOFTLIST and IS_MAYA_GLOBAL:
         installMaya()
+    else:
+        print 'Error: maya path not found!'
 
 def main():
     # if the project name is 'dmptools'

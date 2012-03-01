@@ -3,16 +3,22 @@ import os
 
 import dmptools.mayaToNuke.exporter as exporter
 
-from dmptools.mayaToNuke.utils import utils
+from dmptools.mayaToNuke.utils import Utils
 from dmptools.presets import PresetsManager
 
-WINDOW_NAME = 'exportMayaToNukeWindow'
+WINDOW_NAME = 'mtn_Window'
 PRESETS = PresetsManager()
 UTILS = Utils()
 
 class MayaToNukeUI(object):
     def __init__(self):
         """ get all the necessary values """
+        # get stuff from presets
+        textFieldValue = PRESETS.getPreset('mtn_textField')
+        if not textFieldValue:
+            self.textFieldValue = 'c:/tmp/'
+        else:
+            self.textFieldValue = textFieldValue[0]
         # stuff
         self.stuff = {}
         # get selection
@@ -22,6 +28,14 @@ class MayaToNukeUI(object):
         self.framerange['currentFrame'] = UTILS.getFramerange('currentFrame')
         self.framerange['first'] = UTILS.getFramerange('first')
         self.framerange['last'] = UTILS.getFramerange('last')
+        user = UTILS.user
+        platform = UTILS.platform
+        computer = UTILS.computer
+        self.headerText = \
+                'infos: '+platform+' | '+user+'@'+computer\
+                ' ++ frame range: ['\
+                +str(self.framerange['first'])+' - '\
+                +str(self.framerange['last'])+']'
 
     def buildUI(self):
         """ build the interface UI """
@@ -29,31 +43,52 @@ class MayaToNukeUI(object):
         if cmds.window(WINDOW_NAME, exists=True):
             cmds.deleteUI(WINDOW_NAME, window=True)
         # create the main window
-        self.win = cmds.window(WINDOW_NAME, title="Maya To Nuke Interface", mb=True, w=650, h=300)
+        self.win = cmds.window(WINDOW_NAME,
+                        title="Maya To Nuke Interface",
+                        mb=True,
+                        w=650, h=300)
         # build menu bar
         self.menuBar()
         # create the main master form
-        mainform = cmds.formLayout("mainForm")
+        mainform = cmds.formLayout("mtn_mainForm")
         # create the header of the interface
-        self.header = cmds.text(label='header')
+        self.header = cmds.text('mtn_textHeader', label=self.headerText)
         # create the text field where to put the nuke output script
-        txtOutput = cmds.text(label="nuke script:")
-        self.textField = cmds.textField('fileInput')
-        cmds.textField('fileInput', e=True, text='c:/tmp', annotation='This is the output file')
+        txtOutput = cmds.text('mtn_textOutput', label="nuke script:")
+        # textField
+        self.textField = cmds.textField('mtn_fileField',
+                        text=self.textFieldValue,
+                        annotation='This is the output file')
+                        
+        cmds.textField(self.textField,
+                        e=True,
+                        changeCommand=self.saveSettings,
+                        #enterCommand=self.saveSettings
+                        )
         # open filedialog button
-        outputButton = cmds.button(label = " ... ", c=self.selectOutputFile)
-        cmds.button(outputButton, e=True, annotation='Browse for a Nuke file - please type the .nk extension')
+        outputButton = cmds.button('mtn_outputButton',
+                        label = " ... ",
+                        c=self.selectOutputFile,
+                        annotation='Browse for a Nuke file - please type the .nk extension')
         # separators
         separator1 = cmds.separator()
         separatorTop = cmds.separator()
         separatorBottom = cmds.separator()
         # export, close and refresh buttons
-        exportButton = cmds.button(label="Export", c=self.export)
-        cmds.button(exportButton, e=True, annotation='Generate Nuke script from selected items')
-        closeButton = cmds.button(label="Close", c=self.closeUI)
-        cmds.button(closeButton, e=True, annotation='Close the mayaToNuke interface - Have a nice day -')
-        reloadButton = cmds.iconTextButton(label="Refresh", st='iconOnly', i='refresh.png', c=self.refreshUI)
-        cmds.iconTextButton(reloadButton, e=True, annotation='Refresh the UI with the current selection')
+        exportButton = cmds.button('mtn_exportButton',
+                        label="Export",
+                        c=self.export,
+                        annotation='Generate Nuke script from selected items')
+        closeButton = cmds.button('mtn_closeButton',
+                        label="Close",
+                        c=self.closeUI,
+                        annotation='Close the mayaToNuke interface - Have a nice day -')
+        reloadButton = cmds.iconTextButton('mtn_reloadButton',
+                        label="Refresh",
+                        st='iconOnly',
+                        i='refresh.png',
+                        c=self.refreshUI,
+                        annotation='Refresh the UI with the current selection')
         # build options panel (create left and right panes)
         paneForm = self.doublePane()
         # attachForm
@@ -111,18 +146,18 @@ class MayaToNukeUI(object):
     def doublePane(self):
         """build the double pane layout for the selection display"""
         # create the main form
-        form = cmds.formLayout("optionsForm")
+        form = cmds.formLayout("mtn_optionsForm")
         # build bottom helpLine
         helpline = self.helpLine()
         cmds.setParent('..')
         # main frame layout
-        frameL = cmds.frameLayout("optionsMainFrameL",
+        frameL = cmds.frameLayout('mtn_doublePaneMainFrameLayout',
                                 label = 'Items good for export:',
                                 cll = False,
                                 cl = False,
                                 bv = True)
         # create double paneLayout and its default separation value
-        paneLayout = cmds.paneLayout("doublePaneLayout",
+        paneLayout = cmds.paneLayout('mtn_doublePane',
                                     configuration='vertical2',
                                     paneSize=[[1,0,100],[2,100,100]])
         # build the left panelayout
@@ -130,8 +165,8 @@ class MayaToNukeUI(object):
         # build the right panelayout
         rightPanel = self.rightPane()
         # set the panes on their good position
-        cmds.paneLayout("doublePaneLayout", edit=True, setPane = [ leftPanel, 1])
-        cmds.paneLayout("doublePaneLayout", edit=True, setPane = [ rightPanel, 2])
+        cmds.paneLayout('mtn_doublePane', edit=True, setPane = [ leftPanel, 1])
+        cmds.paneLayout('mtn_doublePane', edit=True, setPane = [ rightPanel, 2])
         # attatch the forms
         cmds.formLayout(form,
                         edit = True,
@@ -157,7 +192,7 @@ class MayaToNukeUI(object):
     def leftPane(self):
         """obsolete pane but maybe useful"""
         # pass scroll layout on the left side of the pane layout
-        passesL = cmds.formLayout("passForm")
+        passesL = cmds.formLayout('mtn_leftPaneForm')
         colLayout = cmds.columnLayout(adj = True)
         cmds.setParent('..')
         # fill with stuff
@@ -172,48 +207,49 @@ class MayaToNukeUI(object):
                                             (passList, "bottom", 5)
                                             ])
         return passesL
-    
+
     def rightPane(self):
         """main layout where the selection is displayed"""
         # framelayoutTitle
-        form = cmds.formLayout("titleForm")
-        selFrameL = cmds.scrollLayout("scrollRightPanel", hst = True, cr = True)
-        colLayout = cmds.columnLayout("columnRightPanel", adj = True)
+        form = cmds.formLayout('mtn_rightPaneForm')
+        selFrameL = cmds.scrollLayout('mtn_scrollRightPanel', hst = True, cr = True)
+        colLayout = cmds.columnLayout('mtn_columnRightPanel', adj = True)
         # get items lists
-        self.stuff['objects'] = UTILS.filterSelection()[0]
-        self.stuff['cameras'] = UTILS.filterSelection()[1]
-        self.stuff['locators'] = UTILS.filterSelection()[2]
-        self.stuff['lights'] = UTILS.filterSelection()[3]
+        self.stuff = UTILS.filterSelection()
         # create objects framelayout
-        self.objectsfrmLayout = cmds.frameLayout(label = str(len(self.stuff['objects']))+' objects:',
-                                    cll = True,
-                                    cl = True if not self.stuff['objects'] else False,
-                                    bv = False,
-                                    annotation = 'Valid objects to export')
+        self.objectsfrmLayout = cmds.frameLayout('mtn_objectsFrameLayout',
+                            label = str(len(self.stuff['objects']))+' objects:',
+                            cll = True,
+                            cl = True if not self.stuff['objects'] else False,
+                            bv = False,
+                            annotation = 'Valid objects to export')
         self.objectsTxt = self.editableFrameLayout(self.stuff['objects'])
         cmds.setParent('..')
         # create cameras framelayout
-        self.camerasfrmLayout = cmds.frameLayout(label = str(len(self.stuff['cameras']))+' cameras:',
-                                    cll = True,
-                                    cl = True if not self.stuff['cameras'] else False,
-                                    bv = False,
-                                    annotation = 'Valid cameras to export')
+        self.camerasfrmLayout = cmds.frameLayout('mtn_camerasFrameLayout',
+                            label = str(len(self.stuff['cameras']))+' cameras:',
+                            cll = True,
+                            cl = True if not self.stuff['cameras'] else False,
+                            bv = False,
+                            annotation = 'Valid cameras to export')
         self.camerasTxt = self.editableFrameLayout(self.stuff['cameras'])
         cmds.setParent('..')
         # create locators framelayout
-        self.locatorsfrmLayout = cmds.frameLayout(label = str(len(self.stuff['locators']))+' locators:',
-                                    cll = True,
-                                    cl = True if not self.stuff['locators'] else False,
-                                    bv = False,
-                                    annotation = 'Valid locators to export')
+        self.locatorsfrmLayout = cmds.frameLayout('mtn_locatorsFrameLayout',
+                            label = str(len(self.stuff['locators']))+' locators:',
+                            cll = True,
+                            cl = True if not self.stuff['locators'] else False,
+                            bv = False,
+                            annotation = 'Valid locators to export')
         self.locatorsTxt = self.editableFrameLayout(self.stuff['locators'])
         cmds.setParent('..')
         # create lights framelayout        
-        self.lightsfrmLayout = cmds.frameLayout(label = str(len(self.stuff['lights']))+' lights:',
-                                    cll = True,
-                                    cl = True if not self.stuff['lights'] else False,
-                                    bv = False,
-                                    annotation = 'Valid lights to export')
+        self.lightsfrmLayout = cmds.frameLayout('mtn_lightsFrameLayout',
+                            label = str(len(self.stuff['lights']))+' lights:',
+                            cll = True,
+                            cl = True if not self.stuff['lights'] else False,
+                            bv = False,
+                            annotation = 'Valid lights to export')
         self.lightsTxt = self.editableFrameLayout(self.stuff['lights'])
         cmds.setParent('..')
         
@@ -227,19 +263,22 @@ class MayaToNukeUI(object):
     
     def editableFrameLayout(self, items):
         """name of the object"""
-        form = cmds.formLayout("itemForm")
-        txt = cmds.text(al = "left", label = UTILS.strFromList(items)[1])
+        form = cmds.formLayout('mtn_itemForm')
+        txt = cmds.text('mtn_itemText', al = "left", label = UTILS.strFromList(items)[1])
         cmds.setParent('..')
         return txt
 
     def helpLine(self):
         """bottom interactive helpline"""
         # form that contains the framelayout
-        form = cmds.formLayout("formHelpLine")
+        form = cmds.formLayout('mtn_helplineForm')
         # framelayout that contains the helpline
-        frame = cmds.frameLayout(borderVisible = False, labelVisible = False, h = 20)
+        frame = cmds.frameLayout('mtn_helplineFrameLayout',
+                            borderVisible = False,
+                            labelVisible = False,
+                            h = 20)
         # create helpline
-        cmds.helpLine(h = 10)
+        cmds.helpLine('mtn_helpline', h = 10)
         cmds.setParent('..')
         # attach the stuff
         cmds.formLayout(form, edit = True, attachForm = [
@@ -252,11 +291,15 @@ class MayaToNukeUI(object):
 
     def menuBar(self):
         """create the top menubar"""
-        cmds.menu( label='File', allowOptionBoxes = False )
+        cmds.menu('mtn_menuBar', label='File', allowOptionBoxes = False )
         # add items
+        # settings button
+        settingsC = self.settingsUI
+        cmds.menuItem(label='Settings', c=settingsC) 
+        # exit button
         exitC = 'import maya.cmds as cmds;cmds.deleteUI('+WINDOW_NAME+', window = True)'
         cmds.menuItem(label = 'Exit', c = exitC)
-        
+        # add help menu
         cmds.menu(label = 'Help', helpMenu = True)
         helpC = 'print HELP!'
         cmds.menuItem(label = 'Intranet Help', c = helpC)
@@ -308,10 +351,7 @@ class MayaToNukeUI(object):
         """method to refresh the interface from a new selection"""
         # get the new selection
         self.originalSel = cmds.ls(sl=True)
-        self.stuff['objects'] = UTILS.filterSelection()[0]
-        self.stuff['cameras'] = UTILS.filterSelection()[1]
-        self.stuff['locators'] = UTILS.filterSelection()[2]
-        self.stuff['lights'] = UTILS.filterSelection()[3]
+        self.stuff = UTILS.filterSelection()
         # refresh objects ui
         cmds.text(self.objectsTxt, e=True, label = UTILS.strFromList(self.stuff['objects'])[1])
         cmds.frameLayout(self.objectsfrmLayout,
@@ -351,10 +391,16 @@ class MayaToNukeUI(object):
 
     def closeUI(self, none=None):
         """delete the main window"""
+        # get settings before closing
+        self.saveSettings()
+        # close ui
         cmds.deleteUI(WINDOW_NAME, window = True)
+
 
     def export(self, selection):
         """start the export procedure"""
+        # save settings
+        self.saveSettings()
         if self.stuff:
             # get display values
             UTILS.getDisplayItems()
@@ -373,6 +419,20 @@ class MayaToNukeUI(object):
             # set playback at the original frame
             cmds.currentTime(self.framerange['currentFrame'])
             #select original selection
-            cmds.select(self.originalSel, r = True)
+            if self.originalSel:
+                cmds.select(self.originalSel, r = True)
+            
         else:
             cmds.confirmDialog(t = 'Error', m = 'There is nothing to export!')
+
+    def saveSettings(self, none=None):
+        # get settings values
+        print 'setting presets...'
+        textField = cmds.textField(self.textField, text=True, q=True)
+        # set presets
+        PRESETS.addPreset('mtn_textField', textField)
+
+    def settingsUI(self):
+        """UI of mayaToNuke settings """
+        print PRESETS.getPreset('settings')
+
