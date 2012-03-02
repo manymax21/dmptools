@@ -73,27 +73,24 @@ class Utils(object):
             from a raw list of items, returns 1 dict containing:
             {[objects], [cameras], [locators], [lights]}
         """
-        # get selection
+        # get current selection
         cmds.select(hi = True)
-        selection = [str(item.replace(':', '_')) for item in cmds.ls(sl = True, l=True)]
+        selection = [str(item) for item in cmds.ls(sl = True)]
 
-        # fill the 4 lists from the raw selection
-        meshes = [str(cmds.ls(cmds.listRelatives(node, p = True)[0], l=True)[0]) \
+        # fill the items dict from the raw selection
+        items = {}
+        # meshes
+        items['meshes'] = [cmds.listRelatives(node, p=True, fullPath=True)[0] \
                     for node in selection if cmds.nodeType(node) == "mesh"]
-        cameras = [str(cmds.ls(cmds.listRelatives(node, p = True)[0], l=True)[0]) \
-                    for node in selection if cmds.nodeType(node) == "camera"]
-        locators = [str(cmds.ls(cmds.listRelatives(node, p = True)[0], l=True)[0]) \
+        # cameras
+        items['cameras'] = [cmds.listRelatives(node, p=True, fullPath=True)[0] \
+                    for node in selection if cmds.nodeType(node) == "cameras"]
+        # locators
+        items['locator'] = [cmds.listRelatives(node, p=True, fullPath=True)[0] \
                     for node in selection if cmds.nodeType(node) == "locator"]
-        lights = [str(cmds.ls(cmds.listRelatives(node, p = True)[0], l=True)[0]) \
+        # lights
+        items['lights'] = [cmds.listRelatives(node, p=True, fullPath=True)[0] \
                     for node in selection if 'Light' in cmds.nodeType(node)]
-        
-        items = \
-            {
-                'objects' : meshes,
-                'cameras' : cameras,
-                'locators' : locators,
-                'lights' : lights,
-            }
 
         return items
 

@@ -20,7 +20,7 @@ class MayaToNukeUI(object):
         else:
             self.textFieldValue = textFieldValue[0]
         # stuff
-        self.stuff = {}
+        self.items = {}
         # get selection
         self.originalSel = cmds.ls(sl=True)
         # framerange info
@@ -210,42 +210,42 @@ class MayaToNukeUI(object):
         selFrameL = cmds.scrollLayout('mtn_scrollRightPanel', hst = True, cr = True)
         colLayout = cmds.columnLayout('mtn_columnRightPanel', adj = True)
         # get items lists
-        self.stuff = UTILS.filterSelection()
+        self.items = UTILS.filterSelection()
         # create objects framelayout
         self.objectsfrmLayout = cmds.frameLayout('mtn_objectsFrameLayout',
-                            label = str(len(self.stuff['objects']))+' objects:',
+                            label = str(len(self.items['meshes']))+' objects:',
                             cll = True,
-                            cl = True if not self.stuff['objects'] else False,
+                            cl = True if not self.items['meshes'] else False,
                             bv = False,
                             annotation = 'Valid objects to export')
-        self.objectsTxt = self.editableFrameLayout(self.stuff['objects'])
+        self.objectsTxt = self.editableFrameLayout(self.items['meshes'])
         cmds.setParent('..')
         # create cameras framelayout
         self.camerasfrmLayout = cmds.frameLayout('mtn_camerasFrameLayout',
-                            label = str(len(self.stuff['cameras']))+' cameras:',
+                            label = str(len(self.items['cameras']))+' cameras:',
                             cll = True,
-                            cl = True if not self.stuff['cameras'] else False,
+                            cl = True if not self.items['cameras'] else False,
                             bv = False,
                             annotation = 'Valid cameras to export')
-        self.camerasTxt = self.editableFrameLayout(self.stuff['cameras'])
+        self.camerasTxt = self.editableFrameLayout(self.items['cameras'])
         cmds.setParent('..')
         # create locators framelayout
         self.locatorsfrmLayout = cmds.frameLayout('mtn_locatorsFrameLayout',
-                            label = str(len(self.stuff['locators']))+' locators:',
+                            label = str(len(self.items['locators']))+' locators:',
                             cll = True,
-                            cl = True if not self.stuff['locators'] else False,
+                            cl = True if not self.items['locators'] else False,
                             bv = False,
                             annotation = 'Valid locators to export')
-        self.locatorsTxt = self.editableFrameLayout(self.stuff['locators'])
+        self.locatorsTxt = self.editableFrameLayout(self.items['locators'])
         cmds.setParent('..')
         # create lights framelayout        
         self.lightsfrmLayout = cmds.frameLayout('mtn_lightsFrameLayout',
-                            label = str(len(self.stuff['lights']))+' lights:',
+                            label = str(len(self.items['lights']))+' lights:',
                             cll = True,
-                            cl = True if not self.stuff['lights'] else False,
+                            cl = True if not self.items['lights'] else False,
                             bv = False,
                             annotation = 'Valid lights to export')
-        self.lightsTxt = self.editableFrameLayout(self.stuff['lights'])
+        self.lightsTxt = self.editableFrameLayout(self.items['lights'])
         cmds.setParent('..')
         
         cmds.formLayout(form, edit = True, attachForm = [
@@ -346,41 +346,41 @@ class MayaToNukeUI(object):
         """method to refresh the interface from a new selection"""
         # get the new selection
         self.originalSel = cmds.ls(sl=True)
-        self.stuff = UTILS.filterSelection()
+        self.items = UTILS.filterSelection()
         # refresh objects ui
-        cmds.text(self.objectsTxt, e=True, label = UTILS.strFromList(self.stuff['objects'])[1])
+        cmds.text(self.objectsTxt, e=True, label = UTILS.strFromList(self.items['meshes'])[1])
         cmds.frameLayout(self.objectsfrmLayout,
                             e=True,
-                            label = str(len(self.stuff['objects']))+' objects:',
+                            label = str(len(self.items['meshes']))+' objects:',
                             cll = True,
-                            cl = True if not self.stuff['objects'] else False,
+                            cl = True if not self.items['meshes'] else False,
                             bv = False,
                             annotation = 'Valid objects to export')
         # refresh cameras ui
-        cmds.text(self.camerasTxt, e=True, label = UTILS.strFromList(self.stuff['cameras'])[1])
+        cmds.text(self.camerasTxt, e=True, label = UTILS.strFromList(self.items['cameras'])[1])
         cmds.frameLayout(self.camerasfrmLayout,
                             e=True,
-                            label = str(len(self.stuff['cameras']))+' cameras:',
+                            label = str(len(self.items['cameras']))+' cameras:',
                             cll = True,
-                            cl = True if not self.stuff['cameras'] else False,
+                            cl = True if not self.items['cameras'] else False,
                             bv = False,
                             annotation = 'Valid cameras to export')
         # refresh locators ui
-        cmds.text(self.locatorsTxt, e=True, label = UTILS.strFromList(self.stuff['locators'])[1])
+        cmds.text(self.locatorsTxt, e=True, label = UTILS.strFromList(self.items['locators'])[1])
         cmds.frameLayout(self.locatorsfrmLayout,
                             e=True,
-                            label = str(len(self.stuff['locators']))+' locators:',
+                            label = str(len(self.items['locators']))+' locators:',
                             cll = True,
-                            cl = True if not self.stuff['locators'] else False,
+                            cl = True if not self.items['locators'] else False,
                             bv = False,
                             annotation = 'Valid locators to export')
         # refresh lights ui
-        cmds.text(self.lightsTxt, e=True, label = UTILS.strFromList(self.stuff['lights'])[1])
+        cmds.text(self.lightsTxt, e=True, label = UTILS.strFromList(self.items['lights'])[1])
         cmds.frameLayout(self.lightsfrmLayout,
                             e=True,
-                            label = str(len(self.stuff['lights']))+' lights:',
+                            label = str(len(self.items['lights']))+' lights:',
                             cll = True,
-                            cl = True if not self.stuff['lights'] else False,
+                            cl = True if not self.items['lights'] else False,
                             bv = False,
                             annotation = 'Valid lights to export')
         # refresh header
@@ -400,7 +400,7 @@ class MayaToNukeUI(object):
         """start the export procedure"""
         # save settings
         self.saveSettings()
-        if self.stuff:
+        if self.items:
             # get display values
             UTILS.getDisplayItems()
             #set display off
@@ -409,7 +409,7 @@ class MayaToNukeUI(object):
             outputFile = self.textfieldValidator(cmds.textField(self.textField, text=True, q=True))
             if outputFile:
                 # generate the nuke script
-                EXPORTER = exporter.Exporter(self.stuff, outputFile, self.framerange)
+                EXPORTER = exporter.Exporter(self.items, outputFile, self.framerange)
                 EXPORTER.startExport()
             else:
                 cmds.confirmDialog(t = 'Error', m = 'The output file is not correct.\nex: /<path>/nukefile.nk')

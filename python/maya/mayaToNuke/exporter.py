@@ -10,9 +10,9 @@ class Exporter(object):
     """
         generate a nuke script (.nk) from a selection.
     """
-    def __init__(self, stuff={}, outputFile='', framerange={}):
+    def __init__(self, items={}, outputFile='', framerange={}):
         # get the stuff to export and the outputFile
-        self.stuff = stuff
+        self.items = stuff
         self.outputFile = outputFile
         # get the framerange info
         self.currentFrame = framerange['current']
@@ -48,10 +48,10 @@ class Exporter(object):
         self.filePy.write('nuke.root().knob("last_frame").setValue('+str(self.lastFrame)+')\n\n')
         
         # get the items
-        objects = self.stuff['objects']
-        cameras = self.stuff['cameras']
-        locators = self.stuff['objects']
-        lights = self.stuff['lights']
+        objects = self.items['meshes']
+        cameras = self.items['cameras']
+        locators = self.items['locators']
+        lights = self.items['lights']
 
         if objects:
             print "-exporting "+str(len(objects))+" objects:"
