@@ -15,12 +15,13 @@ class Exporter(object):
         self.stuff = stuff
         self.outputFile = outputFile
         # get the framerange info
-        self.currentFrame = framerange['currentFrame']
+        self.currentFrame = framerange['current']
         self.firstFrame = framerange['first']
         self.lastFrame = framerange['last']
         # get time
-        self.currTime = UTILS.getTime('current')
-        self.timeStr = UTILS.getTime('str')
+        timeInfo = UTILS.getTime()
+        self.currTime = timeInfo['current']
+        self.timeStr = timeInfo['str']
         # get the nuke.exe path
         self.nukeexe = UTILS.nukeexe
 
@@ -183,9 +184,9 @@ class Exporter(object):
 
                     cmds.select(mesh, r = True)
                     
-                    meshname = meshPath+mesh.replace(":", "_")+'.obj'
+                    meshname = meshPath+mesh+'.obj'
                     rotList = ["XYZ","YZX","ZXY","XZY","YXZ","ZYX"]
-                    meshRot = cmds.getAttr(mesh.replace(":", "_")+".rotateOrder")
+                    meshRot = cmds.getAttr(mesh+".rotateOrder")
                     meshRotationOrder = rotList[meshRot]
                     
                     cmds.file(meshname, pr = 1, typ = "OBJexport", es = 1, op = "groups=0;ptgroups=0;materials=0;smoothing=0;normals=1")
@@ -193,7 +194,7 @@ class Exporter(object):
                     # write to pyFile
                     filePy.write('readGeo = nuke.createNode("ReadGeo")\n')
                     filePy.write('readGeo.knob("file").setValue("'+meshname+'")\n')
-                    filePy.write('readGeo.setName("'+mesh.replace(":", "_")+'")\n')
+                    filePy.write('readGeo.setName("'+mesh+'")\n')
                     filePy.write('readGeo.knob("selected").setValue(False)\n')
                     filePy.write('readGeo.knob("rot_order").setValue("'+meshRotationOrder+'")\n\n')
                     
@@ -210,7 +211,7 @@ class Exporter(object):
                     filePy.write('# creating "'+mesh+'" \n')
 
                     cmds.select(mesh, r = True)
-                    meshname = meshPath+mesh.replace(":", "_")+'.####.obj'
+                    meshname = meshPath+mesh+'.####.obj'
                     
                     # get maya attributes
                     rotList = ["XYZ","YZX","ZXY","XZY","YXZ","ZYX"]
@@ -220,7 +221,7 @@ class Exporter(object):
                     # write to pyFile
                     filePy.write('readGeo = nuke.createNode("ReadGeo")\n')
                     filePy.write('readGeo.knob("file").setValue("'+meshname+'")\n')
-                    filePy.write('readGeo.setName("'+mesh.replace(":", "_")+'")\n')
+                    filePy.write('readGeo.setName("'+mesh+'")\n')
                     filePy.write('readGeo.knob("selected").setValue(False)\n')
                     filePy.write('readGeo.knob("rot_order").setValue("'+meshRotationOrder+'")\n\n')
 
@@ -231,7 +232,7 @@ class Exporter(object):
                     
                     for mesh in deformedMeshes:
                         cmds.select(mesh, r = True)
-                        meshname = meshPath+mesh.replace(":", "_")+'.'+str(int(frame))+'.obj'
+                        meshname = meshPath+mesh+'.'+str(int(frame))+'.obj'
                         print meshname
                         cmds.file(meshname, f = True, pr = 1, typ = "OBJexport", es = 1, op = "groups=0;ptgroups=0;materials=0;smoothing=0;normals=1")
 

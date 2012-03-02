@@ -40,14 +40,13 @@ class Utils(object):
         PRESETS.addPreset('os', self.os)
         PRESETS.addPreset('platform', self.platform)
         
-    def getTime(self, arg=''):
+    def getTime(self):
         # get time
-        if arg == 'str':
-            timeStr = str(time.strftime('%d/%m/%y at %H:%M:%S'))
-            return timeStr
-        if arg == 'current':
-            currTime = time.strftime('%d%m%y_%H%M%S')
-            return currTime
+        timeInfo = {}
+        timeInfo['current'] = time.strftime('%d%m%y_%H%M%S')
+        timeInfo['str'] = str(time.strftime('%d/%m/%y at %H:%M:%S'))
+
+        return timeInfo
 
     def getFramerange(self):
         """
@@ -76,13 +75,17 @@ class Utils(object):
         """
         # get selection
         cmds.select(hi = True)
-        selection = [str(item) for item in cmds.ls(sl = True)]
+        selection = [str(item.replace(':', '_')) for item in cmds.ls(sl = True, l=True)]
 
         # fill the 4 lists from the raw selection
-        meshes = [cmds.listRelatives(node, p = True)[0] for node in selection if cmds.nodeType(node) == "mesh"]
-        cameras = [cmds.listRelatives(node, p = True)[0] for node in selection if cmds.nodeType(node) == "camera"]
-        locators = [cmds.listRelatives(node, p = True)[0] for node in selection if cmds.nodeType(node) == "locator"]
-        lights = [cmds.listRelatives(node, p = True)[0] for node in selection if 'Light' in cmds.nodeType(node)]
+        meshes = [str(cmds.ls(cmds.listRelatives(node, p = True)[0], l=True)[0]) \
+                    for node in selection if cmds.nodeType(node) == "mesh"]
+        cameras = [str(cmds.ls(cmds.listRelatives(node, p = True)[0], l=True)[0]) \
+                    for node in selection if cmds.nodeType(node) == "camera"]
+        locators = [str(cmds.ls(cmds.listRelatives(node, p = True)[0], l=True)[0]) \
+                    for node in selection if cmds.nodeType(node) == "locator"]
+        lights = [str(cmds.ls(cmds.listRelatives(node, p = True)[0], l=True)[0]) \
+                    for node in selection if 'Light' in cmds.nodeType(node)]
         
         items = \
             {
