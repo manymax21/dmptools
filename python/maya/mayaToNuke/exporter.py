@@ -12,7 +12,7 @@ class Exporter(object):
     """
     def __init__(self, items={}, outputFile='', framerange={}):
         # get the stuff to export and the outputFile
-        self.items = stuff
+        self.items = items
         self.outputFile = outputFile
         # get the framerange info
         self.currentFrame = framerange['current']
@@ -111,28 +111,23 @@ class Exporter(object):
         print "----------------| end |----------------"
                 
     def writeObjectsToPyFile(self, objects, filePy):
-        
+        """ export the mesh to an obj file and write the node """
         print objects
-        
         # load objExport plugin if not already loaded
         loaded = False
-        
         if not "objExport" in cmds.pluginInfo(query=True, listPlugins=True):
             cmds.loadPlugin('objExport')      
             loaded = True
         else:
             print 'objExport already loaded...'
             loaded = True
-            
         if loaded:
-
             # search for animated meshes
             animMeshes = []
             deformedMeshes = []
             staticMeshes = []
-            
+            # check connections
             for object in objects:
-            
                 objTx = '%s.tx' % object
                 objTy = '%s.ty' % object
                 objTz = '%s.tz' % object
@@ -143,7 +138,8 @@ class Exporter(object):
                 objSy = '%s.ty' % object
                 objSz = '%s.tz' % object
                 objVisible = '%s.visibility' % object
-
+                # if a connection is found in any of the above
+                # consider the mesh animated/deformed
                 if cmds.connectionInfo( objTx, isDestination=True) or\
                     cmds.connectionInfo( objTy, isDestination=True) or\
                     cmds.connectionInfo( objTz, isDestination=True) or\
@@ -154,109 +150,83 @@ class Exporter(object):
                     cmds.connectionInfo( objSy, isDestination=True) or\
                     cmds.connectionInfo( objSz, isDestination=True) or\
                     cmds.connectionInfo( objVisible, isDestination=True):
-                    
                     deformedMeshes.append(object)
                 else:
                     staticMeshes.append(object)
-            
-            #print '--animated: '+str(animMeshes)
             print '--deformed: '+str(deformedMeshes)
             print '--static: '+str(staticMeshes)
-            
             # mesh path
             meshPath = os.path.dirname(self.outputFile)+'/'+os.path.basename(self.outputFile).split('.')[-0]+'/'
             if not os.path.exists(meshPath):
                 os.makedirs(meshPath)
 
-            #############
-            # static meshes ###
-            #############
-            
+            # STATIC MESHES
             if staticMeshes:
-
                 filePy.write('# creating readGeos \n\n')
-
                 for mesh in staticMeshes:
-                    
                     print 'exporting: '+mesh
-                    
                     filePy.write('# creating "'+mesh+'" \n')
-
                     cmds.select(mesh, r = True)
-                    
-                    meshname = meshPath+mesh+'.obj'
+                    # get attr
                     rotList = ["XYZ","YZX","ZXY","XZY","YXZ","ZYX"]
                     meshRot = cmds.getAttr(mesh+".rotateOrder")
                     meshRotationOrder = rotList[meshRot]
-                    
+                    # set name
+                    meshClean = mesh.replace(':', '_').replace('|', '_')
+                    meshname = meshPath+meshClean+'.obj'
+                    # export the obj file                    
                     cmds.file(meshname, pr = 1, typ = "OBJexport", es = 1, op = "groups=0;ptgroups=0;materials=0;smoothing=0;normals=1")
-
                     # write to pyFile
                     filePy.write('readGeo = nuke.createNode("ReadGeo")\n')
                     filePy.write('readGeo.knob("file").setValue("'+meshname+'")\n')
-                    filePy.write('readGeo.setName("'+mesh+'")\n')
+                    filePy.write('readGeo.setName("'+meshClean+'")\n')
                     filePy.write('readGeo.knob("selected").setValue(False)\n')
                     filePy.write('readGeo.knob("rot_order").setValue("'+meshRotationOrder+'")\n\n')
                     
-            #############
-            # deformed meshes #
-            #############
-            
+            # DEFORMED MESHES 
             if deformedMeshes:
-                
+                # first write the nuke node 
                 for mesh in deformedMeshes:
-                    
                     print 'exporting animated/deformed: '+mesh
-                    
                     filePy.write('# creating "'+mesh+'" \n')
-
                     cmds.select(mesh, r = True)
-                    meshname = meshPath+mesh+'.####.obj'
-                    
                     # get maya attributes
                     rotList = ["XYZ","YZX","ZXY","XZY","YXZ","ZYX"]
-                    meshRot = cmds.getAttr(mesh+".rotateOrder")
+                    meshRot = cmds.getAttr(meshClean+".rotateOrder")
                     meshRotationOrder = rotList[meshRot]
-                    
+                    # set name
+                    meshClean = mesh.replace(':', '_').replace('|', '_')
+                    meshname = meshPath+meshClean+'.####.obj'
                     # write to pyFile
                     filePy.write('readGeo = nuke.createNode("ReadGeo")\n')
                     filePy.write('readGeo.knob("file").setValue("'+meshname+'")\n')
-                    filePy.write('readGeo.setName("'+mesh+'")\n')
+                    filePy.write('readGeo.setName("'+meshClean+'")\n')
                     filePy.write('readGeo.knob("selected").setValue(False)\n')
                     filePy.write('readGeo.knob("rot_order").setValue("'+meshRotationOrder+'")\n\n')
 
-                
+                # then export obj sequence files
                 for frame in range(self.firstFrame, self.lastFrame+1):
-                    
                     cmds.currentTime(frame)
-                    
                     for mesh in deformedMeshes:
                         cmds.select(mesh, r = True)
-                        meshname = meshPath+mesh+'.'+str(int(frame))+'.obj'
+                        meshClean = mesh.replace(':', '_').replace('|', '_')
+                        meshname = meshPath+meshClean+'.'+str(int(frame))+'.obj'
                         print meshname
                         cmds.file(meshname, f = True, pr = 1, typ = "OBJexport", es = 1, op = "groups=0;ptgroups=0;materials=0;smoothing=0;normals=1")
 
     def writeCamerasToPyFile(self, cameras, filePy):
-            
+        """ bake cameras and write the node """            
+        # first create all cameras nuke nodes
         for camera in cameras:
-            
             filePy.write('# creating "'+camera+'" \n')
-
             cmds.select(camera, r = True)
             cameraShape = cmds.listRelatives(camera)[0]
-
             # get maya attributes           
             rotList = ["XYZ","YZX","ZXY","XZY","YXZ","ZYX"]
             camRot = cmds.getAttr(camera+".rotateOrder")
             cameraRotationOrder = rotList[camRot]
             nearClip = float(cmds.getAttr(cameraShape+".nearClipPlane"))
             farClip = float(cmds.getAttr(cameraShape+".farClipPlane"))
-            
-            # try to get hub data
-            
-            #hubData, hubVersion, hubStart, hubEnd = Infos.getHubData(cameraShape)
-            hubData, hubVersion, hubStart, hubEnd = '','','',''
-            
             # write to pyFile
             filePy.write('camera = nuke.createNode("Camera2")\n')
             filePy.write('camera.setName("'+camera+'")\n')
@@ -264,154 +234,109 @@ class Exporter(object):
             filePy.write('camera.knob("rot_order").setValue("'+cameraRotationOrder+'")\n\n')
             filePy.write('camera.knob("near").setValue('+str(nearClip)+')\n')
             filePy.write('camera.knob("far").setValue('+str(farClip)+')\n')
-            
-            if hubData:
-                label = str(hubStart)+"-"+str(hubEnd)+" : v"+hubVersion
-                filePy.write('camera.knob("label").setValue("'+label+'")\n\n')
-            
+
+        # then bake in maya and animate in nuke node
         for frame in range(self.firstFrame, self.lastFrame+1):
-            
             filePy.write('nuke.frame('+str(int(frame))+')\n')
             cmds.currentTime(frame)
-            
-            #print 'processing frame: '+str(frame)
-            
             for camera in cameras:
-                
+                # get shape
                 cameraShape = cmds.listRelatives(camera)[0]
-                
                 # get worldspace attributes
                 xformT = cmds.xform(camera, t = True, ws=True, q = True)
                 xformR = cmds.xform(camera, ro = True, ws=True, q = True)
                 xformS = cmds.xform(camera, s = True, r = True, q = True)
-                
+                # get lens infos
                 focal = float(cmds.getAttr(cameraShape+".focalLength"))
                 hap = float(cmds.getAttr(cameraShape+".horizontalFilmAperture"))/ 0.0393700787
                 vap = float(cmds.getAttr(cameraShape+".verticalFilmAperture"))/ 0.0393700787
-
+                # write to file
                 filePy.write('cameraToAnimate = nuke.toNode("'+camera+'")\n')
-                
-                #set translate
-                filePy.write('cameraToAnimate.knob("translate").setValueAt('+str(float(xformT[0]))+', '+str(float(frame))+', 0)\n')
-                filePy.write('cameraToAnimate.knob("translate").setValueAt('+str(float(xformT[1]))+', '+str(float(frame))+', 1)\n')
-                filePy.write('cameraToAnimate.knob("translate").setValueAt('+str(float(xformT[2]))+', '+str(float(frame))+', 2)\n')
+                # set translate
+                filePy.write('cameraToAnimate.knob("translate").setValueAt('+str(float(xformT[0]))+',\
+                            '+str(float(frame))+', 0)\n')
+                filePy.write('cameraToAnimate.knob("translate").setValueAt('+str(float(xformT[1]))+',\
+                            '+str(float(frame))+', 1)\n')
+                filePy.write('cameraToAnimate.knob("translate").setValueAt('+str(float(xformT[2]))+',\
+                            '+str(float(frame))+', 2)\n')
                 filePy.write('cameraToAnimate.knob("translate").setKeyAt('+str(frame)+')\n')
-                
-                #set rotate                 
-                filePy.write('cameraToAnimate.knob("rotate").setValueAt('+str(float(xformR[0]))+', '+str(float(frame))+', 0)\n')
-                filePy.write('cameraToAnimate.knob("rotate").setValueAt('+str(float(xformR[1]))+', '+str(float(frame))+', 1)\n')
-                filePy.write('cameraToAnimate.knob("rotate").setValueAt('+str(float(xformR[2]))+', '+str(float(frame))+', 2)\n')
+                # set rotate                 
+                filePy.write('cameraToAnimate.knob("rotate").setValueAt('+str(float(xformR[0]))+',\
+                            '+str(float(frame))+', 0)\n')
+                filePy.write('cameraToAnimate.knob("rotate").setValueAt('+str(float(xformR[1]))+',\
+                            '+str(float(frame))+', 1)\n')
+                filePy.write('cameraToAnimate.knob("rotate").setValueAt('+str(float(xformR[2]))+',\
+                            '+str(float(frame))+', 2)\n')
                 filePy.write('cameraToAnimate.knob("rotate").setKeyAt('+str(frame)+')\n')
-                
                 # set scale
-                filePy.write('cameraToAnimate.knob("scaling").setValueAt('+str(float(xformS[0]))+', '+str(float(frame))+', 0)\n')
-                filePy.write('cameraToAnimate.knob("scaling").setValueAt('+str(float(xformS[1]))+', '+str(float(frame))+', 1)\n')
-                filePy.write('cameraToAnimate.knob("scaling").setValueAt('+str(float(xformS[2]))+', '+str(float(frame))+', 2)\n')
+                filePy.write('cameraToAnimate.knob("scaling").setValueAt('+str(float(xformS[0]))+',\
+                            '+str(float(frame))+', 0)\n')
+                filePy.write('cameraToAnimate.knob("scaling").setValueAt('+str(float(xformS[1]))+',\
+                            '+str(float(frame))+', 1)\n')
+                filePy.write('cameraToAnimate.knob("scaling").setValueAt('+str(float(xformS[2]))+',\
+                            '+str(float(frame))+', 2)\n')
                 filePy.write('cameraToAnimate.knob("scaling").setKeyAt('+str(frame)+')\n')
-                
-                #set focal hap and vap
-                filePy.write('cameraToAnimate.knob("focal").setValueAt('+str(focal)+', '+str(float(frame))+', 0)\n')
+                # set focal hap and vap
+                filePy.write('cameraToAnimate.knob("focal").setValueAt('+str(focal)+',\
+                            '+str(float(frame))+', 0)\n')
                 filePy.write('cameraToAnimate.knob("focal").setKeyAt('+str(frame)+')\n')
-                filePy.write('cameraToAnimate.knob("haperture").setValueAt('+str(hap)+', '+str(float(frame))+', 0)\n')
+                filePy.write('cameraToAnimate.knob("haperture").setValueAt('+str(hap)+',\
+                            '+str(float(frame))+', 0)\n')
                 filePy.write('cameraToAnimate.knob("haperture").setKeyAt('+str(frame)+')\n')
-                filePy.write('cameraToAnimate.knob("vaperture").setValueAt('+str(vap)+', '+str(float(frame))+', 0)\n')
+                filePy.write('cameraToAnimate.knob("vaperture").setValueAt('+str(vap)+',\
+                            '+str(float(frame))+', 0)\n')
                 filePy.write('cameraToAnimate.knob("vaperture").setKeyAt('+str(frame)+')\n')      
         
     def writeLocatorsToPyFile(self, locators, filePy):
-
+        """ bake cameras and write the node """            
         print locators
-        
-        animLocators = []
-        staticLocators = []
-        
-        # check if animated
-        
+        print '--locators: '+str(locators)
+        # creating all locators nuke nodes
         for locator in locators:
-        
-            locTx = '%s.tx' % locator
-            locTy = '%s.ty' % locator
-            locTz = '%s.tz' % locator
-            locRx = '%s.tx' % locator
-            locRy = '%s.ty' % locator
-            locRz = '%s.tz' % locator
-            locSx = '%s.tx' % locator
-            locSy = '%s.ty' % locator
-            locSz = '%s.tz' % locator
-            locVisible = '%s.visibility' % locator
+            filePy.write('# creating "'+locator+'" \n')
+            cmds.select(locator, r = True)
+            # get maya attributes           
+            rotList = ["XYZ","YZX","ZXY","XZY","YXZ","ZYX"]
+            locRot = cmds.getAttr(locator+".rotateOrder")
+            locatorRotationOrder = rotList[locRot]            
+            # write to pyFile
+            filePy.write('locator = nuke.createNode("Axis")\n')
+            filePy.write('locator.setName("'+locator+'")\n')
+            filePy.write('locator.knob("selected").setValue(False)\n')
+            filePy.write('locator.knob("rot_order").setValue("'+locatorRotationOrder+'")\n\n')
 
-            if cmds.connectionInfo( locTx, isDestination=True) or\
-                cmds.connectionInfo( locTy, isDestination=True) or\
-                cmds.connectionInfo( locTz, isDestination=True) or\
-                cmds.connectionInfo( locRx, isDestination=True) or\
-                cmds.connectionInfo( locRy, isDestination=True) or\
-                cmds.connectionInfo( locRz, isDestination=True) or\
-                cmds.connectionInfo( locSx, isDestination=True) or\
-                cmds.connectionInfo( locSy, isDestination=True) or\
-                cmds.connectionInfo( locSz, isDestination=True) or\
-                cmds.connectionInfo( locVisible, isDestination=True):
-                animLocators.append(locator)
-            else:
-                staticLocators.append(locator)
-        
-        #print '--animated: '+str(animMeshes)
-        print '--animated: '+str(animLocators)
-        print '--static: '+str(staticLocators)
-
-        tmp = True
-
-        if tmp: # ______________________ TMP_______ export animated locator even it's not____________
-
-            # creating all locators
-            
+        # bake in maya and animate all locators nuke nodes
+        for frame in range(self.firstFrame, self.lastFrame+1):
+            filePy.write('nuke.frame('+str(int(frame))+')\n')
+            cmds.currentTime(frame)
             for locator in locators:
-                
-                filePy.write('# creating "'+locator+'" \n')
-
-                cmds.select(locator, r = True)
-
-                # get maya attributes           
-                rotList = ["XYZ","YZX","ZXY","XZY","YXZ","ZYX"]
-                locRot = cmds.getAttr(locator+".rotateOrder")
-                locatorRotationOrder = rotList[locRot]
-                
-                # write to pyFile
-                filePy.write('locator = nuke.createNode("Axis")\n')
-                filePy.write('locator.setName("'+locator+'")\n')
-                filePy.write('locator.knob("selected").setValue(False)\n')
-                filePy.write('locator.knob("rot_order").setValue("'+locatorRotationOrder+'")\n\n')
-            
-            # animating all locators
-            
-            for frame in range(self.firstFrame, self.lastFrame+1):
-                
-                filePy.write('nuke.frame('+str(int(frame))+')\n')
-                cmds.currentTime(frame)
-                
-                #print 'processing frame: '+str(frame)
-                
-                for locator in locators:
-                    
-                    # get worldspace attributes
-                    xformT = cmds.xform(locator, t = True, ws=True, q = True)
-                    xformR = cmds.xform(locator, ro = True, ws=True, q = True)
-                    xformS = cmds.xform(locator, s = True, r = True, q = True)
-                    
-                    filePy.write('locatorToAnimate = nuke.toNode("'+locator+'")\n')
-                    
-                    #set translate
-                    filePy.write('locatorToAnimate.knob("translate").setValueAt('+str(float(xformT[0]))+', '+str(float(frame))+', 0)\n')
-                    filePy.write('locatorToAnimate.knob("translate").setValueAt('+str(float(xformT[1]))+', '+str(float(frame))+', 1)\n')
-                    filePy.write('locatorToAnimate.knob("translate").setValueAt('+str(float(xformT[2]))+', '+str(float(frame))+', 2)\n')
-                    filePy.write('locatorToAnimate.knob("translate").setKeyAt('+str(frame)+')\n')
-                    
-                    #set rotate                 
-                    filePy.write('locatorToAnimate.knob("rotate").setValueAt('+str(float(xformR[0]))+', '+str(float(frame))+', 0)\n')
-                    filePy.write('locatorToAnimate.knob("rotate").setValueAt('+str(float(xformR[1]))+', '+str(float(frame))+', 1)\n')
-                    filePy.write('locatorToAnimate.knob("rotate").setValueAt('+str(float(xformR[2]))+', '+str(float(frame))+', 2)\n')
-                    filePy.write('locatorToAnimate.knob("rotate").setKeyAt('+str(frame)+')\n')
-                    
-                    # set scale
-                    filePy.write('locatorToAnimate.knob("scaling").setValueAt('+str(float(xformS[0]))+', '+str(float(frame))+', 0)\n')
-                    filePy.write('locatorToAnimate.knob("scaling").setValueAt('+str(float(xformS[1]))+', '+str(float(frame))+', 1)\n')
-                    filePy.write('locatorToAnimate.knob("scaling").setValueAt('+str(float(xformS[2]))+', '+str(float(frame))+', 2)\n')
-                    filePy.write('locatorToAnimate.knob("scaling").setKeyAt('+str(frame)+')\n')
+                # get worldspace attributes
+                xformT = cmds.xform(locator, t = True, ws=True, q = True)
+                xformR = cmds.xform(locator, ro = True, ws=True, q = True)
+                xformS = cmds.xform(locator, s = True, r = True, q = True)
+                # write to file                
+                filePy.write('locatorToAnimate = nuke.toNode("'+locator+'")\n')
+                # set translate
+                filePy.write('locatorToAnimate.knob("translate").setValueAt('+str(float(xformT[0]))+',\
+                            '+str(float(frame))+', 0)\n')
+                filePy.write('locatorToAnimate.knob("translate").setValueAt('+str(float(xformT[1]))+',\
+                            '+str(float(frame))+', 1)\n')
+                filePy.write('locatorToAnimate.knob("translate").setValueAt('+str(float(xformT[2]))+',\
+                            '+str(float(frame))+', 2)\n')
+                filePy.write('locatorToAnimate.knob("translate").setKeyAt('+str(frame)+')\n')
+                # set rotate                 
+                filePy.write('locatorToAnimate.knob("rotate").setValueAt('+str(float(xformR[0]))+',\
+                            '+str(float(frame))+', 0)\n')
+                filePy.write('locatorToAnimate.knob("rotate").setValueAt('+str(float(xformR[1]))+',\
+                            '+str(float(frame))+', 1)\n')
+                filePy.write('locatorToAnimate.knob("rotate").setValueAt('+str(float(xformR[2]))+',\
+                            '+str(float(frame))+', 2)\n')
+                filePy.write('locatorToAnimate.knob("rotate").setKeyAt('+str(frame)+')\n')
+                # set scale
+                filePy.write('locatorToAnimate.knob("scaling").setValueAt('+str(float(xformS[0]))+',\
+                            '+str(float(frame))+', 0)\n')
+                filePy.write('locatorToAnimate.knob("scaling").setValueAt('+str(float(xformS[1]))+',\
+                            '+str(float(frame))+', 1)\n')
+                filePy.write('locatorToAnimate.knob("scaling").setValueAt('+str(float(xformS[2]))+',\
+                            '+str(float(frame))+', 2)\n')
+                filePy.write('locatorToAnimate.knob("scaling").setKeyAt('+str(frame)+')\n')
