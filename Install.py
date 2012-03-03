@@ -11,6 +11,7 @@
 
 import os
 import sys
+import time
 import fileinput
 import shutil
 from shutil import *
@@ -197,7 +198,7 @@ def install(src, dst, symlinks=False, ignore=None):
                 if os.path.split(srcname)[-1].split('.')[-1] not in EXCLUDE_FILES:
                     print ' > installing file', srcname, 'to', dstname
                     copy2(srcname, dstname)
-            # XXX What about devices, sockets etc.?
+        # XXX What about devices, sockets etc.?
         except (IOError, os.error), why:
             errors.append((srcname, dstname, str(why)))
         # catch the Error from the recursive copytree so that we can
@@ -241,6 +242,7 @@ def main():
     if PROJECT_NAME and ACTIVE_FILE_IN_PROJECT:
         print 'excuting python.exe',' '.join(sys.argv)
         install_dmptools()
+        print ' >> installed at', str(time.strftime('%H:%M:%S the %d/%m/%y'))
     else:
         # yield a windows error message
         errorMsg('You need to install from here:\n\

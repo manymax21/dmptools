@@ -134,3 +134,31 @@ class PresetsManager(object):
             subprocess.Popen('notepad '+self.presetfile)
         else:
             raise UserWarning('preset file not found!')
+
+    def getStrPresets(self):
+        """ 
+        convert presets dicts to str
+        """
+        global presetsStr
+        presets = PresetsManager()
+        presetsL = presets.getPresets()
+        # recursive method
+        def setStr(preset):
+            global presetsStr
+            for key in preset.keys():
+                presetsStr += "-"+str(key)+":\n"
+                for value in preset.values():
+                    if type(value).__name__ == 'dict':
+                        presetsStr += "\t"
+                        setStr(value)
+                    else:
+                        presetsStr += "\t"+str(value)+"\n"
+                        
+        presetsStr = "Presets:\n"
+        # go through all the presets
+        for preset in presetsL:
+            setStr(preset)
+        
+        return presetsStr
+
+

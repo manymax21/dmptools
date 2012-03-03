@@ -426,14 +426,23 @@ class MayaToNukeUI(object):
 
     def saveSettings(self, none=None):
         # get settings values
-        print 'setting presets...'
         textField = cmds.textField(self.textField, text=True, q=True)
         # set presets
         PRESETS.addPreset('mtn_textField', textField)
 
-    def settingsUI(self):
+    def settingsUI(self, non=None):
         """UI of mayaToNuke settings """
-        print PRESETS.getPreset('settings')
+        settings = PRESETS.getStrPresets()
+        # create ui
+        if cmds.window('mtn_settings', exists=True):
+            cmds.deleteUI('mtn_settings', window=True)
+        settingsWindow = cmds.window('mtn_settings',
+                            t='MayaToNuke settings window',
+                            w=100,
+                            h=50)
+        cmds.formLayout()
+        text = cmds.text(label=str(settings), align='left')
+        cmds.showWindow(settingsWindow)
 
     def generateHeader(self):
         headerText = \
