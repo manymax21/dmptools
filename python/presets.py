@@ -34,6 +34,7 @@ class PresetsManager(object):
         """
         if the preset file doesn't exists create it.
         """
+        # create the presets file in appdata/dmptools
         appdata = os.getenv('APPDATA')
         if not os.path.exists(appdata):
             appdata = os.getenv('USERPROFILE')+'/Documents'
@@ -41,20 +42,7 @@ class PresetsManager(object):
         if not os.path.exists(dmptoolspath):
             os.mkdir(dmptoolspath)
         PRESET_FILE = dmptoolspath+'/dmptools.presets'
-        
-        '''
-        # detect the current soft context (Maya or Nuke)
-        # if nothing found then raise an error.
-        try:
-            import nuke
-            PRESET_FILE = '!NUKE_PRESET_FILE!'
-        except ImportError:
-            try:
-                import maya
-                PRESET_FILE = '!MAYA_PRESET_FILE!'
-            except ImportError:
-                raise UserWarning('no Maya or Nuke module found')
-        '''
+
         # create the preset file if it doesnt exists
         self.presetfile = PRESET_FILE
         if not os.path.exists(self.presetfile):

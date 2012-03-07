@@ -288,6 +288,9 @@ class MayaToNukeUI(object):
         """create the top menubar"""
         cmds.menu('mtn_menuBar', label='File', allowOptionBoxes = False )
         # add items
+        # refresh button
+        updateC = self.refreshUI
+        cmds.menuItem(label='Refresh', c=updateC) 
         # settings button
         settingsC = self.settingsUI
         cmds.menuItem(label='Settings', c=settingsC) 
@@ -342,7 +345,7 @@ class MayaToNukeUI(object):
             print 'nothing found'
             return None
 
-    def refreshUI(self):
+    def refreshUI(self, none=None):
         """method to refresh the interface from a new selection"""
         # get the new selection
         self.originalSel = cmds.ls(sl=True)

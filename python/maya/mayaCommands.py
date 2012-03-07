@@ -71,9 +71,9 @@ def launchConsole():
         ]
     for path in defaultConsolePath:
         if os.path.exists(path):
-            presets.addPreset('sublime_text_path', path)
+            presets.addPreset('terminator', path)
 
-    consolePath = presets.getPreset('sublime_text_path')
+    consolePath = presets.getPreset('terminator')
     if consolePath and os.path.exists(consolePath[0]):
         # launch console
         subprocess.Popen(consolePath[0])
@@ -87,7 +87,7 @@ def launchConsole():
             consolePath = str(filedialog[0])
             if os.path.exists(consolePath):
                 # setting preset
-                presets.addPreset('sublime_text_path', consolePath)
+                presets.addPreset('terminator', consolePath)
                 # launch console
                 subprocess.Popen(consolePath)
         else:
