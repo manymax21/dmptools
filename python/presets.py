@@ -25,11 +25,24 @@ class PresetsManager(object):
     presets = PresetsManager()
     preset = presets.getPreset(key='')
 
+    to get a print version of all the presets (keys and values):
+    presets = PresetManager()
+    print presets.getStrPresets()
+    
     """
     def __init__(self):
         """
         if the preset file doesn't exists create it.
         """
+        appdata = os.getenv('APPDATA')
+        if not os.path.exists(appdata):
+            appdata = os.getenv('USERPROFILE')+'/Documents'
+        dmptoolspath = appdata+'/dmptools'
+        if not os.path.exists(dmptoolspath):
+            os.mkdir(dmptoolspath)
+        PRESET_FILE = dmptoolspath+'/dmptools.presets'
+        
+        '''
         # detect the current soft context (Maya or Nuke)
         # if nothing found then raise an error.
         try:
@@ -41,7 +54,7 @@ class PresetsManager(object):
                 PRESET_FILE = '!MAYA_PRESET_FILE!'
             except ImportError:
                 raise UserWarning('no Maya or Nuke module found')
-
+        '''
         # create the preset file if it doesnt exists
         self.presetfile = PRESET_FILE
         if not os.path.exists(self.presetfile):
