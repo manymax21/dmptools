@@ -46,10 +46,12 @@ PYTHON_SOURCE_PATH = MODULE_PATH+'/python/'
 ACTIVE_FILE_IN_PROJECT = False
 # check if the active file is in the project path
 for root, dirs, files in os.walk(MODULE_PATH):
-    for f in files:
-        if ACTIVE_FILE in f and 'workspace' in ACTIVE_FILE_PATH:
-            ACTIVE_FILE_IN_PROJECT = True
-            break
+    for dir in dirs:
+        if os.path.dirname(ACTIVE_FILE_PATH) in root+dir:
+            for f in files:
+                if ACTIVE_FILE in f:
+                    ACTIVE_FILE_IN_PROJECT = True
+                    break
 USER = os.environ['USERNAME']
 EXCLUDE_DIRS = \
     [
@@ -140,7 +142,6 @@ def installMaya():
     createUserSetup()
 
     print ' > done.'
-
 
 def replacements(path):
     # check the files in the install path

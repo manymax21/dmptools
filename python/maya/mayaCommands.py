@@ -12,12 +12,42 @@ import subprocess
 
 from dmptools.presets import PresetsManager
 
+def freezeHistory():
+    """freezeHistory"""
+    mel.eval('delete -ch;makeIdentity -apply true -t 1 -r 1 -s 1 -n 0;')
+
+def freezeCenterPivot():
+    """freezeCenterPivot"""
+    mel.eval('delete -ch;xform -cp;makeIdentity -apply true -t 1 -r 1 -s 1 -n 0;')
+
+def openUvTextureEditor():
+    """openUvTextureEditor"""
+    mel.eval('TextureViewWindow;')
+
+def openHypershade():
+    """openUvTextureEditor"""
+    mel.eval('HypershadeWindow;')
+
+def mergeVertex():
+    """merge vertex"""
+    cmds.polyMergeVertex(distance=0.01, am=True, ch=True)
+
+def getVertexColor():
+    selection = cmds.ls(sl=True)
+    colors = {}
+    for obj in selection:
+        colors[obj] = {}
+        for v in range(cmds.polyEvaluate(v=True)):
+            cmds.select(obj+'.vtx['+str(v)+']', r=True)
+            colors[obj][v] = cmds.polyColorPerVertex(query=True, g=True, b=True)
+    return colors
+
 def newScriptEditor():
     """new script editor test"""
     win = cmds.window(t='New Script Editor', menuBar= True, w = 650, h = 300)
     form = cmds.formLayout()
     pane = cmds.paneLayout(configuration='horizontal2', paneSize=[[1,100,40],[2,100,60]])
-    """top layout"""
+    # top layout
     formTop = cmds.formLayout()
     reporter = cmds.cmdScrollFieldReporter('reporter')
     cmds.setParent('..')
@@ -31,7 +61,7 @@ def newScriptEditor():
                 ]
         )
     cmds.paneLayout(pane, edit=True, setPane = [formTop, 2])
-    """bottom layout"""
+    # bottom layout
     formBottom = cmds.formLayout()
     shelf = cmds.shelfTabLayout()
     tab1 = cmds.cmdScrollFieldExecuter('python1', sourceType="python")
@@ -170,17 +200,17 @@ def launchNuke():
 
 def setDefaultRenderer():
     panel = cmds.getPanel(wf=True)
-    cmds.modelEditor(panel, shadows=False, displayLights='all', e=True)
+    cmds.modelEditor(panel, shadows=False, displayLights='default', e=True)
     cmds.modelEditor(panel, rnm='base_OpenGL_Renderer', e=True)
 
 def setHardwareRenderer():
     panel = cmds.getPanel(wf=True)
-    cmds.modelEditor(panel, shadows=True, displayLights='all', e=True)
+    cmds.modelEditor(panel, shadows=True, displayLights='default', e=True)
     cmds.modelEditor(panel, rnm='hwRender_OpenGL_Renderer', e=True)
 
 def setViewport2Renderer():
     panel = cmds.getPanel(wf=True)
-    cmds.modelEditor(panel, shadows=True, displayLights='all', e=True)
+    cmds.modelEditor(panel, shadows=True, displayLights='default', e=True)
     cmds.modelEditor(panel, rnm='ogsRenderer', e=True)
 
 def assignSurfaceShader(name="", values=(0,0,0)):
