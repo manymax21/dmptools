@@ -226,5 +226,23 @@ HOTKEYS = \
         'command':'python("import dmptools.mayaCommands as mayaCommands;\
             reload(mayaCommands);mayaCommands.openHypershade()");'
     },
+    {
+        'name':'proMode',
+        'key':'space',
+        'alt':True,
+        'ctl':False,
+        'release':False,
+        'command':'python("import dmptools.mayaCommands as mayaCommands;\
+            reload(mayaCommands);mayaCommands.proMode()");'
+    },
+    {
+        'name':'unselectAll',
+        'key':'space',
+        'alt':False,
+        'ctl':True,
+        'release':False,
+        'command':'python("import dmptools.mayaCommands as mayaCommands;\
+            reload(mayaCommands);mayaCommands.unselectAll()");'
+    },
 ]
 # end of hotkeys

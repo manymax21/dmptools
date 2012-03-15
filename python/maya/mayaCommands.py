@@ -12,6 +12,19 @@ import subprocess
 
 from dmptools.presets import PresetsManager
 
+def deleteCollada():
+    """ delete collada nodes"""
+    colladaNodes = []
+    for node in cmds.ls():
+        if 'colladaDocuments' in node:
+            colladaNodes.append(node)
+        
+cmds.delete(colladaNodes)
+
+def proMode():
+    """pro mode"""
+    mel.eval('ToggleUIElements')
+
 def freezeHistory():
     """freezeHistory"""
     mel.eval('delete -ch;makeIdentity -apply true -t 1 -r 1 -s 1 -n 0;')
