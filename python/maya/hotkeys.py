@@ -55,7 +55,8 @@ HOTKEYS = \
         'ctl':False,
         'release':False,
         'command':'python("import dmptools.mayaCommands as mayaCommands;\
-            reload(mayaCommands);mayaCommands.setBackfaceCulling()");',},
+            reload(mayaCommands);mayaCommands.setBackfaceCulling()");',
+    },
     {
         'name':'setDefaultMaterial',
         'key':'d',
@@ -150,7 +151,8 @@ HOTKEYS = \
         'alt':True,
         'ctl':False,
         'release':False,
-        'command':'delete -ch;makeIdentity -apply true -t 1 -r 1 -s 1 -n 0;'
+        'command':'python("import dmptools.mayaCommands as mayaCommands;\
+            reload(mayaCommands);mayaCommands.freezeHistory()");'
     },
     {
         'name':'freezeHistoryCenterPivot',
@@ -158,7 +160,8 @@ HOTKEYS = \
         'alt':True,
         'ctl':True,
         'release':False,
-        'command':'delete -ch;xform -cp;makeIdentity -apply true -t 1 -r 1 -s 1 -n 0;'
+        'command':'python("import dmptools.mayaCommands as mayaCommands;\
+            reload(mayaCommands);mayaCommands.freezeCenterPivot()");'
     },
     {
         'name':'setDefaultRenderer',
@@ -195,6 +198,51 @@ HOTKEYS = \
         'release':False,
         'command':'python("import dmptools.mayaCommands as mayaCommands;\
             reload(mayaCommands);mayaCommands.launchConsole()");'
+    },
+    {
+        'name':'mergeVertex',
+        'key':'m',
+        'alt':False,
+        'ctl':True,
+        'release':False,
+        'command':'python("import dmptools.mayaCommands as mayaCommands;\
+            reload(mayaCommands);mayaCommands.mergeVertex()");'
+    },
+    {
+        'name':'openUvTextureEditor',
+        'key':'1',
+        'alt':True,
+        'ctl':True,
+        'release':False,
+        'command':'python("import dmptools.mayaCommands as mayaCommands;\
+            reload(mayaCommands);mayaCommands.openUvTextureEditor()");'
+    },
+    {
+        'name':'openHypershade',
+        'key':'2',
+        'alt':True,
+        'ctl':True,
+        'release':False,
+        'command':'python("import dmptools.mayaCommands as mayaCommands;\
+            reload(mayaCommands);mayaCommands.openHypershade()");'
+    },
+    {
+        'name':'proMode',
+        'key':'space',
+        'alt':True,
+        'ctl':False,
+        'release':False,
+        'command':'python("import dmptools.mayaCommands as mayaCommands;\
+            reload(mayaCommands);mayaCommands.proMode()");'
+    },
+    {
+        'name':'unselectAll',
+        'key':'space',
+        'alt':False,
+        'ctl':True,
+        'release':False,
+        'command':'python("import dmptools.mayaCommands as mayaCommands;\
+            reload(mayaCommands);mayaCommands.unselectAll()");'
     },
 ]
 # end of hotkeys

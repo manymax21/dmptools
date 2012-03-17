@@ -9,16 +9,102 @@ import maya.mel as mel
 import os
 import time
 import subprocess
+import fnmatch
 
 from dmptools.presets import PresetsManager
+
+def rotateScene():
+    global switchRotate
+    try:
+        switchRotate
+    except:
+        switchRotate = 1
+
+    if switchRotate == 1:
+        try:
+            cmds.setAttr('|Neo|generator_outpost_01_dm|Asset|Model_Orig_00|scene_grp.ry', 0.0)
+            switchRotate = 0
+        except:
+            pass
+        
+    elif switchRotate == 0:
+        try:
+            cmds.setAttr('|Neo|generator_outpost_01_dm|Asset|Model_Orig_00|scene_grp.ry', 45.0)
+            switchRotate = 1
+        except:
+            pass
+
+class HideShowNeoStuff(object):
+
+    def __init__(self):
+        self.stuffToHide = []
+        nodes = cmds.ls()
+        objFilter = ['Dest', 'Collision_hk', 'Orig_State', 'Dest_State']
+        
+        for node in nodes:
+            for f in objFilter:
+                if f in node:
+                    self.stuffToHide.append(node)
+                    break
+     
+    def hide(self):
+        for node in self.stuffToHide:
+            cmds.setAttr(node+'.visibility', False)
+    
+    def show(self):
+        for node in self.stuffToHide:
+            cmds.setAttr(node+'.visibility', True)
+     
+
+def deleteCollada():
+    """ delete collada nodes"""
+    colladaNodes = []
+    for node in cmds.ls():
+        if 'colladaDocuments' in node:
+            colladaNodes.append(node)
+        
+cmds.delete(colladaNodes)
+
+def proMode():
+    """pro mode"""
+    mel.eval('ToggleUIElements')
+
+def freezeHistory():
+    """freezeHistory"""
+    mel.eval('delete -ch;makeIdentity -apply true -t 1 -r 1 -s 1 -n 0;')
+
+def freezeCenterPivot():
+    """freezeCenterPivot"""
+    mel.eval('delete -ch;xform -cp;makeIdentity -apply true -t 1 -r 1 -s 1 -n 0;')
+
+def openUvTextureEditor():
+    """openUvTextureEditor"""
+    mel.eval('TextureViewWindow;')
+
+def openHypershade():
+    """openUvTextureEditor"""
+    mel.eval('HypershadeWindow;')
+
+def mergeVertex():
+    """merge vertex"""
+    cmds.polyMergeVertex(distance=0.01, am=True, ch=True)
+
+def getVertexColor():
+    selection = cmds.ls(sl=True)
+    colors = {}
+    for obj in selection:
+        colors[obj] = {}
+        for v in range(cmds.polyEvaluate(v=True)):
+            cmds.select(obj+'.vtx['+str(v)+']', r=True)
+            colors[obj][v] = cmds.polyColorPerVertex(query=True, g=True, b=True)
+    return colors
 
 def newScriptEditor():
     """new script editor test"""
     win = cmds.window(t='New Script Editor', menuBar= True, w = 650, h = 300)
     form = cmds.formLayout()
-    pane = cmds.paneLayout(configuration='horizontal2',
-                           paneSize=[[1,100,40],[2,100,60]])
-    """top layout"""
+    pane = cmds.paneLayout(configuration='horizontal2', paneSize=[[1,100,40],[2,100,60]])
+    # top layout
     formTop = cmds.formLayout()
     reporter = cmds.cmdScrollFieldReporter('reporter')
     cmds.setParent('..')
@@ -32,7 +118,7 @@ def newScriptEditor():
                 ]
         )
     cmds.paneLayout(pane, edit=True, setPane = [formTop, 2])
-    """bottom layout"""
+    # bottom layout
     formBottom = cmds.formLayout()
     shelf = cmds.shelfTabLayout()
     tab1 = cmds.cmdScrollFieldExecuter('python1', sourceType="python")
@@ -171,17 +257,17 @@ def launchNuke():
 
 def setDefaultRenderer():
     panel = cmds.getPanel(wf=True)
-    cmds.modelEditor(panel, shadows=False, displayLights='all', e=True)
+    cmds.modelEditor(panel, shadows=False, displayLights='default', e=True)
     cmds.modelEditor(panel, rnm='base_OpenGL_Renderer', e=True)
 
 def setHardwareRenderer():
     panel = cmds.getPanel(wf=True)
-    cmds.modelEditor(panel, shadows=True, displayLights='all', e=True)
+    cmds.modelEditor(panel, shadows=True, displayLights='default', e=True)
     cmds.modelEditor(panel, rnm='hwRender_OpenGL_Renderer', e=True)
 
 def setViewport2Renderer():
     panel = cmds.getPanel(wf=True)
-    cmds.modelEditor(panel, shadows=True, displayLights='all', e=True)
+    cmds.modelEditor(panel, shadows=True, displayLights='default', e=True)
     cmds.modelEditor(panel, rnm='ogsRenderer', e=True)
 
 def assignSurfaceShader(name="", values=(0,0,0)):
