@@ -14,22 +14,22 @@ class PresetsManager(object):
     manage the dmptools presets.
     you can only set one preset at a time.
     usage:
-    presets = PresetsManager()
-    newpresets = presets.addPreset(key='', value=None)
+    >>> presets = PresetsManager()
+    >>> newpresets = presets.addPreset(key='', value=None)
 
     to remove a preset:
-    presets = PresetsManager()
-    newpresets = presets.removePreset(key='')
+    >>> presets = PresetsManager()
+    >>> newpresets = presets.removePreset(key='')
 
     to get a preset value (returns a list):
-    presets = PresetsManager()
-    preset = presets.getPreset(key='')
+    >>> presets = PresetsManager()
+    >>> preset = presets.getPreset(key='')
 
     to get a print version of all the presets (keys and values):
-    presets = PresetManager()
-    print presets.getStrPresets()
-    
+    >>> presets = PresetManager()
+    >>> print presets.getStrPresets()
     """
+    
     def __init__(self):
         """
         if the preset file doesn't exists create it.

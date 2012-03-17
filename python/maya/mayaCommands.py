@@ -16,7 +16,8 @@ def newScriptEditor():
     """new script editor test"""
     win = cmds.window(t='New Script Editor', menuBar= True, w = 650, h = 300)
     form = cmds.formLayout()
-    pane = cmds.paneLayout(configuration='horizontal2', paneSize=[[1,100,40],[2,100,60]])
+    pane = cmds.paneLayout(configuration='horizontal2',
+                           paneSize=[[1,100,40],[2,100,60]])
     """top layout"""
     formTop = cmds.formLayout()
     reporter = cmds.cmdScrollFieldReporter('reporter')
