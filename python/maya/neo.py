@@ -37,7 +37,7 @@ def deleteCollada():
         
     cmds.delete(colladaNodes)
 
-def rotateScene():
+def rotateGenerator():
     global switchRotate
     try:
         switchRotate
