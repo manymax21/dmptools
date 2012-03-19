@@ -406,7 +406,6 @@ def bufMoveRelease():
 
 def importScene():
     """import scene exported from nuke"""
-    
     crosswalkFile = 'nukeToMaya.info'
     if os.path.exists(crosswalkFile):
         fileInfo = open(crosswalkFile, 'r')
@@ -419,10 +418,9 @@ def importScene():
 
 def isolateSelection():
     """isolate selection"""
-    
     activePanel = cmds.getPanel(wf = True)
-    cmds.isolateSelect(activePanel, state = not cmds.isolateSelect(activePanel, q = True, state = True))
-    
+    mel.eval("enableIsolateSelect {0} {1};".format(activePanel, str(not cmds.isolateSelect(activePanel, q=True, state=True)).lower()))    
+
 def hideSel():
     
     sel = cmds.ls(sl = True)
