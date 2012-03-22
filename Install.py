@@ -241,7 +241,7 @@ def main():
     # and the active file is in the project path
     # then run the install
     if PROJECT_NAME and ACTIVE_FILE_IN_PROJECT:
-        print 'excuting python.exe',' '.join(sys.argv)
+        print 'executing python.exe',' '.join(sys.argv)
         install_dmptools()
         print ' >> installed at', str(time.strftime('%H:%M:%S the %d/%m/%y'))
     else:
