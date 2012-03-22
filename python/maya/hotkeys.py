@@ -228,8 +228,8 @@ HOTKEYS = \
     },
     {
         'name':'proMode',
-        'key':'space',
-        'alt':True,
+        'key':'F11',
+        'alt':False,
         'ctl':False,
         'release':False,
         'command':'python("import dmptools.mayaCommands as mayaCommands;\

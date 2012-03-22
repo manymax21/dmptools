@@ -63,7 +63,7 @@ def deleteCollada():
         if 'colladaDocuments' in node:
             colladaNodes.append(node)
         
-cmds.delete(colladaNodes)
+    cmds.delete(colladaNodes)
 
 def proMode():
     """pro mode"""
@@ -420,9 +420,9 @@ def importScene():
 def isolateSelection():
     """isolate selection"""
     
-    activePanel = cmds.getPanel(wf = True)
-    cmds.isolateSelect(activePanel, state = not cmds.isolateSelect(activePanel, q = True, state = True))
-    
+    activePanel = cmds.getPanel(wf=True)
+    mel.eval("enableIsolateSelect {0} {1};".format(activePanel, str(not cmds.isolateSelect(activePanel, q=True, state=True)).lower()))
+
 def hideSel():
     
     sel = cmds.ls(sl = True)
