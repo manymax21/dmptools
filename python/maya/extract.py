@@ -47,12 +47,10 @@ def UI(obj):
     keepOriginal = cmds.checkBox('keepOriginal', label='keep original mesh', value=False)
     okButton = cmds.button('okbutton',
                     label="Go!",
-                    c=start,
-                    annotation='Generate Nuke script from selected items')
+                    c=start)
     cancelButton = cmds.button('cancelbutton',
                     label="Cancel",
-                    c='cmds.deleteUI(win)',
-                    annotation='Close the mayaToNuke interface - Have a nice day -')
+                    c='cmds.deleteUI(win)')
     tab = 150
     cmds.formLayout(form, e=True, attachForm = 
                         [
