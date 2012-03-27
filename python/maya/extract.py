@@ -56,6 +56,7 @@ class Extract(object):
                                     md='y')
         cmds.select(original, r=True)
 
+<<<<<<< HEAD
     def extract_part(self, mesh, polycount):
         # grow selection
         cmds.select(mesh+'.f[1]')
@@ -164,6 +165,46 @@ class Extract(object):
                                     (cancelButton, 'bottom', 5),
 
                                 ],
+=======
+def UI(obj):
+    win = cmds.window(t='Separate '+obj)
+    form = cmds.formLayout()
+    triLimit = cmds.textFieldGrp('triLimit', label='tri-count limit per part:', text='5000' )
+    smoothCmd = 'cmds.textFieldGrp("smoothValue", e=True, enable=cmds.checkBox("smooth", value=True, q=True))'
+    smooth = cmds.checkBox('smooth', label='smooth normals', value=False, cc=smoothCmd)
+    smoothValue = cmds.textFieldGrp('smoothValue', label='smooth Value:', text='80', enable=False)
+    projectCmd = 'cmds.textFieldGrp("scaleUV", e=True, enable=cmds.checkBox("project", value=True, q=True))'
+    projectUV = cmds.checkBox('project', label='project UV on Y', value=False, cc=projectCmd)
+    scaleUV = cmds.textFieldGrp('scaleUV', label='UV scale:', text='1.0', enable=False)
+    keepOriginal = cmds.checkBox('keepOriginal', label='keep original mesh', value=False)
+    okButton = cmds.button('okbutton',
+                    label="Go!",
+                    c=start)
+    cancelButton = cmds.button('cancelbutton',
+                    label="Cancel",
+                    c='cmds.deleteUI(win)')
+    tab = 150
+    cmds.formLayout(form, e=True, attachForm = 
+                        [
+                            (triLimit, 'top', 5),
+                            (triLimit, 'left', 5),
+                            (triLimit, 'right', 5),
+                            (smooth, 'left', tab),
+                            (smooth, 'right', 5),
+                            (smoothValue, 'left', 5),
+                            (smoothValue, 'right', 5),
+                            (projectUV, 'left', tab),
+                            (projectUV, 'right', 5),
+                            (scaleUV, 'left', 5),
+                            (scaleUV, 'right', 5),
+                            (keepOriginal, 'left', tab),
+                            (okButton, 'left', 5),
+                            (okButton, 'bottom', 5),
+                            (cancelButton, 'right', 5),
+                            (cancelButton, 'bottom', 5),
+    
+                        ],
+>>>>>>> 0fc2a7589242543c66896c6673c5e6159810aabd
                                     attachControl = 
                                 [
                                     (smooth, 'top', 5, polycount),
