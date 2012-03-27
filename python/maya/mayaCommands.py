@@ -249,7 +249,14 @@ def assignSurfaceShader(name="", values=(0,0,0)):
         cmds.select(selection, r = True)
 
 def askFlushUndo():
-    confirm = cmds.confirmDialog(t = "flushUndo", m = 'Do you want to flush undo ?', ma = "center", b = ['Yes','No'], db = 'Yes', cb = 'No', ds = 'No' )
+    confirm = cmds.confirmDialog(t = "flushUndo",
+                                 m = 'Do you want to flush undo ?',
+                                 ma = "center",
+                                 b = ['Yes','No'],
+                                 db = 'Yes',
+                                 cb = 'No',
+                                 ds = 'No' )
+                                
     if confirm == "Yes":
         print "flushUndo..."
         cmds.flushUndo()
