@@ -2,7 +2,7 @@
 #
 # presets.py
 # michael.havart@gmail.com
-# class used to manage dmptools presets. 
+# class used to manage various presets. 
 #
 #============================================
 
