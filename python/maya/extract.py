@@ -94,7 +94,7 @@ class Extract(object):
         for part in partsList:
             if cmds.listRelatives(part):
                 newname = 'terrain_part'+str(i)
-                print '> transfering normals on ', newname
+                print '> transfering normals on', newname
                 cmds.transferAttributes(mesh, part, transferPositions=0,
                                         transferNormals=1,
                                         transferUVs=2,
