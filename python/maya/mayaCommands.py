@@ -410,6 +410,9 @@ def setDefaultMaterial():
     cmds.modelEditor(panel, edit = True, useDefaultMaterial = not cmds.modelEditor(panel, query = True, useDefaultMaterial = True))
     headsUpDisplayMessage('Set default material '+str(cmds.modelEditor(panel, query = True, useDefaultMaterial = True)))
 
+def tweakMultiComponents():
+    cmds.selectType(meshComponents=True)
+
 def bufMove():
     """enter the Buf move vertex mode"""
     cmds.selectMode(component=True)
