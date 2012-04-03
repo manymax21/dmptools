@@ -13,6 +13,86 @@ import fnmatch
 
 from dmptools.presets import PresetsManager
 
+def headsUpDisplayMessage(message):
+    cmds.headsUpMessage(message,
+                    verticalOffset=400,
+                    horizontalOffset=0)
+
+def shortestEdgePath():
+    """enter polyShortestPathCtx """
+    polyPathContex = cmds.polyShortestPathCtx()
+    cmds.setToolTo(polyPathContex)
+
+def shortestEdgePathRelease():
+    cmds.setToolTo('moveSuperContext')
+    cmds.selectMode(component=True)
+    cmds.selectType(eg=True)
+
+def switchObjectTumble():
+    headsUpDisplayMessage(message='Tumble object focus '+str(not cmds.tumbleCtx('tumbleContext', objectTumble=True, q=True)))
+    cmds.tumbleCtx('tumbleContext', ac=True,
+        objectTumble=not cmds.tumbleCtx('tumbleContext', objectTumble=True, q=True),
+        e=True)
+
+def unfoldAndRotate(sel):
+    # unfold horizontal
+    cmds.unfold(sel+'.map[*]',
+        i=5000,
+        ss=0.001,
+        gb=0.0,
+        gmb=0.5,
+        pub=False,
+        ps= False,
+        oa=2, # 1: vertical, 2:horizontal
+        us=False)
+    # unfold vertical
+    cmds.unfold(sel+'.map[*]',
+        i=5000,
+        ss=0.001,
+        gb=0.0,
+        gmb=0.5,
+        pub=False,
+        ps= False,
+        oa=1, # 1: vertical, 2:horizontal
+        us=False)
+    # rotate UVs
+    cmds.polyEditUV(pivotU=0.5, pivotV=0.5, angle=90)
+    
+def unwrapTerrain(sel):
+    # unwrap planar Y
+    cmds.polyProjection(sel+'.f[*]',
+                                    ch=False,
+                                    type='Planar',
+                                    ibd=True,
+                                    isu=1,
+                                    isv=1,
+                                    md='y')
+    # apply unfoldAndRotate x times
+    for i in range(4):
+        unfoldAndRotate(sel)
+
+
+def setCustomColors():
+    # script editor
+    cmds.displayRGBColor('syntaxKeywords', 0.14, 0.9, 0.14)
+    cmds.displayRGBColor('syntaxText', 0.84, 0.84, 0.84)
+    cmds.displayRGBColor('syntaxStrings', 0.09, 0.4, 0.1)
+    cmds.displayRGBColor('syntaxComments', 0.45, 0.45, 0.45)
+    cmds.displayRGBColor('syntaxCommands', 0.75, 0.75, 0.27)
+    cmds.displayRGBColor('syntaxBackground', 0.15, 0.15, 0.15)
+    
+    # background
+    cmds.displayRGBColor('background', 0.6, 0.6, 0.6)
+    cmds.displayRGBColor('backgroundTop', 0.6, 0.6, 0.6)
+    cmds.displayRGBColor('backgroundBottom', 0.07, 0.07, 0.07)
+
+    # meshes
+    cmds.displayRGBColor('lead', 0.4, 0.4, 0.4, create=True)
+    cmds.displayColor('hilite', 2, active=True)
+    cmds.displayColor('hiliteComponent', 1, active=True)
+    cmds.displayColor('lead', 3, active=True) # default is 19
+    cmds.displayColor('polymesh', 3, active=True)
+
 def proMode():
     """pro mode"""
     mel.eval('ToggleUIElements')
@@ -207,16 +287,19 @@ def setDefaultRenderer():
     panel = cmds.getPanel(wf=True)
     cmds.modelEditor(panel, shadows=False, displayLights='default', e=True)
     cmds.modelEditor(panel, rnm='base_OpenGL_Renderer', e=True)
+    headsUpDisplayMessage('Default renderer')
 
 def setHardwareRenderer():
     panel = cmds.getPanel(wf=True)
     cmds.modelEditor(panel, shadows=True, displayLights='default', e=True)
     cmds.modelEditor(panel, rnm='hwRender_OpenGL_Renderer', e=True)
+    headsUpDisplayMessage('Hardware renderer')
 
 def setViewport2Renderer():
     panel = cmds.getPanel(wf=True)
     cmds.modelEditor(panel, shadows=True, displayLights='default', e=True)
     cmds.modelEditor(panel, rnm='ogsRenderer', e=True)
+    headsUpDisplayMessage('Viewport 2 renderer')
 
 def assignSurfaceShader(name="", values=(0,0,0)):
 
@@ -270,7 +353,8 @@ def undoQueue(undos=100):
 def switchHighlightedSelection():
     panel = cmds.getPanel(wf = True)
     cmds.modelEditor(panel, edit = True, sel = not cmds.modelEditor(panel, query = True, sel = True))
-    
+    headsUpDisplayMessage('Set default material '+str(cmds.modelEditor(panel, query = True, sel = True)))
+
 def transferVertices(meshes=[], preserveUVs=True):
     
     dateStart = str(time.strftime('%d/%m/%y at %H:%M:%S'))
@@ -298,7 +382,10 @@ def transferVertices(meshes=[], preserveUVs=True):
 
 def toggleNormals():
     #toggle normals
-    cmds.polyOptions(r = True, f = True, dn = not cmds.polyOptions(q = True, dn = True))
+    cmds.polyOptions(r=True,
+                    f=True,
+                    dn=not cmds.polyOptions(q = True, dn = True))
+    headsUpDisplayMessage('toggle normal display '+str(cmds.polyOptions(q=True, dn=True)))
     
 def unselectAll():
     # unselect all
@@ -306,57 +393,49 @@ def unselectAll():
     
 def setWireframe():
     panel = cmds.getPanel(wf = True)
-    cmds.modelEditor(panel, edit = True, wireframeOnShaded = not cmds.modelEditor(panel, query = True, wireframeOnShaded = True))
-    
+    cmds.modelEditor(panel,
+                    e=True,
+                    wireframeOnShaded=not cmds.modelEditor(panel, query = True, wireframeOnShaded = True))
+    headsUpDisplayMessage('Wireframe on shaded '+str(cmds.modelEditor(panel, query = True, wireframeOnShaded = True)))
+
 def setBackfaceCulling():
     panel = cmds.getPanel(wf = True)
-    cmds.modelEditor(panel, edit = True, backfaceCulling = not cmds.modelEditor(panel, query = True, backfaceCulling = True))
+    cmds.modelEditor(panel,
+                    e=True,
+                    backfaceCulling=not cmds.modelEditor(panel, query = True, backfaceCulling = True))
+    headsUpDisplayMessage('Backface culling '+str(cmds.modelEditor(panel, query = True, backfaceCulling = True)))
     
 def setDefaultMaterial():
     panel = cmds.getPanel(wf = True)
     cmds.modelEditor(panel, edit = True, useDefaultMaterial = not cmds.modelEditor(panel, query = True, useDefaultMaterial = True))
+    headsUpDisplayMessage('Set default material '+str(cmds.modelEditor(panel, query = True, useDefaultMaterial = True)))
 
 def bufMove():
     """enter the Buf move vertex mode"""
-    sel = cmds.ls(sl = True)
-    if cmds.nodeType(sel) == 'transform':
-        if cmds.nodeType(cmds.listRelatives(sel)) == 'mesh':
-            mode = 'mesh'
-        if cmds.nodeType(cmds.listRelatives(sel)) == 'nurbsCurve':
-            mode = 'nurbs'
-    if cmds.nodeType(sel) == 'mesh':
-        mode = 'mesh'
-    if cmds.nodeType(sel) == 'nurbsCurve':
-        mode = 'nurbs'
-    
+    cmds.selectMode(component=True)
+    cmds.selectMode(object=True)
+    sel = cmds.ls(sl=True)
+    # enter the move mode and set on vertex
     try:    
-        if mode == 'mesh':
-            cmds.selectMode(component = True)
-            panel = cmds.getPanel(withFocus = True)
-            cmds.modelEditor(panel, e = True, manipulators = False)
-            cmds.setToolTo('moveSuperContext')
-            cmds.selectType(alc = 0)
-            cmds.selectType(v = 1)
-            cmds.selectPref(clickDrag = True)
-        if mode == 'nurbs':
-            cmds.selectMode(component = True)
-            panel = cmds.getPanel(withFocus = True)
-            cmds.modelEditor(panel, e = True, manipulators = False)
-            cmds.setToolTo('moveSuperContext')
-            cmds.selectType(alc = 0)
-            cmds.selectType(cv = 1)
-            cmds.selectPref(clickDrag = True)
+        cmds.delete(sel, ch=True)
+        cmds.selectMode(component=True)
+        activePanel = cmds.getPanel(withFocus=True)
+        cmds.modelEditor(activePanel, e=True, manipulators=False)
+        cmds.setToolTo('moveSuperContext')
+        cmds.selectType(alc=0)
+        cmds.selectType(v=1)
+        cmds.selectPref(clickDrag=True)
     except:
         pass
     #cmds.selectPref(useDepth = True)
-    
+
 def bufMoveRelease():
     """release the Buf move vertex mode"""
     cmds.selectMode(object = True)
-    panel = cmds.getPanel(withFocus = True)
-    cmds.modelEditor(panel, e = True, manipulators = True)
+    activePanel = cmds.getPanel(withFocus=True)
+    cmds.modelEditor(activePanel, e=True, manipulators=True)
     cmds.setToolTo('moveSuperContext')
-    cmds.selectPref(clickDrag = False)
+    cmds.selectPref(clickDrag=False)
     #cmds.selectPref(useDepth = False)
 
 def importScene():
@@ -548,4 +627,3 @@ def lockPickNodes(lock=True):
         except:
             cmds.warning("cannot lockPick this node: "+str(node))
             
-# this is a silly place

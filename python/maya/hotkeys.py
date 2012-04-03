@@ -2,6 +2,15 @@
 HOTKEYS = \
 [
     {
+        'name':'createHotkeys',
+        'key':'H',
+        'alt':True,
+        'ctl':True,
+        'release':False,
+        'command':'python("import dmptools.createHotkeys as createHotkeys;\
+            reload(createHotkeys);createHotkeys.main()");'
+    },
+    {
         'name':'bufMove',
         'key':'q',
         'alt':False,
@@ -243,6 +252,27 @@ HOTKEYS = \
         'release':False,
         'command':'python("import dmptools.mayaCommands as mayaCommands;\
             reload(mayaCommands);mayaCommands.unselectAll()");'
+    },
+    {
+        'name':'switchObjectTumble',
+        'key':'Q',
+        'alt':True,
+        'ctl':False,
+        'release':False,
+        'command':'python("import dmptools.mayaCommands as mayaCommands;\
+            reload(mayaCommands);mayaCommands.switchObjectTumble()");'
+    },
+    {
+        'name':'shortestEdgePath',
+        'key':'Q',
+        'alt':False,
+        'ctl':False,
+        'release':True,
+        'command':'python("import dmptools.mayaCommands as mayaCommands;\
+            reload(mayaCommands);mayaCommands.shortestEdgePath()");',
+        'releaseCommand':'python("import dmptools.mayaCommands as mayaCommands;\
+            reload(mayaCommands);mayaCommands.shortestEdgePathRelease()");'
+
     },
 ]
 # end of hotkeys
