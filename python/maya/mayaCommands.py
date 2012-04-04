@@ -29,7 +29,7 @@ def shortestEdgePathRelease():
     cmds.selectType(eg=True)
 
 def switchObjectTumble():
-    headsUpDisplayMessage(message='Tumble object focus '+str(not cmds.tumbleCtx('tumbleContext', objectTumble=True, q=True)))
+    headsUpDisplayMessage(message='Tumble object focus: '+str(not cmds.tumbleCtx('tumbleContext', objectTumble=True, q=True)))
     cmds.tumbleCtx('tumbleContext', ac=True,
         objectTumble=not cmds.tumbleCtx('tumbleContext', objectTumble=True, q=True),
         e=True)
@@ -353,7 +353,7 @@ def undoQueue(undos=100):
 def switchHighlightedSelection():
     panel = cmds.getPanel(wf = True)
     cmds.modelEditor(panel, edit = True, sel = not cmds.modelEditor(panel, query = True, sel = True))
-    headsUpDisplayMessage('Set default material '+str(cmds.modelEditor(panel, query = True, sel = True)))
+    headsUpDisplayMessage('Selection highlight: '+str(cmds.modelEditor(panel, query = True, sel = True)))
 
 def transferVertices(meshes=[], preserveUVs=True):
     
@@ -385,7 +385,7 @@ def toggleNormals():
     cmds.polyOptions(r=True,
                     f=True,
                     dn=not cmds.polyOptions(q = True, dn = True))
-    headsUpDisplayMessage('toggle normal display '+str(cmds.polyOptions(q=True, dn=True)))
+    headsUpDisplayMessage('Polygon normal display: '+str(cmds.polyOptions(q=True, dn=True)))
     
 def unselectAll():
     # unselect all
@@ -396,19 +396,19 @@ def setWireframe():
     cmds.modelEditor(panel,
                     e=True,
                     wireframeOnShaded=not cmds.modelEditor(panel, query = True, wireframeOnShaded = True))
-    headsUpDisplayMessage('Wireframe on shaded '+str(cmds.modelEditor(panel, query = True, wireframeOnShaded = True)))
+    headsUpDisplayMessage('Wireframe on shaded: '+str(cmds.modelEditor(panel, query = True, wireframeOnShaded = True)))
 
 def setBackfaceCulling():
     panel = cmds.getPanel(wf = True)
     cmds.modelEditor(panel,
                     e=True,
                     backfaceCulling=not cmds.modelEditor(panel, query = True, backfaceCulling = True))
-    headsUpDisplayMessage('Backface culling '+str(cmds.modelEditor(panel, query = True, backfaceCulling = True)))
+    headsUpDisplayMessage('Backface culling: '+str(cmds.modelEditor(panel, query = True, backfaceCulling = True)))
     
 def setDefaultMaterial():
     panel = cmds.getPanel(wf = True)
     cmds.modelEditor(panel, edit = True, useDefaultMaterial = not cmds.modelEditor(panel, query = True, useDefaultMaterial = True))
-    headsUpDisplayMessage('Set default material '+str(cmds.modelEditor(panel, query = True, useDefaultMaterial = True)))
+    headsUpDisplayMessage('Default material: '+str(cmds.modelEditor(panel, query = True, useDefaultMaterial = True)))
 
 def tweakMultiComponents():
     cmds.selectType(meshComponents=True)
@@ -518,7 +518,6 @@ def switchShaders():
         switchshader = 1
 
 def getCam():
-
     sel = cmds.ls(sl = True)
     if sel:
         camShape = cmds.listRelatives(sel[0])[0]
@@ -526,10 +525,12 @@ def getCam():
             setRenderCamera(sel[0], camShape)
 
 def cameraPanTool():
+    headsUpDisplayMessage('Camera 2d pan mode')
     panContext = cmds.panZoomCtx(panMode = True)
     cmds.setToolTo(panContext)
     
 def cameraZoomTool():
+    headsUpDisplayMessage('Camera 2d zoom mode')
     zoomContext = cmds.panZoomCtx(zoomMode = True)
     cmds.setToolTo(zoomContext)
 
