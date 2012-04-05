@@ -115,7 +115,15 @@ def openHypershade():
 
 def mergeVertex():
     """merge vertex"""
-    cmds.polyMergeVertex(distance=0.01, am=True, ch=True)
+    sel = cmds.ls(sl=True)
+    if sel:
+        try:
+            for node in sel:
+                cmds.select(node, r=True)
+                cmds.polyMergeVertex(distance=0.01, am=True, ch=True)
+        except:
+            pass
+        cmds.select(sel, r=True)
 
 def getVertexColor():
     selection = cmds.ls(sl=True)
