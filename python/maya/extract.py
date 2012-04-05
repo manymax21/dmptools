@@ -95,9 +95,10 @@ class Extract(object):
             if cmds.listRelatives(part):
                 newname = 'terrain_part'+str(i)
                 print '> transfering normals on', newname
-                cmds.transferAttributes(mesh, part, transferPositions=0,
+                cmds.transferAttributes(mesh, part,
+                                        transferPositions=0,
                                         transferNormals=1,
-                                        transferUVs=2,
+                                        transferUVs=0,
                                         transferColors=2,
                                         sampleSpace=0,
                                         sourceUvSpace="map1",

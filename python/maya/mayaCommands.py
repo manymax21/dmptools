@@ -13,6 +13,22 @@ import fnmatch
 
 from dmptools.presets import PresetsManager
 
+def selectInsideFaces():
+    sel = cmds.ls(sl=True)[0]
+    cmds.select(sel+'.e[*]')
+    mel.eval('polyConvertToShellBorder;')
+    mel.eval('ConvertSelectionToFaces;')
+    mel.eval('invertSelection')
+
+def toggleVertexColorDisplay():
+    sel = cmds.ls(sl=True)
+    if sel:
+        for node in sel:
+            mel.eval('toggleShadeMode;')
+    else:
+        cmds.select(all=True)
+        mel.eval('toggleShadeMode;')
+
 def headsUpDisplayMessage(message):
     cmds.headsUpMessage(message,
                     verticalOffset=400,

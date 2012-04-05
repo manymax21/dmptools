@@ -263,6 +263,15 @@ HOTKEYS = \
             reload(mayaCommands);mayaCommands.switchObjectTumble()");'
     },
     {
+        'name':'toggleVertexColorDisplay',
+        'key':'C',
+        'alt':True,
+        'ctl':False,
+        'release':False,
+        'command':'python("import dmptools.mayaCommands as mayaCommands;\
+            reload(mayaCommands);mayaCommands.toggleVertexColorDisplay()");'
+    },
+    {
         'name':'shortestEdgePath',
         'key':'Q',
         'alt':False,
