@@ -87,7 +87,6 @@ def unwrapTerrain(sel):
     for i in range(4):
         unfoldAndRotate(sel)
 
-
 def setCustomColors():
     # script editor
     cmds.displayRGBColor('syntaxKeywords', 0.14, 0.9, 0.14)
