@@ -41,7 +41,7 @@ ACTIVE_FILE_PATH = sys.argv[-2]
 ACTIVE_FILE = os.path.basename(ACTIVE_FILE_PATH)
 INSTALL = ACTIVE_FILE.split('.')[0] == 'Install'
 MODULE_PATH = sys.argv[-3]
-PYTHON_SOURCE_PATH = MODULE_PATH+'/python/'
+PYTHON_SOURCE_PATH = MODULE_PATH+'/src/'
 # ACTIVE_FILE_IN_PROJECT set to False by default
 ACTIVE_FILE_IN_PROJECT = False
 # check if the active file is in the project path
@@ -64,11 +64,11 @@ EXCLUDE_DIRS = \
 EXCLUDE_FILES = ['pyc']
 # nuke globals
 NUKE_PATH = 'c:/users/'+USER+'/.nuke/'
-IS_NUKE_PATH = os.path.exists(NUKE_PATH)
+IS_NUKE_EXISTS = os.path.exists(NUKE_PATH)
 NUKE_PRESET_FILE = NUKE_PATH+MODULE_NAME+'/dmptools.presets'
 # maya globals
 MAYA_GLOBAL = 'c:/users/'+USER+'/documents/maya/'
-IS_MAYA_GLOBAL = os.path.exists(MAYA_GLOBAL)
+IS_MAYA_EXISTS = os.path.exists(MAYA_GLOBAL)
 MAYA_PATH = MAYA_GLOBAL+'/scripts/'
 MAYA_PRESET_FILE = MAYA_PATH+MODULE_NAME+'/dmptools.presets'
 MAYA_USERSETUP_FILE = '\
@@ -226,12 +226,12 @@ def errorMsg(message):
 
 def install_dmptools():
     # install Nuke dmptools
-    if 'nuke' in SOFTLIST and IS_NUKE_PATH:
+    if 'nuke' in SOFTLIST and IS_NUKE_EXISTS:
         installNuke()
     else:
         print 'Error: nuke path not found!'
     # install Maya dmptools
-    if 'maya' in SOFTLIST and IS_MAYA_GLOBAL:
+    if 'maya' in SOFTLIST and IS_MAYA_EXISTS:
         installMaya()
     else:
         print 'Error: maya path not found!'
