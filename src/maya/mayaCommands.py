@@ -13,6 +13,20 @@ import fnmatch
 
 from dmptools.presets import PresetsManager
 
+def showHotkeysList():
+    import dmptools.hotkeys as hotkeys
+    reload(hotkeys)
+    lines = []
+    for key in hotkeys.HOTKEYS:
+        lines.append('key:  '+str(key['key'])+'  ctrl:  '+str(key['ctrl'])+'  alt:  '+str(key['alt'])+'  name:  '+str(key['name']))
+
+    window = cmds.window('hotkeysWindow')
+    cmds.paneLayout()
+    cmds.textScrollList(numberOfRows=8,
+                        allowMultiSelection=True,
+                        append=lines,)
+    cmds.showWindow()
+
 def mergeUVs():
     mel.eval('polyPerformAction "polyMergeUV -d 1" v 0;')
     mel.eval('changeSelectMode -component;')

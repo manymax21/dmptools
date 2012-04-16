@@ -49,6 +49,7 @@ def main():
         delete the old maya hotkey files
         and install the new ones from the HOTKEYS list
     """
+    print 'creating hotkeys...'
     # delete old hotkeys
     if os.path.exists(CMD_FILE):
         os.remove(CMD_FILE)
@@ -59,6 +60,7 @@ def main():
     # create hotkeys
     for hotKey in HOTKEYS:
             setHotkey(hotKey)
+    print '> done.'
 
 if __name__ == '__main__':
     main()

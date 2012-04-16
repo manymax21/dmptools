@@ -2,6 +2,15 @@
 HOTKEYS = \
 [
     {
+        'name':'showHotkeysList',
+        'key':'H',
+        'alt':True,
+        'ctrl':False,
+        'release':False,
+        'command':'python("import dmptools.mayaCommands as mayaCommands;\
+            reload(mayaCommands);mayaCommands.showHotkeysList()");'
+    },
+    {
         'name':'createHotkeys',
         'key':'H',
         'alt':True,

@@ -1,6 +1,13 @@
 # shelf buttons list
 BUTTONS = [
     {
+        'name' : 'HotkeysList',
+        'command' : 'import dmptools.mayaCommands as mayaCommands;\
+            reload(mayaCommands);mayaCommands.showHotkeysList()',
+        'icon' : 'textureEditorOpenBar.png',
+        'annotation' : 'Show the hotkeys list window'
+    },
+    {
         'name' : 'Separator0',
         'command' : 'print "| soft >"',
         'icon' : 'textureEditorOpenBar.png',
@@ -9,21 +16,21 @@ BUTTONS = [
     {
         'name' : 'Terminator',
         'command' : 'import dmptools.mayaCommands as mayaCommands;\
-            mayaCommands.launchConsole()',
+            reload(mayaCommands);mayaCommands.launchConsole()',
         'icon' : 'Console.xpm',
         'annotation' : 'Launch the Console2 terminal.'
     },
     {
         'name' : 'SublimeText',
         'command' : 'import dmptools.mayaCommands as mayaCommands;\
-            mayaCommands.launchSublimeText()',
+            reload(mayaCommands);mayaCommands.launchSublimeText()',
         'icon' : 'SublimeText.xpm',
         'annotation' : 'Launch the Sublime Text editor.'
     },
     {
         'name' : 'Nuke',
         'command' : 'import dmptools.mayaCommands as mayaCommands;\
-            mayaCommands.launchNuke()',
+            reload(mayaCommands);mayaCommands.launchNuke()',
         'icon' : 'Nuke.xpm',
         'annotation' : 'Launch Nuke.'
     },
@@ -36,7 +43,7 @@ BUTTONS = [
     {
         'name' : 'newScriptEditor',
         'command' : 'import dmptools.mayaCommands as mayaCommands;\
-            mayaCommands.newScriptEditor()',
+            reload(mayaCommands);mayaCommands.newScriptEditor()',
         'icon' : 'text.png',
         'annotation' : 'New Script Editor.'
     },
