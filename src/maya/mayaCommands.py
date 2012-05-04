@@ -13,6 +13,23 @@ import fnmatch
 
 from dmptools.presets import PresetsManager
 
+def replaceXformSel():
+    
+    source = cmds.ls(sl=True)[0]
+    sel = cmds.ls(sl=True)[1:]
+    for node in sel:
+        lamp = cmds.duplicate(source)[0]
+        translate = cmds.xform(node, ws=True, t=True, q=True)
+        rotation = cmds.xform(node, ws=True, ro=True, q=True)
+        cmds.xform(lamp, t=translate, ro=rotation)
+
+def fixColladaAttributes():
+    nodes = cmds.ls(sl=True)
+    for node in nodes:
+        if not cmds.getAttr(node+'.collada'):
+            mat = cmds.getAttr(node+'.forceFragment')
+            cmds.setAttr(node+'.collada', mat, type='string')
+
 def showHotkeysList():
     import dmptools.hotkeys as hotkeys
     reload(hotkeys)
