@@ -159,6 +159,10 @@ def freezeCenterPivot():
     """freezeCenterPivot"""
     mel.eval('delete -ch;xform -cp;makeIdentity -apply true -t 1 -r 1 -s 1 -n 0;')
 
+def centerPivot():
+    """centerPivot"""
+    mel.eval('xform -cp;')
+
 def openUvTextureEditor():
     """openUvTextureEditor"""
     mel.eval('TextureViewWindow;')

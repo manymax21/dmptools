@@ -182,6 +182,15 @@ HOTKEYS = \
             reload(mayaCommands);mayaCommands.freezeCenterPivot()");'
     },
     {
+        'name':'centerPivot',
+        'key':'F',
+        'alt':False,
+        'ctrl':True,
+        'release':False,
+        'command':'python("import dmptools.mayaCommands as mayaCommands;\
+            reload(mayaCommands);mayaCommands.centerPivot()");'
+    },
+    {
         'name':'setDefaultRenderer',
         'key':'1',
         'alt':True,
