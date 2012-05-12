@@ -14,16 +14,19 @@ import fnmatch
 from dmptools.presets import PresetsManager
 
 def replaceXformSel():
-    
+    """duplicate the first object in selection and move it to the world space
+        coordinates of the next object in selection.
+    """
     source = cmds.ls(sl=True)[0]
-    sel = cmds.ls(sl=True)[1:]
-    for node in sel:
-        lamp = cmds.duplicate(source)[0]
+    rest = cmds.ls(sl=True)[1:]
+    for node in rest:
+        dup = cmds.duplicate(source)[0]
         translate = cmds.xform(node, ws=True, t=True, q=True)
         rotation = cmds.xform(node, ws=True, ro=True, q=True)
-        cmds.xform(lamp, t=translate, ro=rotation)
+        cmds.xform(dup, t=translate, ro=rotation)
 
 def fixColladaAttributes():
+    """fix dead space collada shader attributes"""
     nodes = cmds.ls(sl=True)
     for node in nodes:
         if not cmds.getAttr(node+'.collada'):
@@ -31,6 +34,7 @@ def fixColladaAttributes():
             cmds.setAttr(node+'.collada', mat, type='string')
 
 def showHotkeysList():
+    """shows the current user hotkeys mapping and its name"""
     import dmptools.hotkeys as hotkeys
     reload(hotkeys)
     lines = []
@@ -45,6 +49,7 @@ def showHotkeysList():
     cmds.showWindow()
 
 def mergeUVs():
+    """merge selected uvs"""
     mel.eval('polyPerformAction "polyMergeUV -d 1" v 0;')
     mel.eval('changeSelectMode -component;')
     mel.eval('setComponentPickMask "Point" true;')
@@ -53,6 +58,7 @@ def mergeUVs():
     mel.eval('selectType -sf false -se false -suv false -cv false;')   
 
 def selectInsideFaces():
+    """select all the edges inside an object except the border."""
     sel = cmds.ls(sl=True)[0]
     cmds.select(sel+'.e[*]')
     mel.eval('polyConvertToShellBorder;')
@@ -60,6 +66,7 @@ def selectInsideFaces():
     mel.eval('invertSelection')
 
 def toggleVertexColorDisplay():
+    """toggle the color vertex display"""
     sel = cmds.ls(sl=True)
     if sel:
         for node in sel:
@@ -69,6 +76,7 @@ def toggleVertexColorDisplay():
         mel.eval('toggleShadeMode;')
 
 def headsUpDisplayMessage(message):
+    """function that displays a custom heads up display message"""
     cmds.headsUpMessage(message,
                     verticalOffset=400,
                     horizontalOffset=0)

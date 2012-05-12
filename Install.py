@@ -104,7 +104,7 @@ REPLACEMENTS = \
     }
 
 def installNuke():
-    # install maya process
+    # install nuke process
     print '=============================='
     print '           N U K E            '
     print '=============================='
