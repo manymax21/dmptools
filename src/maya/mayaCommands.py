@@ -13,6 +13,10 @@ import fnmatch
 
 from dmptools.presets import PresetsManager
 
+def invertSelection():
+    """invert selection"""
+    mel.eval('invertSelection;')
+
 def replaceXformSel():
     """duplicate the first object in selection and move it to the world space
         coordinates of the next object in selection.

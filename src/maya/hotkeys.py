@@ -2,6 +2,15 @@
 HOTKEYS = \
 [
     {
+        'name':'invertSelection',
+        'key':'I',
+        'alt':False,
+        'ctrl':True,
+        'release':False,
+        'command':'python("import dmptools.mayaCommands as mayaCommands;\
+            reload(mayaCommands);mayaCommands.invertSelection()");'
+    },
+    {
         'name':'showHotkeysList',
         'key':'H',
         'alt':True,
