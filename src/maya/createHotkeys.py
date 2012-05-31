@@ -32,16 +32,16 @@ def setHotkey(hotkey):
         releaseCommand = hotkey['releaseCommand']
     
     #create hotkey command
-    cmds.nameCommand(name, sourceType = "mel", annotation = name, command = command)
+    cmds.nameCommand(name, sourceType="mel", annotation=name, command=command)
     if release:
-        cmds.nameCommand(releaseName, sourceType = "mel", annotation = releaseName, command = releaseCommand)
+        cmds.nameCommand(releaseName, sourceType="mel", annotation=releaseName, command=releaseCommand)
     
     # set hotkey
-    cmds.hotkey(k = key, alt=alt, ctl = ctl, name = name)    
+    cmds.hotkey(k=key, alt=alt, ctl=ctl, name=name)    
     #print 'set hotkey:', name, key, alt, ctrl, command
 
     if release:
-        cmds.hotkey(k = key, alt=alt, ctl = ctl, releaseName = releaseName)
+        cmds.hotkey(k=key, alt=alt, ctl=ctl, releaseName=releaseName)
         #print 'set hotkey release:', releaseName, key, alt, ctrl, releaseCommand
 
 def main():

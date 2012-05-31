@@ -13,6 +13,25 @@ import fnmatch
 
 from dmptools.presets import PresetsManager
 
+def createCollisionBox():
+    """
+        batch create collision bounding box
+    """
+    collisions = []    
+    
+    sel = cmds.ls(sl=True)
+    if sel:
+        for node in sel:
+            cmds.select(node, r=True)
+            # create object aligned collision box
+            mel.eval('MODEL_obb_bruteForce(1);')
+            cmds.delete(ch=True)
+            collisions.append(cmds.ls(sl=True)[0])
+        
+        cmds.select(collisions, r=True)    
+    else:
+        cmds.warning('no object found...')
+
 def invertSelection():
     """invert selection"""
     mel.eval('invertSelection;')

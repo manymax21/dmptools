@@ -9,7 +9,7 @@ modeling memo for marking menu
     -scale on axis
     -snap
     -select from camera
-    -
+    -invert selection
 
 """
 
