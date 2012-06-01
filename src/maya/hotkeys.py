@@ -2,6 +2,15 @@
 HOTKEYS = \
 [
     {
+        'name':'softEdgeSelection',
+        'key':'N',
+        'alt':True,
+        'ctrl':False,
+        'release':False,
+        'command':'python("import dmptools.mayaCommands as mayaCommands;\
+            reload(mayaCommands);mayaCommands.softEdgeSelection()");'
+    },
+    {
         'name':'invertSelection',
         'key':'I',
         'alt':False,

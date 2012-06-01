@@ -13,6 +13,15 @@ import fnmatch
 
 from dmptools.presets import PresetsManager
 
+def softEdgeSelection():
+    """
+    unlock normals and soft edge
+    """
+    sel = cmds.ls(sl=True)
+    for node in sel:
+        cmds.polyNormalPerVertex(node, ufn=True)
+        cmds.polySoftEdge(node, angle=20)
+        
 def createCollisionBox():
     """
         batch create collision bounding box
