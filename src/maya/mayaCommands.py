@@ -13,6 +13,13 @@ import fnmatch
 
 from dmptools.presets import PresetsManager
 
+def makeTube():
+    """
+    makes a simple tube mesh
+    """
+    mesh = cmds.polyTorus(r=2, sr=0.2,  sx=50, sy=4, tw=45)
+    cmds.setAttr(mesh[0]+'.sy', 5)
+
 def softEdgeSelection():
     """
     unlock normals and soft edge
@@ -26,7 +33,7 @@ def createCollisionBox():
     """
         batch create collision bounding box
     """
-    collisions = []    
+    collisions = []
     
     sel = cmds.ls(sl=True)
     if sel:
