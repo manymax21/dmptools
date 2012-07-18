@@ -78,7 +78,7 @@ def showHotkeysList():
     reload(hotkeys)
     lines = []
     for key in hotkeys.HOTKEYS:
-        lines.append('key:  '+str(key['key'])+'  ctrl:  '+str(key['ctrl'])+'  alt:  '+str(key['alt'])+'  name:  '+str(key['name']))
+        lines.append('key:  '+str(key['key'])+'  ctrl:  '+str(key['ctrl'])+'  alt:  '+str(key['alt'])+'  '+str(key['name']))
 
     window = cmds.window('hotkeysWindow')
     cmds.paneLayout()
@@ -545,13 +545,32 @@ def bufMove():
         pass
     #cmds.selectPref(useDepth = True)
 
+def bufMoveMulti():
+    """enter the Buf move vertex mode"""
+    try:    
+        selection = cmds.ls(sl=True)
+        cmds.selectMode(component=True)
+        cmds.selectMode(object=True)
+        cmds.selectMode(component=True)
+        for node in selection:
+            cmds.delete(node, ch=True)
+            mel.eval('doMenuComponentSelection("'+node+'", "meshComponents");')
+
+        activePanel = cmds.getPanel(withFocus=True)
+        cmds.modelEditor(activePanel, e=True, manipulators=False)
+        cmds.setToolTo('moveSuperContext')
+        cmds.selectPref(clickDrag=True)
+    except:
+        pass
+
 def bufMoveRelease():
     """release the Buf move vertex mode"""
-    cmds.selectMode(object = True)
     activePanel = cmds.getPanel(withFocus=True)
     cmds.modelEditor(activePanel, e=True, manipulators=True)
     cmds.setToolTo('moveSuperContext')
     cmds.selectPref(clickDrag=False)
+    cmds.selectMode(component=True)
+    cmds.selectMode(object=True)
     #cmds.selectPref(useDepth = False)
 
 def importScene():

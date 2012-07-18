@@ -49,6 +49,17 @@ HOTKEYS = \
             reload(mayaCommands);mayaCommands.bufMoveRelease()");'
     },
     {
+        'name':'bufMoveMulti',
+        'key':'Q',
+        'alt':False,
+        'ctrl':False,
+        'release':True,
+        'command':'python("import dmptools.mayaCommands as mayaCommands;\
+            reload(mayaCommands);mayaCommands.bufMoveMulti()");',
+        'releaseCommand':'python("import dmptools.mayaCommands as mayaCommands;\
+            reload(mayaCommands);mayaCommands.bufMoveRelease()");'
+    },
+    {
         'name':'hideSelectionSwitch',
         'key':'h',
         'alt':False,
@@ -309,8 +320,8 @@ HOTKEYS = \
     },
     {
         'name':'shortestEdgePath',
-        'key':'Q',
-        'alt':False,
+        'key':'A',
+        'alt':True,
         'ctrl':False,
         'release':True,
         'command':'python("import dmptools.mayaCommands as mayaCommands;\
