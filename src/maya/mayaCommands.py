@@ -72,21 +72,6 @@ def fixColladaAttributes():
             mat = cmds.getAttr(node+'.forceFragment')
             cmds.setAttr(node+'.collada', mat, type='string')
 
-def showHotkeysList():
-    """shows the current user hotkeys mapping and its name"""
-    import dmptools.hotkeys as hotkeys
-    reload(hotkeys)
-    lines = []
-    for key in hotkeys.HOTKEYS:
-        lines.append('key:  '+str(key['key'])+'  ctrl:  '+str(key['ctrl'])+'  alt:  '+str(key['alt'])+'  '+str(key['name']))
-
-    window = cmds.window('hotkeysWindow')
-    cmds.paneLayout()
-    cmds.textScrollList(numberOfRows=8,
-                        allowMultiSelection=True,
-                        append=lines,)
-    cmds.showWindow()
-
 def mergeUVs():
     """merge selected uvs"""
     mel.eval('polyPerformAction "polyMergeUV -d 1" v 0;')
@@ -548,6 +533,7 @@ def bufMove():
 def bufMoveMulti():
     """enter the Buf move vertex mode"""
     try:    
+        cmds.selectMode(object=True)
         selection = cmds.ls(sl=True)
         cmds.selectMode(component=True)
         cmds.selectMode(object=True)

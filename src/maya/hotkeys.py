@@ -25,8 +25,8 @@ HOTKEYS = \
         'alt':True,
         'ctrl':False,
         'release':False,
-        'command':'python("import dmptools.mayaCommands as mayaCommands;\
-            reload(mayaCommands);mayaCommands.showHotkeysList()");'
+        'command':'python("import dmptools.createHotkeys as createHotkeys;\
+            reload(createHotkeys);createHotkeys.showHotkeysList()");'
     },
     {
         'name':'createHotkeys',
@@ -39,7 +39,7 @@ HOTKEYS = \
     },
     {
         'name':'bufMove',
-        'key':'q',
+        'key':'a',
         'alt':False,
         'ctrl':False,
         'release':True,
@@ -50,7 +50,7 @@ HOTKEYS = \
     },
     {
         'name':'bufMoveMulti',
-        'key':'Q',
+        'key':'q',
         'alt':False,
         'ctrl':False,
         'release':True,
@@ -320,7 +320,7 @@ HOTKEYS = \
     },
     {
         'name':'shortestEdgePath',
-        'key':'A',
+        'key':'a',
         'alt':True,
         'ctrl':False,
         'release':True,

@@ -17,7 +17,7 @@ CMD_FILE = '!MAYA_GLOBAL!/prefs/userRunTimeCommands.mel'
 HOTKEY_FILE = '!MAYA_GLOBAL!/prefs/userHotkeys.mel'
 COMMAND_NAME_FILE = '!MAYA_GLOBAL!/prefs/userNamedCommands.mel'
 HOTKEYS = hotkeys.HOTKEYS
-   
+
 def setHotkey(hotkey):
     
     # get hotkey dict data
@@ -43,6 +43,20 @@ def setHotkey(hotkey):
     if release:
         cmds.hotkey(k=key, alt=alt, ctl=ctl, releaseName=releaseName)
         #print 'set hotkey release:', releaseName, key, alt, ctrl, releaseCommand
+
+def showHotkeysList():
+    """shows the current user hotkeys mapping and its name"""
+    reload(hotkeys)
+    lines = []
+    for key in hotkeys.HOTKEYS:
+        lines.append('key:  '+str(key['key'])+'  ctrl:  '+str(key['ctrl'])+'  alt:  '+str(key['alt'])+'  '+str(key['name']))
+
+    window = cmds.window('hotkeysWindow')
+    cmds.paneLayout()
+    cmds.textScrollList(numberOfRows=8,
+                        allowMultiSelection=True,
+                        append=lines,)
+    cmds.showWindow()
 
 def main():
     """
