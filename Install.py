@@ -150,7 +150,7 @@ def installMaya():
     replacements(MAYA_PATH+MODULE_NAME)
     # create userSetup to load the shelf
     #createPythonUserSetup()
-    #createMelUserSetup()
+    createMelUserSetup()
 
     print ' > done.'
 

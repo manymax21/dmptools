@@ -13,6 +13,45 @@ import fnmatch
 
 from dmptools.presets import PresetsManager
 
+def makeTube():
+    """
+    makes a simple tube mesh
+    """
+    mesh = cmds.polyTorus(r=2, sr=0.2,  sx=50, sy=4, tw=45)
+    cmds.setAttr(mesh[0]+'.sy', 5)
+
+def softEdgeSelection():
+    """
+    unlock normals and soft edge
+    """
+    sel = cmds.ls(sl=True)
+    for node in sel:
+        cmds.polyNormalPerVertex(node, ufn=True)
+        cmds.polySoftEdge(node, angle=20)
+        
+def createCollisionBox():
+    """
+        batch create collision bounding box
+    """
+    collisions = []
+    
+    sel = cmds.ls(sl=True)
+    if sel:
+        for node in sel:
+            cmds.select(node, r=True)
+            # create object aligned collision box
+            mel.eval('MODEL_obb_bruteForce(1);')
+            cmds.delete(ch=True)
+            collisions.append(cmds.ls(sl=True)[0])
+        
+        cmds.select(collisions, r=True)    
+    else:
+        cmds.warning('no object found...')
+
+def invertSelection():
+    """invert selection"""
+    mel.eval('invertSelection;')
+
 def replaceXformSel():
     """duplicate the first object in selection and move it to the world space
         coordinates of the next object in selection.
@@ -32,21 +71,6 @@ def fixColladaAttributes():
         if not cmds.getAttr(node+'.collada'):
             mat = cmds.getAttr(node+'.forceFragment')
             cmds.setAttr(node+'.collada', mat, type='string')
-
-def showHotkeysList():
-    """shows the current user hotkeys mapping and its name"""
-    import dmptools.hotkeys as hotkeys
-    reload(hotkeys)
-    lines = []
-    for key in hotkeys.HOTKEYS:
-        lines.append('key:  '+str(key['key'])+'  ctrl:  '+str(key['ctrl'])+'  alt:  '+str(key['alt'])+'  name:  '+str(key['name']))
-
-    window = cmds.window('hotkeysWindow')
-    cmds.paneLayout()
-    cmds.textScrollList(numberOfRows=8,
-                        allowMultiSelection=True,
-                        append=lines,)
-    cmds.showWindow()
 
 def mergeUVs():
     """merge selected uvs"""
@@ -506,13 +530,33 @@ def bufMove():
         pass
     #cmds.selectPref(useDepth = True)
 
+def bufMoveMulti():
+    """enter the Buf move vertex mode"""
+    try:    
+        cmds.selectMode(object=True)
+        selection = cmds.ls(sl=True)
+        cmds.selectMode(component=True)
+        cmds.selectMode(object=True)
+        cmds.selectMode(component=True)
+        for node in selection:
+            cmds.delete(node, ch=True)
+            mel.eval('doMenuComponentSelection("'+node+'", "meshComponents");')
+
+        activePanel = cmds.getPanel(withFocus=True)
+        cmds.modelEditor(activePanel, e=True, manipulators=False)
+        cmds.setToolTo('moveSuperContext')
+        cmds.selectPref(clickDrag=True)
+    except:
+        pass
+
 def bufMoveRelease():
     """release the Buf move vertex mode"""
-    cmds.selectMode(object = True)
     activePanel = cmds.getPanel(withFocus=True)
     cmds.modelEditor(activePanel, e=True, manipulators=True)
     cmds.setToolTo('moveSuperContext')
     cmds.selectPref(clickDrag=False)
+    cmds.selectMode(component=True)
+    cmds.selectMode(object=True)
     #cmds.selectPref(useDepth = False)
 
 def importScene():

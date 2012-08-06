@@ -93,14 +93,18 @@ class Exporter(object):
                     time.sleep(1)
                     t += 1
             if os.path.exists(self.outputFile):
+                # print some debug stuff
                 print "export successfully: "+self.outputFile
+                print '### debug python file:'
                 print "os.system('scite "+pyFile+" &')"
+                print '### nuke file:'
                 print "nuke "+self.outputFile
                 print "os.system('nuke "+self.outputFile+" &')"
 
                 cmds.confirmDialog(t = 'Success !', m = 'The nuke script has been generated.\nSee script editor for more informations.')
             else:
-                print 'failed to save the file...'
+                print 'failed to generate the nuke file...'
+                print '### debug python file:'
                 print "os.system('scite "+pyFile+" &')"
                 
                 cmds.confirmDialog(t = 'Error !', m = 'The nuke script has NOT been generated.\nSee script editor for more informations.')
@@ -192,7 +196,7 @@ class Exporter(object):
                     cmds.select(mesh, r = True)
                     # get maya attributes
                     rotList = ["XYZ","YZX","ZXY","XZY","YXZ","ZYX"]
-                    meshRot = cmds.getAttr(meshClean+".rotateOrder")
+                    meshRot = cmds.getAttr(mesh+".rotateOrder")
                     meshRotationOrder = rotList[meshRot]
                     # set name
                     meshClean = mesh.replace(':', '_').replace('|', '_')

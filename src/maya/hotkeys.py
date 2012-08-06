@@ -2,13 +2,31 @@
 HOTKEYS = \
 [
     {
+        'name':'softEdgeSelection',
+        'key':'N',
+        'alt':True,
+        'ctrl':False,
+        'release':False,
+        'command':'python("import dmptools.mayaCommands as mayaCommands;\
+            reload(mayaCommands);mayaCommands.softEdgeSelection()");'
+    },
+    {
+        'name':'invertSelection',
+        'key':'I',
+        'alt':False,
+        'ctrl':True,
+        'release':False,
+        'command':'python("import dmptools.mayaCommands as mayaCommands;\
+            reload(mayaCommands);mayaCommands.invertSelection()");'
+    },
+    {
         'name':'showHotkeysList',
         'key':'H',
         'alt':True,
         'ctrl':False,
         'release':False,
-        'command':'python("import dmptools.mayaCommands as mayaCommands;\
-            reload(mayaCommands);mayaCommands.showHotkeysList()");'
+        'command':'python("import dmptools.createHotkeys as createHotkeys;\
+            reload(createHotkeys);createHotkeys.showHotkeysList()");'
     },
     {
         'name':'createHotkeys',
@@ -21,12 +39,23 @@ HOTKEYS = \
     },
     {
         'name':'bufMove',
-        'key':'q',
+        'key':'a',
         'alt':False,
         'ctrl':False,
         'release':True,
         'command':'python("import dmptools.mayaCommands as mayaCommands;\
             reload(mayaCommands);mayaCommands.bufMove()");',
+        'releaseCommand':'python("import dmptools.mayaCommands as mayaCommands;\
+            reload(mayaCommands);mayaCommands.bufMoveRelease()");'
+    },
+    {
+        'name':'bufMoveMulti',
+        'key':'q',
+        'alt':False,
+        'ctrl':False,
+        'release':True,
+        'command':'python("import dmptools.mayaCommands as mayaCommands;\
+            reload(mayaCommands);mayaCommands.bufMoveMulti()");',
         'releaseCommand':'python("import dmptools.mayaCommands as mayaCommands;\
             reload(mayaCommands);mayaCommands.bufMoveRelease()");'
     },
@@ -291,8 +320,8 @@ HOTKEYS = \
     },
     {
         'name':'shortestEdgePath',
-        'key':'Q',
-        'alt':False,
+        'key':'a',
+        'alt':True,
         'ctrl':False,
         'release':True,
         'command':'python("import dmptools.mayaCommands as mayaCommands;\
