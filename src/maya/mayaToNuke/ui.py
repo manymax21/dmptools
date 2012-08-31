@@ -31,7 +31,6 @@ class MayaToNukeUI(object):
         self.computer = UTILS.computer
         self.headerText = self.generateHeader()
 
-
     def buildUI(self):
         """ build the interface UI """
         # destroy the mayaToNuke windows if exists
@@ -397,7 +396,6 @@ class MayaToNukeUI(object):
         self.saveSettings()
         # close ui
         cmds.deleteUI(WINDOW_NAME, window = True)
-
 
     def export(self, selection):
         """start the export procedure"""

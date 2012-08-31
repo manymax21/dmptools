@@ -266,7 +266,7 @@ HOTKEYS = \
     },
     {
         'name':'openUvTextureEditor',
-        'key':'1',
+        'key':'2',
         'alt':True,
         'ctrl':True,
         'release':False,
@@ -275,7 +275,7 @@ HOTKEYS = \
     },
     {
         'name':'openHypershade',
-        'key':'2',
+        'key':'1',
         'alt':True,
         'ctrl':True,
         'release':False,

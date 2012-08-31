@@ -13,6 +13,53 @@ import fnmatch
 
 from dmptools.presets import PresetsManager
 
+def setUserPreset():
+    
+    # ask for a preset name
+    result = cmds.promptDialog(
+                    title='Save selection',
+                    message='Enter Name:',
+                    button=['OK', 'Cancel'],
+                    defaultButton='OK',
+                    cancelButton='Cancel',
+                    dismissString='Cancel')
+    
+    if result == 'OK':
+        inputText = cmds.promptDialog(query=True, text=True)
+        presets = PresetsManager()
+        presets.addPreset(inputText, cmds.ls(sl=True))
+        print presets.getPreset('faceSelection')
+
+def getUserPreset():
+    presets = PresetsManager()
+    allPresets = presets.getPresets()
+    lines = []
+    for item in allPresets:
+        lines.append(item.keys()[0])
+    
+    if cmds.window('PresetsWindow', exists=True):
+        cmds.deleteUI('PresetsWindow', window=True)
+
+    window = cmds.window('PresetsWindow')
+    cmds.paneLayout()
+    cmds.textScrollList('PresetsList',
+                        numberOfRows=8,
+                        allowMultiSelection=True,
+                        append=lines,
+                        dcc=selectPreset)
+    
+    cmds.showWindow('PresetsWindow')
+
+def selectPreset():
+    presetText = cmds.textScrollList('PresetsList',
+                        q=True,
+                        si=True)
+    presets = PresetsManager()
+    try:
+        cmds.select(presets.getPreset(presetText[0])[0])
+    except:
+        print 'failed to select preset...'
+
 def makeTube():
     """
     makes a simple tube mesh
@@ -27,27 +74,8 @@ def softEdgeSelection():
     sel = cmds.ls(sl=True)
     for node in sel:
         cmds.polyNormalPerVertex(node, ufn=True)
-        cmds.polySoftEdge(node, angle=20)
+        cmds.polySoftEdge(node, angle=25)
         
-def createCollisionBox():
-    """
-        batch create collision bounding box
-    """
-    collisions = []
-    
-    sel = cmds.ls(sl=True)
-    if sel:
-        for node in sel:
-            cmds.select(node, r=True)
-            # create object aligned collision box
-            mel.eval('MODEL_obb_bruteForce(1);')
-            cmds.delete(ch=True)
-            collisions.append(cmds.ls(sl=True)[0])
-        
-        cmds.select(collisions, r=True)    
-    else:
-        cmds.warning('no object found...')
-
 def invertSelection():
     """invert selection"""
     mel.eval('invertSelection;')
@@ -63,14 +91,6 @@ def replaceXformSel():
         translate = cmds.xform(node, ws=True, t=True, q=True)
         rotation = cmds.xform(node, ws=True, ro=True, q=True)
         cmds.xform(dup, t=translate, ro=rotation)
-
-def fixColladaAttributes():
-    """fix dead space collada shader attributes"""
-    nodes = cmds.ls(sl=True)
-    for node in nodes:
-        if not cmds.getAttr(node+'.collada'):
-            mat = cmds.getAttr(node+'.forceFragment')
-            cmds.setAttr(node+'.collada', mat, type='string')
 
 def mergeUVs():
     """merge selected uvs"""
@@ -169,8 +189,8 @@ def setCustomColors():
     
     # background
     cmds.displayRGBColor('background', 0.6, 0.6, 0.6)
-    cmds.displayRGBColor('backgroundTop', 0.6, 0.6, 0.6)
-    cmds.displayRGBColor('backgroundBottom', 0.07, 0.07, 0.07)
+    cmds.displayRGBColor('backgroundBottom', 0.3, 0.3, 0.3)
+    cmds.displayRGBColor('backgroundTop', 0.025, 0.025, 0.025)
 
     # meshes
     cmds.displayRGBColor('lead', 0.4, 0.4, 0.4, create=True)

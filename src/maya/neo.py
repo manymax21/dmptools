@@ -7,6 +7,39 @@
 import maya.cmds as cmds
 import maya.mel as mel
 
+def fixColladaAttributes():
+    """fix dead space collada shader attributes"""
+    nodes = cmds.ls(sl=True)
+    for node in nodes:
+        if not cmds.getAttr(node+'.collada'):
+            mat = cmds.getAttr(node+'.forceFragment')
+            cmds.setAttr(node+'.collada', mat, type='string')
+
+def switchModelVisibility():
+    for node in cmds.ls("Asset_Model"):
+        cmds.setAttr(node+".visibility", not cmds.getAttr(node+".visibility"))
+    for node in cmds.ls("State"):
+        cmds.setAttr(node+".visibility", not cmds.getAttr(node+".visibility"))
+
+def createCollisionBox():
+    """
+        batch create collision bounding box
+    """
+    collisions = []
+    
+    sel = cmds.ls(sl=True)
+    if sel:
+        for node in sel:
+            cmds.select(node, r=True)
+            # create object aligned collision box
+            mel.eval('MODEL_obb_bruteForce(1);')
+            cmds.delete(ch=True)
+            collisions.append(cmds.ls(sl=True)[0])
+        
+        cmds.select(collisions, r=True)    
+    else:
+        cmds.warning('no object found...')
+
 class States(object):
     def __init__(self):
         self.orig = ['Model_Orig_00']

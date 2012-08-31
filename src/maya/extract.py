@@ -220,7 +220,7 @@ def main():
         confirm = 'Yes'
         if polycount > 150000:
             confirm = cmds.confirmDialog(t = "Warning! polycount: "+str(polycount)+" poly",
-                                         m = 'This may a while. Do you want to continue?',
+                                         m = 'This may take a while. Do you want to continue?',
                                          ma = "center",
                                          b = ['Yes','No'],
                                          db = 'Yes',
