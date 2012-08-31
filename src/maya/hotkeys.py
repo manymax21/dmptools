@@ -2,6 +2,15 @@
 HOTKEYS = \
 [
     {
+        'name':'switchColors',
+        'key':'c',
+        'alt':True,
+        'ctrl':True,
+        'release':False,
+        'command':'python("import dmptools.mayaCommands as mayaCommands;\
+            reload(mayaCommands);mayaCommands.switchColors()");'
+    },
+    {
         'name':'softEdgeSelection',
         'key':'N',
         'alt':True,
