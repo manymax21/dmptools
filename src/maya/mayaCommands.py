@@ -179,6 +179,7 @@ def unwrapTerrain(sel):
         unfoldAndRotate(sel)
 
 def setCustomColors():
+    global switchColor
     # script editor
     cmds.displayRGBColor('syntaxKeywords', 0.14, 0.9, 0.14)
     cmds.displayRGBColor('syntaxText', 0.84, 0.84, 0.84)
@@ -196,8 +197,51 @@ def setCustomColors():
     cmds.displayRGBColor('lead', 0.4, 0.4, 0.4, create=True)
     cmds.displayColor('hilite', 2, active=True)
     cmds.displayColor('hiliteComponent', 1, active=True)
-    cmds.displayColor('lead', 3, active=True) # default is 19
+    cmds.displayColor('lead', 3, active=True)
     cmds.displayColor('polymesh', 3, active=True)
+    cmds.displayColor('polymesh', 2, dormant=True)
+
+    switchColor = 1
+    
+def setDefaultColors():
+    global switchColor
+    # script editor
+    cmds.displayRGBColor('syntaxKeywords', 0.0, 1.0, 0.0)
+    cmds.displayRGBColor('syntaxText', 0.78431373834609985, 0.78431373834609985, 0.78431373834609985)
+    cmds.displayRGBColor('syntaxStrings', 1.0, 1.0, 0.0)
+    cmds.displayRGBColor('syntaxComments', 1.0, 0.0, 0.0)
+    cmds.displayRGBColor('syntaxCommands', 0.0, 1.0, 1.0)
+    cmds.displayRGBColor('syntaxBackground', 0.16470588743686676, 0.16470588743686676, 0.16470588743686676)
+
+    # background
+    cmds.displayRGBColor('background', 0.63099998235702515, 0.63099998235702515, 0.63099998235702515)
+    cmds.displayRGBColor('backgroundBottom', 0.052000001072883606, 0.052000001072883606, 0.052000001072883606)
+    cmds.displayRGBColor('backgroundTop', 0.5350000262260437, 0.61699998378753662, 0.70200002193450928)
+
+    # meshes
+    cmds.displayRGBColor('lead', 0.40000000596046448, 0.40000000596046448, 0.40000000596046448, create=True)
+    cmds.displayColor('hilite', 18, active=True)
+    cmds.displayColor('hiliteComponent', 9, active=True)
+    cmds.displayColor('lead', 19, active=True)
+    cmds.displayColor('polymesh', 16, active=True)
+    cmds.displayColor('polymesh', 5, dormant=True)
+
+    switchColor = 1
+
+def switchColors():
+
+    global switchColor
+    try:
+        switchColor
+    except:
+        switchColor = 1
+
+    if switchColor == 1:
+        setCustomColors()
+        switchColor = 0
+    elif switchColor == 0:
+        setDefaultColors()
+        switchColor = 1
 
 def proMode():
     """pro mode"""
