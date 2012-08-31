@@ -13,6 +13,12 @@ import fnmatch
 
 from dmptools.presets import PresetsManager
 
+def selectObjectsFromShader(shader):
+    """
+    select objects with lambert1 assigned
+    """
+    cmds.hyperShade(objects=shader)
+
 def setUserPreset():
     
     # ask for a preset name

@@ -241,6 +241,9 @@ def install(src, dst, symlinks=False, ignore=None):
         raise Error(errors)
 
 def errorMsg(message):
+    """
+    dislpays a message on screen
+    """
     from ctypes import c_int, WINFUNCTYPE, windll
     from ctypes.wintypes import HWND, LPCSTR, UINT
     prototype = WINFUNCTYPE(c_int, HWND, LPCSTR, LPCSTR, UINT)
