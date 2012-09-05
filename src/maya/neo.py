@@ -7,6 +7,13 @@
 import maya.cmds as cmds
 import maya.mel as mel
 
+def assignArtblockShader():
+    """select objects with lambert1 and assign the artblock shader"""
+
+    cmds.hyperShade(objects='lambert1')
+    if cmds.ls(sl=True):
+        cmds.hyperShade(assign='ar_blockworldGrey01')
+
 def fixColladaAttributes():
     """fix dead space collada shader attributes"""
     nodes = cmds.ls(sl=True)
