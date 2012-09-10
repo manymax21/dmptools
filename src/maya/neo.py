@@ -7,6 +7,92 @@
 import maya.cmds as cmds
 import maya.mel as mel
 
+import dmptools.mayaCommands as mayaCommands
+
+def hideCollisions():
+    """hide collisions models"""
+
+    global switchCollisions
+
+    mel.eval('source NEO_hideUnhideCollision;')
+    mel.eval('NEO_hideCollision;')
+
+    mayaCommands.headsUpDisplayMessage('hidding collisions !')
+
+    switchCollisions = 1
+
+def unhideCollisions():
+    """unhide collisions models"""
+
+    global switchCollisions
+
+    mel.eval('source NEO_hideUnhideCollision;')
+    mel.eval('NEO_unhideCollision();')
+
+    mayaCommands.headsUpDisplayMessage('showing collisions !')
+
+    switchCollisions = 1
+
+def switchCollisionsVisibility():
+    global switchCollisions
+
+    try:
+        switchCollisions
+    except:
+        switchCollisions = 1
+
+    if switchCollisions == 1:
+        hideCollisions()
+        switchCollisions = 0
+    elif switchCollisions == 0:
+        unhideCollisions()
+        switchCollisions = 1
+
+def hideModels():
+
+    global switchModels
+
+    for node in cmds.ls("Asset_Model"):
+        cmds.setAttr(node+".visibility", False)
+    for node in cmds.ls("Model"):
+        cmds.setAttr(node+".visibility", False)
+    for node in cmds.ls("State"):
+        cmds.setAttr(node+".visibility", False)
+
+    mayaCommands.headsUpDisplayMessage('hidding models !')
+
+    switchModels = 1
+
+def unhideModels():
+
+    global switchModels
+
+    for node in cmds.ls("Asset_Model"):
+        cmds.setAttr(node+".visibility", True)
+    for node in cmds.ls("Model"):
+        cmds.setAttr(node+".visibility", True)
+    for node in cmds.ls("State"):
+        cmds.setAttr(node+".visibility", True)
+
+    mayaCommands.headsUpDisplayMessage('showing models !')
+
+    switchModels = 1
+
+def switchModelsVisibility():
+    global switchModels
+
+    try:
+        switchModels
+    except:
+        switchModels = 1
+
+    if switchModels == 1:
+        hideModels()
+        switchModels = 0
+    elif switchModels == 0:
+        unhideModels()
+        switchModels = 1
+
 def assignArtblockShader():
     """select objects with lambert1 and assign the artblock shader"""
 
@@ -22,11 +108,6 @@ def fixColladaAttributes():
             mat = cmds.getAttr(node+'.forceFragment')
             cmds.setAttr(node+'.collada', mat, type='string')
 
-def switchModelVisibility():
-    for node in cmds.ls("Asset_Model"):
-        cmds.setAttr(node+".visibility", not cmds.getAttr(node+".visibility"))
-    for node in cmds.ls("State"):
-        cmds.setAttr(node+".visibility", not cmds.getAttr(node+".visibility"))
 
 def createCollisionBox():
     """

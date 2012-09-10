@@ -329,9 +329,9 @@ HOTKEYS = \
     },
     {
         'name':'shortestEdgePath',
-        'key':'a',
+        'key':'Q',
         'alt':True,
-        'ctrl':False,
+        'ctrl':True,
         'release':True,
         'command':'python("import dmptools.mayaCommands as mayaCommands;\
             reload(mayaCommands);mayaCommands.shortestEdgePath()");',

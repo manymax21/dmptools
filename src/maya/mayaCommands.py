@@ -189,7 +189,6 @@ def setDefaultColors():
     set the default maya environment color scheme
     """
 
-    global switchColor
     # script editor
     cmds.displayRGBColor('syntaxKeywords', 0.0, 1.0, 0.0)
     cmds.displayRGBColor('syntaxText', 0.78431373834609985, 0.78431373834609985, 0.78431373834609985)
@@ -211,14 +210,11 @@ def setDefaultColors():
     cmds.displayColor('polymesh', 16, active=True)
     cmds.displayColor('polymesh', 5, dormant=True)
 
-    switchColor = 1
-
 def setCustomColors():
     """
     set custom maya environment color scheme
     """
     
-    global switchColor
     # script editor
     cmds.displayRGBColor('syntaxKeywords', 0.14, 0.9, 0.14)
     cmds.displayRGBColor('syntaxText', 0.84, 0.84, 0.84)
@@ -239,8 +235,6 @@ def setCustomColors():
     cmds.displayColor('lead', 3, active=True)
     cmds.displayColor('polymesh', 3, active=True)
     cmds.displayColor('polymesh', 2, dormant=True)
-
-    switchColor = 1
     
 def switchColors():
     """

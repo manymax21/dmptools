@@ -75,7 +75,6 @@ def main():
     for hotKey in HOTKEYS:
             setHotkey(hotKey)
     print '> done.'
-    cmds.
 
 if __name__ == '__main__':
     main()
