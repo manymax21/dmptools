@@ -13,6 +13,13 @@ import fnmatch
 
 from dmptools.presets import PresetsManager
 
+def setPerspPreset():
+    if cmds.ls('perspShape'):
+        cmds.setAttr('perspShape.nearClipPlane', 1)
+        cmds.setAttr('perspShape.farClipPlane', 20000)
+    else:
+        cmds.warning('Cannot find the persp camera!')
+
 def selectObjectsFromShader(shader):
     """
     select objects with lambert1 assigned
@@ -80,7 +87,7 @@ def softEdgeSelection():
     sel = cmds.ls(sl=True)
     for node in sel:
         cmds.polyNormalPerVertex(node, ufn=True)
-        cmds.polySoftEdge(node, angle=25)
+        cmds.polySoftEdge(node, angle=40)
         
 def invertSelection():
     """invert selection"""
@@ -594,22 +601,51 @@ def bufMove():
     cmds.selectMode(object=True)
     sel = cmds.ls(sl=True)
     # enter the move mode and set on vertex
-    try:    
-        cmds.delete(sel, ch=True)
-        cmds.selectMode(component=True)
-        activePanel = cmds.getPanel(withFocus=True)
-        cmds.modelEditor(activePanel, e=True, manipulators=False)
-        cmds.setToolTo('moveSuperContext')
-        cmds.selectType(alc=0)
-        cmds.selectType(v=1)
-        cmds.selectPref(clickDrag=True)
-    except:
-        pass
+    sel = cmds.ls(sl=True)
+    shape = cmds.listRelatives(sel[0])
+    print cmds.nodeType(shape)
+    if cmds.nodeType(shape) == 'nurbsCurve':
+        try:
+            cmds.delete(sel, ch=True)
+            cmds.selectMode(component=True)
+            activePanel = cmds.getPanel(withFocus=True)
+            cmds.modelEditor(activePanel, e=True, manipulators=False)
+            cmds.setToolTo('moveSuperContext')
+            cmds.selectType(alc=0)
+            cmds.selectType(controlVertex=1)
+            cmds.selectPref(clickDrag=True)
+        except:
+            pass
+
+    if cmds.nodeType(shape) == 'mesh':
+        try:
+            cmds.delete(sel, ch=True)
+            cmds.selectMode(component=True)
+            activePanel = cmds.getPanel(withFocus=True)
+            cmds.modelEditor(activePanel, e=True, manipulators=False)
+            cmds.setToolTo('moveSuperContext')
+            cmds.selectType(alc=0)
+            cmds.selectType(vertex=1)
+            cmds.selectPref(clickDrag=True)
+        except:
+            pass
+    else:
+        try:
+            cmds.delete(sel, ch=True)
+            cmds.selectMode(component=True)
+            activePanel = cmds.getPanel(withFocus=True)
+            cmds.modelEditor(activePanel, e=True, manipulators=False)
+            cmds.setToolTo('moveSuperContext')
+            cmds.selectType(alc=0)
+            cmds.selectType(vertex=1)
+            cmds.selectPref(clickDrag=True)
+        except:
+            pass
     #cmds.selectPref(useDepth = True)
 
 def bufMoveMulti():
     """enter the Buf move vertex mode"""
-    try:    
+    try:
         cmds.selectMode(object=True)
         selection = cmds.ls(sl=True)
         cmds.selectMode(component=True)
