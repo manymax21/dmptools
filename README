@@ -1,19 +1,21 @@
-===============================
+==================================================
 
-Maya and Nuke python tools.
+Maya and Nuke python tools for Windows and Linux.
 
-===============================
+==================================================
 
 REQUIREMENTS:
 - NukeX.X and MayaX installed
-- python2.7 installed in c:/python27
-- sublime text editor to be able to build and install
+- python2.5+ installed in c:/python27
 
 INSTALL:
 - clone dmptools: git clone git://github.com/michael-ha/dmptools.git
+- in command shell go to the root of the dmptools and run 'python install.py'
+or
+- clone dmptools: git clone git://github.com/michael-ha/dmptools.git
 - open Sublime Text
 - project > open > dmptools.sublime-project
-- open dmptools/Install.py
+- open dmptools/installFromSublime.py
 - tools > build system > dmptools
 - tools > build
 
