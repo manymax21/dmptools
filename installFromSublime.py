@@ -1,7 +1,7 @@
-# install.py
+# installFromSublime.py
 
 """
- dmpTools standalone install file
+ dmpTools sublime-project based install file
  This will install the tools
  in the user respective folders.
 
@@ -27,15 +27,29 @@ __status__ = "Production"
 # platform check
 PLATFORMS = ['nt', 'posix']
 PLATFORM = os.name
-if os.name not in PLATFORMS:
+if os.name not in PLATFORMS and not len(sys.argv) == 4:
     raise UserWarning('This install only works on windows and linux!')
 
 # globals
 SOFTLIST = ['nuke', 'maya']
 MODULE_NAME = 'dmptools'
 VERSION = '1.0.0'
-MODULE_PATH = './'
+PROJECT_NAME = sys.argv[-1] == 'dmptools.sublime-project'
+ACTIVE_FILE_PATH = sys.argv[-2]
+ACTIVE_FILE = os.path.basename(ACTIVE_FILE_PATH)
+INSTALL = ACTIVE_FILE.split('.')[0] == 'Install'
+MODULE_PATH = sys.argv[-3]
 PYTHON_SOURCE_PATH = MODULE_PATH+'/src/'
+# ACTIVE_FILE_IN_PROJECT set to False by default
+ACTIVE_FILE_IN_PROJECT = False
+# check if the active file is in the project path
+for root, dirs, files in os.walk(MODULE_PATH):
+    for dir in dirs:
+        if os.path.dirname(ACTIVE_FILE_PATH) in root+dir:
+            for f in files:
+                if ACTIVE_FILE in f:
+                    ACTIVE_FILE_IN_PROJECT = True
+                    break
 EXCLUDE_DIRS = \
     [
         '.git',
@@ -272,21 +286,27 @@ def main():
     # if the project name is 'dmptools'
     # and the active file is in the project path
     # then run the install
+    if PROJECT_NAME and ACTIVE_FILE_IN_PROJECT:
+        # install softwares
+        print 'executing python.exe',' '.join(sys.argv)
+        # install Nuke dmptools
+        if 'nuke' in SOFTLIST and IS_NUKE_EXISTS:
+            installNuke()
+        else:
+            print 'Error: nuke path not found!'
+        # install Maya dmptools
+        if 'maya' in SOFTLIST and IS_MAYA_EXISTS:
+            installMaya()
+        else:
+            print 'Error: maya path not found!'
 
-    # install softwares
-    print 'executing python.exe',' '.join(sys.argv)
-    # install Nuke dmptools
-    if 'nuke' in SOFTLIST and IS_NUKE_EXISTS:
-        installNuke()
+        print ' >> installed at', str(time.strftime('%H:%M:%S the %d/%m/%y'))
     else:
-        print 'Error: nuke path not found!'
-    # install Maya dmptools
-    if 'maya' in SOFTLIST and IS_MAYA_EXISTS:
-        installMaya()
-    else:
-        print 'Error: maya path not found!'
-
-    print ' >> installed at', str(time.strftime('%H:%M:%S the %d/%m/%y'))
+        # yield a windows error message
+        errorMsg('You need to install from here:\n\
+            '+MODULE_PATH+'\n\
+            You run from:\n\
+            '+ACTIVE_FILE_PATH+'')
 
 if __name__ == '__main__':
     main()

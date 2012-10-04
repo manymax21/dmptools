@@ -146,7 +146,7 @@ class MayaToNukeUI(object):
         cmds.setParent('..')
         # main frame layout
         frameL = cmds.frameLayout('mtn_doublePaneMainFrameLayout',
-                                label = 'Items good for export:',
+                                label = 'Items ready for export:',
                                 cll = False,
                                 cl = False,
                                 bv = True)

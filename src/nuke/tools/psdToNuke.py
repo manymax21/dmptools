@@ -23,8 +23,6 @@ class Psdutils:
     def __init__(self):
         pass
         
-        
-    
     def getEnvVar(self, osname):
         
         if osname == 'posix':

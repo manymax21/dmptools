@@ -9,6 +9,8 @@
 import os
 import subprocess
 
+HOMEPATH = '!HOMEPATH!'
+
 class PresetsManager(object):
     """
     manage the dmptools presets.
@@ -34,11 +36,8 @@ class PresetsManager(object):
         """
         if the preset file doesn't exists create it.
         """
-        # create the presets file in appdata/dmptools
-        appdata = os.getenv('APPDATA')
-        if not os.path.exists(appdata):
-            appdata = os.getenv('USERPROFILE')+'/Documents'
-        dmptoolspath = appdata+'/dmptools'
+        # create the presets file in homepath/.dmptools
+        dmptoolspath = HOMEPATH+'/.dmptools'
         if not os.path.exists(dmptoolspath):
             os.mkdir(dmptoolspath)
         PRESET_FILE = dmptoolspath+'/dmptools.presets'
@@ -56,6 +55,7 @@ class PresetsManager(object):
         the preset key need to be a string and the value can be anything.
         if the key already exists in the preset file,
         then remove the old one and append a new one.
+
         returns a list of all the presets in the file.
         """
         dic = {key:value}
@@ -79,6 +79,7 @@ class PresetsManager(object):
     def removePreset(self, key=''):
         """
         remove a preset from the preset file.
+
         returns a list of all the presets in the file.
         """
         presetList = self.getPresets()
