@@ -4,10 +4,41 @@
 #
 # ============================
 
+import os
+import sys
+import fileinput
+
 import maya.cmds as cmds
 import maya.mel as mel
 
 import dmptools.mayaCommands as mayaCommands
+
+def replaceShaderInModel():
+
+    paths = ['s:/assets/environs/sp/air/moon/fragments/',
+            's:/assets/props_DS3/Structures/segments/air/moon',        
+            ]
+    paths = ['s:/assets/environs/sp/air/moon/fragments/alien_building_ext_z01']
+    replacement = {'tel_1L_baseWall01_reflection': 'tel_1L_baseWall01_ch10'}
+
+    stuff = ''
+    filesList = []
+    # check the files in the install path
+    for path in paths:
+        for root, dirs, files in os.walk(path):
+            for f in files:
+                # go through python & mel files only
+                if f.split('.')[-1] in ['dae',]:
+                    filesList.append(root+'\\'+f)
+                    for line in fileinput.input(root+'/'+f, inplace=0):
+                        # if the key in REPLACEMENTS is in the file then replace the line
+                        for rep in replacement.keys():
+                            if rep in line:
+                                stuff += str(root)+' '+str(f)+' '+str(line)+' -> '+line.replace(rep, replacement[rep])+'\n'
+                                line = line.replace(rep, replacement[rep])
+                        # write the replaced line in the file
+                        # write the file with the new string
+                        #sys.stdout.write(line)
 
 def hideCollisions():
     """hide collisions models"""

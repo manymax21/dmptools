@@ -13,10 +13,15 @@ import fnmatch
 
 from dmptools.presets import PresetsManager
 
+# globals
+normalAngle = 80
+perspNear = 1
+perspFar = 20000
+
 def setPerspPreset():
     if cmds.ls('perspShape'):
-        cmds.setAttr('perspShape.nearClipPlane', 1)
-        cmds.setAttr('perspShape.farClipPlane', 20000)
+        cmds.setAttr('perspShape.nearClipPlane', perspNear)
+        cmds.setAttr('perspShape.farClipPlane', perspFar)
     else:
         cmds.warning('Cannot find the persp camera!')
 
@@ -87,7 +92,7 @@ def softEdgeSelection():
     sel = cmds.ls(sl=True)
     for node in sel:
         cmds.polyNormalPerVertex(node, ufn=True)
-        cmds.polySoftEdge(node, angle=40)
+        cmds.polySoftEdge(node, angle=normalAngle)
         
 def invertSelection():
     """invert selection"""

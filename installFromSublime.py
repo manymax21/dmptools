@@ -286,6 +286,7 @@ def main():
     # if the project name is 'dmptools'
     # and the active file is in the project path
     # then run the install
+    print 'we are on', PLATFORM
     if PROJECT_NAME and ACTIVE_FILE_IN_PROJECT:
         # install softwares
         print 'executing python.exe',' '.join(sys.argv)
