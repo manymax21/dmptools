@@ -14,7 +14,7 @@ import fnmatch
 from dmptools.presets import PresetsManager
 
 # globals
-normalAngle = 80
+normalAngle = 35
 perspNear = 1
 perspFar = 20000
 

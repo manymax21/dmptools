@@ -40,10 +40,9 @@ class PresetsManager(object):
         dmptoolspath = HOMEPATH+'/.dmptools'
         if not os.path.exists(dmptoolspath):
             os.mkdir(dmptoolspath)
-        PRESET_FILE = dmptoolspath+'/dmptools.presets'
-
+        self.presetfile = dmptoolspath+'/dmptools.presets'
+        
         # create the preset file if it doesnt exists
-        self.presetfile = PRESET_FILE
         if not os.path.exists(self.presetfile):
             # creating preset file
             print '> creating preset file'
