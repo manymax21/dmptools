@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>dmptools.camConstraint</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="dmptools-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >dmptools documentation</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="dmptools-module.html">Package&nbsp;dmptools</a> ::
+        Module&nbsp;camConstraint
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="dmptools.camConstraint-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="dmptools.camConstraint-module.html">Module dmptools.camConstraint</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno"> 1</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">maya</tt><tt class="py-op">.</tt><tt class="py-name">cmds</tt> <tt class="py-keyword">as</tt> <tt class="py-name">cmds</tt> </tt>
+<a name="L2"></a><tt class="py-lineno"> 2</tt>  <tt class="py-line"> </tt>
+<a name="camConstraintUI"></a><div id="camConstraintUI-def"><a name="L3"></a><tt class="py-lineno"> 3</tt> <a class="py-toggle" href="#" id="camConstraintUI-toggle" onclick="return toggle('camConstraintUI');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="dmptools.camConstraint.camConstraintUI-class.html">camConstraintUI</a><tt class="py-op">:</tt> </tt>
+</div><div id="camConstraintUI-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="camConstraintUI-expanded"><a name="L4"></a><tt class="py-lineno"> 4</tt>  <tt class="py-line"> </tt>
+<a name="camConstraintUI.__init__"></a><div id="camConstraintUI.__init__-def"><a name="L5"></a><tt class="py-lineno"> 5</tt> <a class="py-toggle" href="#" id="camConstraintUI.__init__-toggle" onclick="return toggle('camConstraintUI.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dmptools.camConstraint.camConstraintUI-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="camConstraintUI.__init__-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="camConstraintUI.__init__-expanded"><a name="L6"></a><tt class="py-lineno"> 6</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">cameras</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-0" class="py-name" targets="Method dmptools.camConstraint.camConstraintUI.getSceneCameras()=dmptools.camConstraint.camConstraintUI-class.html#getSceneCameras"><a title="dmptools.camConstraint.camConstraintUI.getSceneCameras" class="py-name" href="#" onclick="return doclink('link-0', 'getSceneCameras', 'link-0');">getSceneCameras</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L7"></a><tt class="py-lineno"> 7</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">UIName</tt><tt class="py-op">=</tt><tt class="py-string">'camConstraintUI'</tt> </tt>
+<a name="L8"></a><tt class="py-lineno"> 8</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-1" class="py-name" targets="Method dmptools.checkColors.CheckColors.UI()=dmptools.checkColors.CheckColors-class.html#UI,Method dmptools.extract.Extract.UI()=dmptools.extract.Extract-class.html#UI"><a title="dmptools.checkColors.CheckColors.UI
+dmptools.extract.Extract.UI" class="py-name" href="#" onclick="return doclink('link-1', 'UI', 'link-1');">UI</a></tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-2" class="py-name" targets="Method dmptools.camConstraint.camConstraintUI.createUI()=dmptools.camConstraint.camConstraintUI-class.html#createUI"><a title="dmptools.camConstraint.camConstraintUI.createUI" class="py-name" href="#" onclick="return doclink('link-2', 'createUI', 'link-2');">createUI</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L9"></a><tt class="py-lineno"> 9</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">menuUI</tt> <tt class="py-op">=</tt> <tt class="py-string">''</tt> </tt>
+<a name="L10"></a><tt class="py-lineno">10</tt>  <tt class="py-line">        <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">showWindow</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-3" class="py-name"><a title="dmptools.checkColors.CheckColors.UI
+dmptools.extract.Extract.UI" class="py-name" href="#" onclick="return doclink('link-3', 'UI', 'link-1');">UI</a></tt><tt class="py-op">)</tt>         </tt>
+</div><a name="L11"></a><tt class="py-lineno">11</tt>  <tt class="py-line"> </tt>
+<a name="camConstraintUI.getSceneCameras"></a><div id="camConstraintUI.getSceneCameras-def"><a name="L12"></a><tt class="py-lineno">12</tt> <a class="py-toggle" href="#" id="camConstraintUI.getSceneCameras-toggle" onclick="return toggle('camConstraintUI.getSceneCameras');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dmptools.camConstraint.camConstraintUI-class.html#getSceneCameras">getSceneCameras</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="camConstraintUI.getSceneCameras-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="camConstraintUI.getSceneCameras-expanded"><a name="L13"></a><tt class="py-lineno">13</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-string">'Getting scene cameras ...'</tt> </tt>
+<a name="L14"></a><tt class="py-lineno">14</tt>  <tt class="py-line">         </tt>
+<a name="L15"></a><tt class="py-lineno">15</tt>  <tt class="py-line">        <tt class="py-name">allCameras</tt> <tt class="py-op">=</tt> <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">ls</tt><tt class="py-op">(</tt><tt class="py-name">typ</tt><tt class="py-op">=</tt><tt class="py-string">'camera'</tt><tt class="py-op">)</tt> </tt>
+<a name="L16"></a><tt class="py-lineno">16</tt>  <tt class="py-line">        <tt class="py-name">cameras</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L17"></a><tt class="py-lineno">17</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">camera</tt> <tt class="py-keyword">in</tt> <tt class="py-name">allCameras</tt><tt class="py-op">:</tt> </tt>
+<a name="L18"></a><tt class="py-lineno">18</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">getAttr</tt><tt class="py-op">(</tt><tt class="py-string">'%s.orthographic'</tt> <tt class="py-op">%</tt><tt class="py-name">camera</tt><tt class="py-op">)</tt> <tt class="py-op">==</tt> <tt class="py-name">False</tt><tt class="py-op">:</tt> </tt>
+<a name="L19"></a><tt class="py-lineno">19</tt>  <tt class="py-line">                <tt class="py-name">cameras</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-4" class="py-name" targets="Method dmptools.camConstraint.camConstraintUI.getTransform()=dmptools.camConstraint.camConstraintUI-class.html#getTransform"><a title="dmptools.camConstraint.camConstraintUI.getTransform" class="py-name" href="#" onclick="return doclink('link-4', 'getTransform', 'link-4');">getTransform</a></tt><tt class="py-op">(</tt><tt class="py-name">camera</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L20"></a><tt class="py-lineno">20</tt>  <tt class="py-line">                 </tt>
+<a name="L21"></a><tt class="py-lineno">21</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">cameras</tt> </tt>
+</div><a name="L22"></a><tt class="py-lineno">22</tt>  <tt class="py-line">                 </tt>
+<a name="camConstraintUI.createUI"></a><div id="camConstraintUI.createUI-def"><a name="L23"></a><tt class="py-lineno">23</tt> <a class="py-toggle" href="#" id="camConstraintUI.createUI-toggle" onclick="return toggle('camConstraintUI.createUI');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dmptools.camConstraint.camConstraintUI-class.html#createUI">createUI</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="camConstraintUI.createUI-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="camConstraintUI.createUI-expanded"><a name="L24"></a><tt class="py-lineno">24</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-string">'creating UI'</tt> </tt>
+<a name="L25"></a><tt class="py-lineno">25</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">window</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">UIName</tt><tt class="py-op">,</tt> <tt class="py-name">exists</tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L26"></a><tt class="py-lineno">26</tt>  <tt class="py-line">            <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">deleteUI</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">UIName</tt><tt class="py-op">,</tt> <tt class="py-name">window</tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt><tt class="py-op">)</tt> </tt>
+<a name="L27"></a><tt class="py-lineno">27</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">windowPref</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">UIName</tt><tt class="py-op">,</tt> <tt class="py-name">exists</tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L28"></a><tt class="py-lineno">28</tt>  <tt class="py-line">            <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">windowPref</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">UIName</tt><tt class="py-op">,</tt> <tt class="py-name">remove</tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt><tt class="py-op">)</tt> </tt>
+<a name="L29"></a><tt class="py-lineno">29</tt>  <tt class="py-line"> </tt>
+<a name="L30"></a><tt class="py-lineno">30</tt>  <tt class="py-line">        <tt id="link-5" class="py-name" targets="Module dmptools.mayaToNuke.ui=dmptools.mayaToNuke.ui-module.html"><a title="dmptools.mayaToNuke.ui" class="py-name" href="#" onclick="return doclink('link-5', 'ui', 'link-5');">ui</a></tt> <tt class="py-op">=</tt> <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">window</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">UIName</tt><tt class="py-op">,</tt> <tt class="py-name">title</tt> <tt class="py-op">=</tt> <tt class="py-string">"Cam Constraint UI"</tt> <tt class="py-op">)</tt> </tt>
+<a name="L31"></a><tt class="py-lineno">31</tt>  <tt class="py-line">        <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">columnLayout</tt><tt class="py-op">(</tt><tt class="py-name">adj</tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt><tt class="py-op">)</tt> </tt>
+<a name="L32"></a><tt class="py-lineno">32</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">menuUI</tt> <tt class="py-op">=</tt> <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">optionMenu</tt><tt class="py-op">(</tt><tt class="py-name">label</tt><tt class="py-op">=</tt><tt class="py-string">'Constraint to camera :'</tt><tt class="py-op">,</tt> <tt class="py-name">cc</tt><tt class="py-op">=</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-6" class="py-name" targets="Method dmptools.camConstraint.camConstraintUI.setPivotPoint()=dmptools.camConstraint.camConstraintUI-class.html#setPivotPoint"><a title="dmptools.camConstraint.camConstraintUI.setPivotPoint" class="py-name" href="#" onclick="return doclink('link-6', 'setPivotPoint', 'link-6');">setPivotPoint</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L33"></a><tt class="py-lineno">33</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">cam</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-7" class="py-name"><a title="dmptools.camConstraint.camConstraintUI.getSceneCameras" class="py-name" href="#" onclick="return doclink('link-7', 'getSceneCameras', 'link-0');">getSceneCameras</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L34"></a><tt class="py-lineno">34</tt>  <tt class="py-line">            <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">menuItem</tt><tt class="py-op">(</tt><tt class="py-name">label</tt> <tt class="py-op">=</tt> <tt class="py-name">cam</tt><tt class="py-op">)</tt> </tt>
+<a name="L35"></a><tt class="py-lineno">35</tt>  <tt class="py-line">             </tt>
+<a name="L36"></a><tt class="py-lineno">36</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt id="link-8" class="py-name"><a title="dmptools.mayaToNuke.ui" class="py-name" href="#" onclick="return doclink('link-8', 'ui', 'link-5');">ui</a></tt> </tt>
+</div><a name="L37"></a><tt class="py-lineno">37</tt>  <tt class="py-line"> </tt>
+<a name="camConstraintUI.setPivotPoint"></a><div id="camConstraintUI.setPivotPoint-def"><a name="L38"></a><tt class="py-lineno">38</tt> <a class="py-toggle" href="#" id="camConstraintUI.setPivotPoint-toggle" onclick="return toggle('camConstraintUI.setPivotPoint');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dmptools.camConstraint.camConstraintUI-class.html#setPivotPoint">setPivotPoint</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt><tt class="py-param">selectedCamera</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="camConstraintUI.setPivotPoint-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="camConstraintUI.setPivotPoint-expanded"><a name="L39"></a><tt class="py-lineno">39</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-name">selectedCamera</tt> </tt>
+<a name="L40"></a><tt class="py-lineno">40</tt>  <tt class="py-line">        <tt class="py-name">pivot</tt> <tt class="py-op">=</tt> <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">xform</tt><tt class="py-op">(</tt><tt class="py-name">selectedCamera</tt><tt class="py-op">,</tt> <tt class="py-name">q</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">,</tt> <tt class="py-name">translation</tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt><tt class="py-op">,</tt> <tt class="py-name">ws</tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt><tt class="py-op">)</tt> </tt>
+<a name="L41"></a><tt class="py-lineno">41</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">mesh</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-9" class="py-name" targets="Method dmptools.camConstraint.camConstraintUI.getSelection()=dmptools.camConstraint.camConstraintUI-class.html#getSelection"><a title="dmptools.camConstraint.camConstraintUI.getSelection" class="py-name" href="#" onclick="return doclink('link-9', 'getSelection', 'link-9');">getSelection</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L42"></a><tt class="py-lineno">42</tt>  <tt class="py-line">            <tt class="py-keyword">print</tt> <tt class="py-name">mesh</tt> </tt>
+<a name="L43"></a><tt class="py-lineno">43</tt>  <tt class="py-line">            <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">xform</tt><tt class="py-op">(</tt><tt class="py-name">mesh</tt><tt class="py-op">,</tt><tt class="py-name">scalePivot</tt><tt class="py-op">=</tt><tt class="py-name">pivot</tt><tt class="py-op">,</tt><tt class="py-name">ws</tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L44"></a><tt class="py-lineno">44</tt>  <tt class="py-line">         </tt>
+<a name="camConstraintUI.getSelection"></a><div id="camConstraintUI.getSelection-def"><a name="L45"></a><tt class="py-lineno">45</tt> <a class="py-toggle" href="#" id="camConstraintUI.getSelection-toggle" onclick="return toggle('camConstraintUI.getSelection');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dmptools.camConstraint.camConstraintUI-class.html#getSelection">getSelection</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="camConstraintUI.getSelection-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="camConstraintUI.getSelection-expanded"><a name="L46"></a><tt class="py-lineno">46</tt>  <tt class="py-line">        <tt class="py-name">selectedMeshes</tt> <tt class="py-op">=</tt> <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">ls</tt><tt class="py-op">(</tt><tt class="py-name">selection</tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt><tt class="py-op">,</tt><tt class="py-name">typ</tt><tt class="py-op">=</tt><tt class="py-string">'mesh'</tt><tt class="py-op">,</tt> <tt class="py-name">o</tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt><tt class="py-op">,</tt> <tt class="py-name">dag</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">)</tt> </tt>
+<a name="L47"></a><tt class="py-lineno">47</tt>  <tt class="py-line">        <tt class="py-name">transforms</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L48"></a><tt class="py-lineno">48</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">mesh</tt> <tt class="py-keyword">in</tt> <tt class="py-name">selectedMeshes</tt><tt class="py-op">:</tt> </tt>
+<a name="L49"></a><tt class="py-lineno">49</tt>  <tt class="py-line">            <tt class="py-name">transforms</tt><tt class="py-op">.</tt><tt class="py-name">append</tt> <tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-10" class="py-name"><a title="dmptools.camConstraint.camConstraintUI.getTransform" class="py-name" href="#" onclick="return doclink('link-10', 'getTransform', 'link-4');">getTransform</a></tt><tt class="py-op">(</tt><tt class="py-name">mesh</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L50"></a><tt class="py-lineno">50</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">transforms</tt> </tt>
+</div><a name="camConstraintUI.getTransform"></a><div id="camConstraintUI.getTransform-def"><a name="L51"></a><tt class="py-lineno">51</tt> <a class="py-toggle" href="#" id="camConstraintUI.getTransform-toggle" onclick="return toggle('camConstraintUI.getTransform');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dmptools.camConstraint.camConstraintUI-class.html#getTransform">getTransform</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt><tt class="py-param">dag</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="camConstraintUI.getTransform-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="camConstraintUI.getTransform-expanded"><a name="L52"></a><tt class="py-lineno">52</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">listRelatives</tt><tt class="py-op">(</tt><tt class="py-name">dag</tt><tt class="py-op">,</tt><tt class="py-name">parent</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">)</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> </tt>
+</div></div><a name="L53"></a><tt class="py-lineno">53</tt>  <tt class="py-line">     </tt>
+<a name="L54"></a><tt class="py-lineno">54</tt>  <tt class="py-line"><tt id="link-11" class="py-name" targets="Class dmptools.camConstraint.camConstraintUI=dmptools.camConstraint.camConstraintUI-class.html"><a title="dmptools.camConstraint.camConstraintUI" class="py-name" href="#" onclick="return doclink('link-11', 'camConstraintUI', 'link-11');">camConstraintUI</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L55"></a><tt class="py-lineno">55</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="dmptools-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >dmptools documentation</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Nov 02 15:43:09 2012
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

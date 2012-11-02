@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>dmptools.neo</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="dmptools-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >dmptools documentation</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="dmptools-module.html">Package&nbsp;dmptools</a> ::
+        Module&nbsp;neo
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="dmptools.neo-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="dmptools.neo-module.html">Module dmptools.neo</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment"># ============================</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># maya custom tools for neo</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># ============================</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-comment"></tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">maya</tt><tt class="py-op">.</tt><tt class="py-name">cmds</tt> <tt class="py-keyword">as</tt> <tt class="py-name">cmds</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">maya</tt><tt class="py-op">.</tt><tt class="py-name">mel</tt> <tt class="py-keyword">as</tt> <tt class="py-name">mel</tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-0" class="py-name" targets="Package dmptools=dmptools-module.html"><a title="dmptools" class="py-name" href="#" onclick="return doclink('link-0', 'dmptools', 'link-0');">dmptools</a></tt><tt class="py-op">.</tt><tt id="link-1" class="py-name" targets="Module dmptools.mayaCommands=dmptools.mayaCommands-module.html"><a title="dmptools.mayaCommands" class="py-name" href="#" onclick="return doclink('link-1', 'mayaCommands', 'link-1');">mayaCommands</a></tt> <tt class="py-keyword">as</tt> <tt id="link-2" class="py-name"><a title="dmptools.mayaCommands" class="py-name" href="#" onclick="return doclink('link-2', 'mayaCommands', 'link-1');">mayaCommands</a></tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"> </tt>
+<a name="hideCollisions"></a><div id="hideCollisions-def"><a name="L12"></a><tt class="py-lineno"> 12</tt> <a class="py-toggle" href="#" id="hideCollisions-toggle" onclick="return toggle('hideCollisions');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="dmptools.neo-module.html#hideCollisions">hideCollisions</a><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="hideCollisions-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="hideCollisions-expanded"><a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line">    <tt class="py-docstring">"""hide collisions models"""</tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line">    <tt class="py-keyword">global</tt> <tt class="py-name">switchCollisions</tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line">    <tt class="py-name">mel</tt><tt class="py-op">.</tt><tt class="py-name">eval</tt><tt class="py-op">(</tt><tt class="py-string">'source NEO_hideUnhideCollision;'</tt><tt class="py-op">)</tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line">    <tt class="py-name">mel</tt><tt class="py-op">.</tt><tt class="py-name">eval</tt><tt class="py-op">(</tt><tt class="py-string">'NEO_hideCollision;'</tt><tt class="py-op">)</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line">    <tt id="link-3" class="py-name"><a title="dmptools.mayaCommands" class="py-name" href="#" onclick="return doclink('link-3', 'mayaCommands', 'link-1');">mayaCommands</a></tt><tt class="py-op">.</tt><tt id="link-4" class="py-name" targets="Function dmptools.mayaCommands.headsUpDisplayMessage()=dmptools.mayaCommands-module.html#headsUpDisplayMessage"><a title="dmptools.mayaCommands.headsUpDisplayMessage" class="py-name" href="#" onclick="return doclink('link-4', 'headsUpDisplayMessage', 'link-4');">headsUpDisplayMessage</a></tt><tt class="py-op">(</tt><tt class="py-string">'hidding collisions !'</tt><tt class="py-op">)</tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line">    <tt class="py-name">switchCollisions</tt> <tt class="py-op">=</tt> <tt class="py-number">1</tt> </tt>
+</div><a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"> </tt>
+<a name="unhideCollisions"></a><div id="unhideCollisions-def"><a name="L24"></a><tt class="py-lineno"> 24</tt> <a class="py-toggle" href="#" id="unhideCollisions-toggle" onclick="return toggle('unhideCollisions');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="dmptools.neo-module.html#unhideCollisions">unhideCollisions</a><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="unhideCollisions-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="unhideCollisions-expanded"><a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line">    <tt class="py-docstring">"""unhide collisions models"""</tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line">    <tt class="py-keyword">global</tt> <tt class="py-name">switchCollisions</tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line">    <tt class="py-name">mel</tt><tt class="py-op">.</tt><tt class="py-name">eval</tt><tt class="py-op">(</tt><tt class="py-string">'source NEO_hideUnhideCollision;'</tt><tt class="py-op">)</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line">    <tt class="py-name">mel</tt><tt class="py-op">.</tt><tt class="py-name">eval</tt><tt class="py-op">(</tt><tt class="py-string">'NEO_unhideCollision();'</tt><tt class="py-op">)</tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line"> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line">    <tt id="link-5" class="py-name"><a title="dmptools.mayaCommands" class="py-name" href="#" onclick="return doclink('link-5', 'mayaCommands', 'link-1');">mayaCommands</a></tt><tt class="py-op">.</tt><tt id="link-6" class="py-name"><a title="dmptools.mayaCommands.headsUpDisplayMessage" class="py-name" href="#" onclick="return doclink('link-6', 'headsUpDisplayMessage', 'link-4');">headsUpDisplayMessage</a></tt><tt class="py-op">(</tt><tt class="py-string">'showing collisions !'</tt><tt class="py-op">)</tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line"> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line">    <tt class="py-name">switchCollisions</tt> <tt class="py-op">=</tt> <tt class="py-number">1</tt> </tt>
+</div><a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line"> </tt>
+<a name="switchCollisionsVisibility"></a><div id="switchCollisionsVisibility-def"><a name="L36"></a><tt class="py-lineno"> 36</tt> <a class="py-toggle" href="#" id="switchCollisionsVisibility-toggle" onclick="return toggle('switchCollisionsVisibility');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="dmptools.neo-module.html#switchCollisionsVisibility">switchCollisionsVisibility</a><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="switchCollisionsVisibility-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="switchCollisionsVisibility-expanded"><a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line">    <tt class="py-keyword">global</tt> <tt class="py-name">switchCollisions</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line"> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line">    <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line">        <tt class="py-name">switchCollisions</tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line">    <tt class="py-keyword">except</tt><tt class="py-op">:</tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line">        <tt class="py-name">switchCollisions</tt> <tt class="py-op">=</tt> <tt class="py-number">1</tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line"> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-name">switchCollisions</tt> <tt class="py-op">==</tt> <tt class="py-number">1</tt><tt class="py-op">:</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line">        <tt id="link-7" class="py-name" targets="Function dmptools.neo.hideCollisions()=dmptools.neo-module.html#hideCollisions"><a title="dmptools.neo.hideCollisions" class="py-name" href="#" onclick="return doclink('link-7', 'hideCollisions', 'link-7');">hideCollisions</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line">        <tt class="py-name">switchCollisions</tt> <tt class="py-op">=</tt> <tt class="py-number">0</tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line">    <tt class="py-keyword">elif</tt> <tt class="py-name">switchCollisions</tt> <tt class="py-op">==</tt> <tt class="py-number">0</tt><tt class="py-op">:</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line">        <tt id="link-8" class="py-name" targets="Function dmptools.neo.unhideCollisions()=dmptools.neo-module.html#unhideCollisions"><a title="dmptools.neo.unhideCollisions" class="py-name" href="#" onclick="return doclink('link-8', 'unhideCollisions', 'link-8');">unhideCollisions</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line">        <tt class="py-name">switchCollisions</tt> <tt class="py-op">=</tt> <tt class="py-number">1</tt> </tt>
+</div><a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line"> </tt>
+<a name="hideModels"></a><div id="hideModels-def"><a name="L51"></a><tt class="py-lineno"> 51</tt> <a class="py-toggle" href="#" id="hideModels-toggle" onclick="return toggle('hideModels');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="dmptools.neo-module.html#hideModels">hideModels</a><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="hideModels-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="hideModels-expanded"><a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line"> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line">    <tt class="py-keyword">global</tt> <tt class="py-name">switchModels</tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line"> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line">    <tt class="py-keyword">for</tt> <tt class="py-name">node</tt> <tt class="py-keyword">in</tt> <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">ls</tt><tt class="py-op">(</tt><tt class="py-string">"Asset_Model"</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line">        <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">setAttr</tt><tt class="py-op">(</tt><tt class="py-name">node</tt><tt class="py-op">+</tt><tt class="py-string">".visibility"</tt><tt class="py-op">,</tt> <tt class="py-name">False</tt><tt class="py-op">)</tt> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line">    <tt class="py-keyword">for</tt> <tt class="py-name">node</tt> <tt class="py-keyword">in</tt> <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">ls</tt><tt class="py-op">(</tt><tt class="py-string">"Model"</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line">        <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">setAttr</tt><tt class="py-op">(</tt><tt class="py-name">node</tt><tt class="py-op">+</tt><tt class="py-string">".visibility"</tt><tt class="py-op">,</tt> <tt class="py-name">False</tt><tt class="py-op">)</tt> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line">    <tt class="py-keyword">for</tt> <tt class="py-name">node</tt> <tt class="py-keyword">in</tt> <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">ls</tt><tt class="py-op">(</tt><tt class="py-string">"State"</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line">        <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">setAttr</tt><tt class="py-op">(</tt><tt class="py-name">node</tt><tt class="py-op">+</tt><tt class="py-string">".visibility"</tt><tt class="py-op">,</tt> <tt class="py-name">False</tt><tt class="py-op">)</tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line"> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line">    <tt id="link-9" class="py-name"><a title="dmptools.mayaCommands" class="py-name" href="#" onclick="return doclink('link-9', 'mayaCommands', 'link-1');">mayaCommands</a></tt><tt class="py-op">.</tt><tt id="link-10" class="py-name"><a title="dmptools.mayaCommands.headsUpDisplayMessage" class="py-name" href="#" onclick="return doclink('link-10', 'headsUpDisplayMessage', 'link-4');">headsUpDisplayMessage</a></tt><tt class="py-op">(</tt><tt class="py-string">'hidding models !'</tt><tt class="py-op">)</tt> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line"> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line">    <tt class="py-name">switchModels</tt> <tt class="py-op">=</tt> <tt class="py-number">1</tt> </tt>
+</div><a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line"> </tt>
+<a name="unhideModels"></a><div id="unhideModels-def"><a name="L66"></a><tt class="py-lineno"> 66</tt> <a class="py-toggle" href="#" id="unhideModels-toggle" onclick="return toggle('unhideModels');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="dmptools.neo-module.html#unhideModels">unhideModels</a><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="unhideModels-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="unhideModels-expanded"><a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line"> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line">    <tt class="py-keyword">global</tt> <tt class="py-name">switchModels</tt> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line"> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line">    <tt class="py-keyword">for</tt> <tt class="py-name">node</tt> <tt class="py-keyword">in</tt> <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">ls</tt><tt class="py-op">(</tt><tt class="py-string">"Asset_Model"</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line">        <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">setAttr</tt><tt class="py-op">(</tt><tt class="py-name">node</tt><tt class="py-op">+</tt><tt class="py-string">".visibility"</tt><tt class="py-op">,</tt> <tt class="py-name">True</tt><tt class="py-op">)</tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line">    <tt class="py-keyword">for</tt> <tt class="py-name">node</tt> <tt class="py-keyword">in</tt> <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">ls</tt><tt class="py-op">(</tt><tt class="py-string">"Model"</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line">        <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">setAttr</tt><tt class="py-op">(</tt><tt class="py-name">node</tt><tt class="py-op">+</tt><tt class="py-string">".visibility"</tt><tt class="py-op">,</tt> <tt class="py-name">True</tt><tt class="py-op">)</tt> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line">    <tt class="py-keyword">for</tt> <tt class="py-name">node</tt> <tt class="py-keyword">in</tt> <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">ls</tt><tt class="py-op">(</tt><tt class="py-string">"State"</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line">        <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">setAttr</tt><tt class="py-op">(</tt><tt class="py-name">node</tt><tt class="py-op">+</tt><tt class="py-string">".visibility"</tt><tt class="py-op">,</tt> <tt class="py-name">True</tt><tt class="py-op">)</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line"> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line">    <tt id="link-11" class="py-name"><a title="dmptools.mayaCommands" class="py-name" href="#" onclick="return doclink('link-11', 'mayaCommands', 'link-1');">mayaCommands</a></tt><tt class="py-op">.</tt><tt id="link-12" class="py-name"><a title="dmptools.mayaCommands.headsUpDisplayMessage" class="py-name" href="#" onclick="return doclink('link-12', 'headsUpDisplayMessage', 'link-4');">headsUpDisplayMessage</a></tt><tt class="py-op">(</tt><tt class="py-string">'showing models !'</tt><tt class="py-op">)</tt> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line"> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">    <tt class="py-name">switchModels</tt> <tt class="py-op">=</tt> <tt class="py-number">1</tt> </tt>
+</div><a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line"> </tt>
+<a name="switchModelsVisibility"></a><div id="switchModelsVisibility-def"><a name="L81"></a><tt class="py-lineno"> 81</tt> <a class="py-toggle" href="#" id="switchModelsVisibility-toggle" onclick="return toggle('switchModelsVisibility');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="dmptools.neo-module.html#switchModelsVisibility">switchModelsVisibility</a><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="switchModelsVisibility-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="switchModelsVisibility-expanded"><a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line">    <tt class="py-keyword">global</tt> <tt class="py-name">switchModels</tt> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line"> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line">    <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">        <tt class="py-name">switchModels</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line">    <tt class="py-keyword">except</tt><tt class="py-op">:</tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line">        <tt class="py-name">switchModels</tt> <tt class="py-op">=</tt> <tt class="py-number">1</tt> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line"> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-name">switchModels</tt> <tt class="py-op">==</tt> <tt class="py-number">1</tt><tt class="py-op">:</tt> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line">        <tt id="link-13" class="py-name" targets="Function dmptools.neo.hideModels()=dmptools.neo-module.html#hideModels"><a title="dmptools.neo.hideModels" class="py-name" href="#" onclick="return doclink('link-13', 'hideModels', 'link-13');">hideModels</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line">        <tt class="py-name">switchModels</tt> <tt class="py-op">=</tt> <tt class="py-number">0</tt> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line">    <tt class="py-keyword">elif</tt> <tt class="py-name">switchModels</tt> <tt class="py-op">==</tt> <tt class="py-number">0</tt><tt class="py-op">:</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line">        <tt id="link-14" class="py-name" targets="Function dmptools.neo.unhideModels()=dmptools.neo-module.html#unhideModels"><a title="dmptools.neo.unhideModels" class="py-name" href="#" onclick="return doclink('link-14', 'unhideModels', 'link-14');">unhideModels</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line">        <tt class="py-name">switchModels</tt> <tt class="py-op">=</tt> <tt class="py-number">1</tt> </tt>
+</div><a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line"> </tt>
+<a name="assignArtblockShader"></a><div id="assignArtblockShader-def"><a name="L96"></a><tt class="py-lineno"> 96</tt> <a class="py-toggle" href="#" id="assignArtblockShader-toggle" onclick="return toggle('assignArtblockShader');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="dmptools.neo-module.html#assignArtblockShader">assignArtblockShader</a><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="assignArtblockShader-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="assignArtblockShader-expanded"><a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">    <tt class="py-docstring">"""select objects with lambert1 and assign the artblock shader"""</tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line"> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line">    <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">hyperShade</tt><tt class="py-op">(</tt><tt class="py-name">objects</tt><tt class="py-op">=</tt><tt class="py-string">'lambert1'</tt><tt class="py-op">)</tt> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">ls</tt><tt class="py-op">(</tt><tt class="py-name">sl</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line">        <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">hyperShade</tt><tt class="py-op">(</tt><tt class="py-name">assign</tt><tt class="py-op">=</tt><tt class="py-string">'ar_blockworldGrey01'</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line"> </tt>
+<a name="fixColladaAttributes"></a><div id="fixColladaAttributes-def"><a name="L103"></a><tt class="py-lineno">103</tt> <a class="py-toggle" href="#" id="fixColladaAttributes-toggle" onclick="return toggle('fixColladaAttributes');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="dmptools.neo-module.html#fixColladaAttributes">fixColladaAttributes</a><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="fixColladaAttributes-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="fixColladaAttributes-expanded"><a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line">    <tt class="py-docstring">"""fix dead space collada shader attributes"""</tt> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line">    <tt class="py-name">nodes</tt> <tt class="py-op">=</tt> <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">ls</tt><tt class="py-op">(</tt><tt class="py-name">sl</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">)</tt> </tt>
+<a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line">    <tt class="py-keyword">for</tt> <tt class="py-name">node</tt> <tt class="py-keyword">in</tt> <tt class="py-name">nodes</tt><tt class="py-op">:</tt> </tt>
+<a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">getAttr</tt><tt class="py-op">(</tt><tt class="py-name">node</tt><tt class="py-op">+</tt><tt class="py-string">'.collada'</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line">            <tt class="py-name">mat</tt> <tt class="py-op">=</tt> <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">getAttr</tt><tt class="py-op">(</tt><tt class="py-name">node</tt><tt class="py-op">+</tt><tt class="py-string">'.forceFragment'</tt><tt class="py-op">)</tt> </tt>
+<a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line">            <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">setAttr</tt><tt class="py-op">(</tt><tt class="py-name">node</tt><tt class="py-op">+</tt><tt class="py-string">'.collada'</tt><tt class="py-op">,</tt> <tt class="py-name">mat</tt><tt class="py-op">,</tt> <tt class="py-name">type</tt><tt class="py-op">=</tt><tt class="py-string">'string'</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line"> </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line"> </tt>
+<a name="createCollisionBox"></a><div id="createCollisionBox-def"><a name="L112"></a><tt class="py-lineno">112</tt> <a class="py-toggle" href="#" id="createCollisionBox-toggle" onclick="return toggle('createCollisionBox');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="dmptools.neo-module.html#createCollisionBox">createCollisionBox</a><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="createCollisionBox-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="createCollisionBox-expanded"><a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line"><tt class="py-docstring">        batch create collision bounding box</tt> </tt>
+<a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line">    <tt class="py-name">collisions</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line">     </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line">    <tt class="py-name">sel</tt> <tt class="py-op">=</tt> <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">ls</tt><tt class="py-op">(</tt><tt class="py-name">sl</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">)</tt> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-name">sel</tt><tt class="py-op">:</tt> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">node</tt> <tt class="py-keyword">in</tt> <tt class="py-name">sel</tt><tt class="py-op">:</tt> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line">            <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">select</tt><tt class="py-op">(</tt><tt class="py-name">node</tt><tt class="py-op">,</tt> <tt class="py-name">r</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">)</tt> </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line">            <tt class="py-comment"># create object aligned collision box</tt> </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line"><tt class="py-comment"></tt>            <tt class="py-name">mel</tt><tt class="py-op">.</tt><tt class="py-name">eval</tt><tt class="py-op">(</tt><tt class="py-string">'MODEL_obb_bruteForce(1);'</tt><tt class="py-op">)</tt> </tt>
+<a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line">            <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">delete</tt><tt class="py-op">(</tt><tt class="py-name">ch</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">)</tt> </tt>
+<a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line">            <tt class="py-name">collisions</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">ls</tt><tt class="py-op">(</tt><tt class="py-name">sl</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">)</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line">         </tt>
+<a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line">        <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">select</tt><tt class="py-op">(</tt><tt class="py-name">collisions</tt><tt class="py-op">,</tt> <tt class="py-name">r</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">)</tt>     </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line">    <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line">        <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">warning</tt><tt class="py-op">(</tt><tt class="py-string">'no object found...'</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line"> </tt>
+<a name="States"></a><div id="States-def"><a name="L131"></a><tt class="py-lineno">131</tt> <a class="py-toggle" href="#" id="States-toggle" onclick="return toggle('States');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="dmptools.neo.States-class.html">States</a><tt class="py-op">(</tt><tt class="py-base-class">object</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="States-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="States-expanded"><a name="States.__init__"></a><div id="States.__init__-def"><a name="L132"></a><tt class="py-lineno">132</tt> <a class="py-toggle" href="#" id="States.__init__-toggle" onclick="return toggle('States.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dmptools.neo.States-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="States.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="States.__init__-expanded"><a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">orig</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-string">'Model_Orig_00'</tt><tt class="py-op">]</tt> </tt>
+<a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">dest</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-string">'Model_Dest_01'</tt><tt class="py-op">,</tt> </tt>
+<a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line">                <tt class="py-string">'Model_Dest_02'</tt><tt class="py-op">,</tt> </tt>
+<a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line">                <tt class="py-string">'Model_Dest_01'</tt><tt class="py-op">,</tt> </tt>
+<a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line">                <tt class="py-string">'Collision_hk_nav_model_Orig_00'</tt><tt class="py-op">,</tt> </tt>
+<a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line">                <tt class="py-string">'Collision_hk_nav_model_Dest_01'</tt><tt class="py-op">,</tt> </tt>
+<a name="L139"></a><tt class="py-lineno">139</tt>  <tt class="py-line">                <tt class="py-string">'Collision_hk_nav_model_Dest_02'</tt><tt class="py-op">,</tt> </tt>
+<a name="L140"></a><tt class="py-lineno">140</tt>  <tt class="py-line">                <tt class="py-string">'Orig_State_00'</tt><tt class="py-op">,</tt> </tt>
+<a name="L141"></a><tt class="py-lineno">141</tt>  <tt class="py-line">                <tt class="py-string">'Dest_State_01'</tt><tt class="py-op">,</tt> </tt>
+<a name="L142"></a><tt class="py-lineno">142</tt>  <tt class="py-line">                <tt class="py-string">'Dest_State_02'</tt><tt class="py-op">]</tt> </tt>
+</div><a name="L143"></a><tt class="py-lineno">143</tt>  <tt class="py-line">         </tt>
+<a name="States.setOrig"></a><div id="States.setOrig-def"><a name="L144"></a><tt class="py-lineno">144</tt> <a class="py-toggle" href="#" id="States.setOrig-toggle" onclick="return toggle('States.setOrig');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dmptools.neo.States-class.html#setOrig">setOrig</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="States.setOrig-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="States.setOrig-expanded"><a name="L145"></a><tt class="py-lineno">145</tt>  <tt class="py-line">        <tt class="py-op">[</tt><tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">setAttr</tt><tt class="py-op">(</tt><tt class="py-name">node</tt><tt class="py-op">+</tt><tt class="py-string">'.visibility'</tt><tt class="py-op">,</tt> <tt class="py-name">False</tt><tt class="py-op">)</tt> <tt class="py-keyword">for</tt> <tt class="py-name">node</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">dest</tt><tt class="py-op">]</tt> </tt>
+<a name="L146"></a><tt class="py-lineno">146</tt>  <tt class="py-line">        <tt class="py-op">[</tt><tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">setAttr</tt><tt class="py-op">(</tt><tt class="py-name">node</tt><tt class="py-op">+</tt><tt class="py-string">'.visibility'</tt><tt class="py-op">,</tt> <tt class="py-name">True</tt><tt class="py-op">)</tt> <tt class="py-keyword">for</tt> <tt class="py-name">node</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">orig</tt><tt class="py-op">]</tt> </tt>
+</div><a name="L147"></a><tt class="py-lineno">147</tt>  <tt class="py-line"> </tt>
+<a name="States.setDest"></a><div id="States.setDest-def"><a name="L148"></a><tt class="py-lineno">148</tt> <a class="py-toggle" href="#" id="States.setDest-toggle" onclick="return toggle('States.setDest');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dmptools.neo.States-class.html#setDest">setDest</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="States.setDest-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="States.setDest-expanded"><a name="L149"></a><tt class="py-lineno">149</tt>  <tt class="py-line">        <tt class="py-op">[</tt><tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">setAttr</tt><tt class="py-op">(</tt><tt class="py-name">node</tt><tt class="py-op">+</tt><tt class="py-string">'.visibility'</tt><tt class="py-op">,</tt> <tt class="py-name">True</tt><tt class="py-op">)</tt> <tt class="py-keyword">for</tt> <tt class="py-name">node</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">dest</tt><tt class="py-op">]</tt> </tt>
+<a name="L150"></a><tt class="py-lineno">150</tt>  <tt class="py-line">        <tt class="py-op">[</tt><tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">setAttr</tt><tt class="py-op">(</tt><tt class="py-name">node</tt><tt class="py-op">+</tt><tt class="py-string">'.visibility'</tt><tt class="py-op">,</tt> <tt class="py-name">False</tt><tt class="py-op">)</tt> <tt class="py-keyword">for</tt> <tt class="py-name">node</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">orig</tt><tt class="py-op">]</tt> </tt>
+</div></div><a name="L151"></a><tt class="py-lineno">151</tt>  <tt class="py-line"> </tt>
+<a name="switchDestructionState"></a><div id="switchDestructionState-def"><a name="L152"></a><tt class="py-lineno">152</tt> <a class="py-toggle" href="#" id="switchDestructionState-toggle" onclick="return toggle('switchDestructionState');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="dmptools.neo-module.html#switchDestructionState">switchDestructionState</a><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="switchDestructionState-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="switchDestructionState-expanded"><a name="L153"></a><tt class="py-lineno">153</tt>  <tt class="py-line">    <tt class="py-name">states</tt> <tt class="py-op">=</tt> <tt id="link-15" class="py-name" targets="Class dmptools.neo.States=dmptools.neo.States-class.html"><a title="dmptools.neo.States" class="py-name" href="#" onclick="return doclink('link-15', 'States', 'link-15');">States</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L154"></a><tt class="py-lineno">154</tt>  <tt class="py-line">    <tt class="py-keyword">global</tt> <tt class="py-name">switchDest</tt> </tt>
+<a name="L155"></a><tt class="py-lineno">155</tt>  <tt class="py-line">    <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L156"></a><tt class="py-lineno">156</tt>  <tt class="py-line">        <tt class="py-name">switchDest</tt> </tt>
+<a name="L157"></a><tt class="py-lineno">157</tt>  <tt class="py-line">    <tt class="py-keyword">except</tt><tt class="py-op">:</tt> </tt>
+<a name="L158"></a><tt class="py-lineno">158</tt>  <tt class="py-line">        <tt class="py-name">switchDest</tt> <tt class="py-op">=</tt> <tt class="py-number">1</tt> </tt>
+<a name="L159"></a><tt class="py-lineno">159</tt>  <tt class="py-line"> </tt>
+<a name="L160"></a><tt class="py-lineno">160</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-name">switchDest</tt> <tt class="py-op">==</tt> <tt class="py-number">1</tt><tt class="py-op">:</tt> </tt>
+<a name="L161"></a><tt class="py-lineno">161</tt>  <tt class="py-line">        <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L162"></a><tt class="py-lineno">162</tt>  <tt class="py-line">            <tt class="py-name">states</tt><tt class="py-op">.</tt><tt id="link-16" class="py-name" targets="Method dmptools.neo.States.setOrig()=dmptools.neo.States-class.html#setOrig"><a title="dmptools.neo.States.setOrig" class="py-name" href="#" onclick="return doclink('link-16', 'setOrig', 'link-16');">setOrig</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L163"></a><tt class="py-lineno">163</tt>  <tt class="py-line">            <tt class="py-name">switchDest</tt> <tt class="py-op">=</tt> <tt class="py-number">0</tt> </tt>
+<a name="L164"></a><tt class="py-lineno">164</tt>  <tt class="py-line">        <tt class="py-keyword">except</tt><tt class="py-op">:</tt> </tt>
+<a name="L165"></a><tt class="py-lineno">165</tt>  <tt class="py-line">            <tt class="py-keyword">pass</tt> </tt>
+<a name="L166"></a><tt class="py-lineno">166</tt>  <tt class="py-line">         </tt>
+<a name="L167"></a><tt class="py-lineno">167</tt>  <tt class="py-line">    <tt class="py-keyword">elif</tt> <tt class="py-name">switchDest</tt> <tt class="py-op">==</tt> <tt class="py-number">0</tt><tt class="py-op">:</tt> </tt>
+<a name="L168"></a><tt class="py-lineno">168</tt>  <tt class="py-line">        <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L169"></a><tt class="py-lineno">169</tt>  <tt class="py-line">            <tt class="py-name">states</tt><tt class="py-op">.</tt><tt id="link-17" class="py-name" targets="Method dmptools.neo.States.setDest()=dmptools.neo.States-class.html#setDest"><a title="dmptools.neo.States.setDest" class="py-name" href="#" onclick="return doclink('link-17', 'setDest', 'link-17');">setDest</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L170"></a><tt class="py-lineno">170</tt>  <tt class="py-line">            <tt class="py-name">switchDest</tt> <tt class="py-op">=</tt> <tt class="py-number">1</tt> </tt>
+<a name="L171"></a><tt class="py-lineno">171</tt>  <tt class="py-line">        <tt class="py-keyword">except</tt><tt class="py-op">:</tt> </tt>
+<a name="L172"></a><tt class="py-lineno">172</tt>  <tt class="py-line">            <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L173"></a><tt class="py-lineno">173</tt>  <tt class="py-line">             </tt>
+<a name="HideShowNeoStuff"></a><div id="HideShowNeoStuff-def"><a name="L174"></a><tt class="py-lineno">174</tt> <a class="py-toggle" href="#" id="HideShowNeoStuff-toggle" onclick="return toggle('HideShowNeoStuff');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="dmptools.neo.HideShowNeoStuff-class.html">HideShowNeoStuff</a><tt class="py-op">(</tt><tt class="py-base-class">object</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="HideShowNeoStuff-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="HideShowNeoStuff-expanded"><a name="L175"></a><tt class="py-lineno">175</tt>  <tt class="py-line"> </tt>
+<a name="HideShowNeoStuff.__init__"></a><div id="HideShowNeoStuff.__init__-def"><a name="L176"></a><tt class="py-lineno">176</tt> <a class="py-toggle" href="#" id="HideShowNeoStuff.__init__-toggle" onclick="return toggle('HideShowNeoStuff.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dmptools.neo.HideShowNeoStuff-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="HideShowNeoStuff.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="HideShowNeoStuff.__init__-expanded"><a name="L177"></a><tt class="py-lineno">177</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">stuffToHide</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L178"></a><tt class="py-lineno">178</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">dest1Stuff</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L179"></a><tt class="py-lineno">179</tt>  <tt class="py-line">        <tt class="py-name">nodes</tt> <tt class="py-op">=</tt> <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">ls</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L180"></a><tt class="py-lineno">180</tt>  <tt class="py-line">        <tt class="py-name">objFilter</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-string">'Dest'</tt><tt class="py-op">,</tt> <tt class="py-string">'Collision_hk'</tt><tt class="py-op">,</tt> <tt class="py-string">'Orig_State'</tt><tt class="py-op">,</tt> <tt class="py-string">'Dest_State'</tt><tt class="py-op">]</tt> </tt>
+<a name="L181"></a><tt class="py-lineno">181</tt>  <tt class="py-line"> </tt>
+<a name="L182"></a><tt class="py-lineno">182</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">node</tt> <tt class="py-keyword">in</tt> <tt class="py-name">nodes</tt><tt class="py-op">:</tt> </tt>
+<a name="L183"></a><tt class="py-lineno">183</tt>  <tt class="py-line">            <tt class="py-keyword">for</tt> <tt class="py-name">f</tt> <tt class="py-keyword">in</tt> <tt class="py-name">objFilter</tt><tt class="py-op">:</tt> </tt>
+<a name="L184"></a><tt class="py-lineno">184</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-name">f</tt> <tt class="py-keyword">in</tt> <tt class="py-name">node</tt><tt class="py-op">:</tt> </tt>
+<a name="L185"></a><tt class="py-lineno">185</tt>  <tt class="py-line">                    <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">stuffToHide</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">node</tt><tt class="py-op">)</tt> </tt>
+<a name="L186"></a><tt class="py-lineno">186</tt>  <tt class="py-line">                    <tt class="py-keyword">break</tt> </tt>
+</div><a name="L187"></a><tt class="py-lineno">187</tt>  <tt class="py-line"> </tt>
+<a name="HideShowNeoStuff.hide"></a><div id="HideShowNeoStuff.hide-def"><a name="L188"></a><tt class="py-lineno">188</tt> <a class="py-toggle" href="#" id="HideShowNeoStuff.hide-toggle" onclick="return toggle('HideShowNeoStuff.hide');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dmptools.neo.HideShowNeoStuff-class.html#hide">hide</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="HideShowNeoStuff.hide-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="HideShowNeoStuff.hide-expanded"><a name="L189"></a><tt class="py-lineno">189</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">node</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">stuffToHide</tt><tt class="py-op">:</tt> </tt>
+<a name="L190"></a><tt class="py-lineno">190</tt>  <tt class="py-line">            <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">setAttr</tt><tt class="py-op">(</tt><tt class="py-name">node</tt><tt class="py-op">+</tt><tt class="py-string">'.visibility'</tt><tt class="py-op">,</tt> <tt class="py-name">False</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L191"></a><tt class="py-lineno">191</tt>  <tt class="py-line">     </tt>
+<a name="HideShowNeoStuff.show"></a><div id="HideShowNeoStuff.show-def"><a name="L192"></a><tt class="py-lineno">192</tt> <a class="py-toggle" href="#" id="HideShowNeoStuff.show-toggle" onclick="return toggle('HideShowNeoStuff.show');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dmptools.neo.HideShowNeoStuff-class.html#show">show</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="HideShowNeoStuff.show-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="HideShowNeoStuff.show-expanded"><a name="L193"></a><tt class="py-lineno">193</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">node</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">stuffToHide</tt><tt class="py-op">:</tt> </tt>
+<a name="L194"></a><tt class="py-lineno">194</tt>  <tt class="py-line">            <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">setAttr</tt><tt class="py-op">(</tt><tt class="py-name">node</tt><tt class="py-op">+</tt><tt class="py-string">'.visibility'</tt><tt class="py-op">,</tt> <tt class="py-name">True</tt><tt class="py-op">)</tt>      </tt>
+</div></div><a name="deleteCollada"></a><div id="deleteCollada-def"><a name="L195"></a><tt class="py-lineno">195</tt> <a class="py-toggle" href="#" id="deleteCollada-toggle" onclick="return toggle('deleteCollada');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="dmptools.neo-module.html#deleteCollada">deleteCollada</a><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="deleteCollada-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="deleteCollada-expanded"><a name="L196"></a><tt class="py-lineno">196</tt>  <tt class="py-line">    <tt class="py-docstring">""" delete collada nodes"""</tt> </tt>
+<a name="L197"></a><tt class="py-lineno">197</tt>  <tt class="py-line">    <tt class="py-name">colladaNodes</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L198"></a><tt class="py-lineno">198</tt>  <tt class="py-line">    <tt class="py-keyword">for</tt> <tt class="py-name">node</tt> <tt class="py-keyword">in</tt> <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">ls</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L199"></a><tt class="py-lineno">199</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-string">'colladaDocuments'</tt> <tt class="py-keyword">in</tt> <tt class="py-name">node</tt><tt class="py-op">:</tt> </tt>
+<a name="L200"></a><tt class="py-lineno">200</tt>  <tt class="py-line">            <tt class="py-name">colladaNodes</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">node</tt><tt class="py-op">)</tt> </tt>
+<a name="L201"></a><tt class="py-lineno">201</tt>  <tt class="py-line">         </tt>
+<a name="L202"></a><tt class="py-lineno">202</tt>  <tt class="py-line">    <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">delete</tt><tt class="py-op">(</tt><tt class="py-name">colladaNodes</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L203"></a><tt class="py-lineno">203</tt>  <tt class="py-line"> </tt>
+<a name="rotateGenerator"></a><div id="rotateGenerator-def"><a name="L204"></a><tt class="py-lineno">204</tt> <a class="py-toggle" href="#" id="rotateGenerator-toggle" onclick="return toggle('rotateGenerator');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="dmptools.neo-module.html#rotateGenerator">rotateGenerator</a><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="rotateGenerator-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="rotateGenerator-expanded"><a name="L205"></a><tt class="py-lineno">205</tt>  <tt class="py-line">    <tt class="py-keyword">global</tt> <tt class="py-name">switchRotate</tt> </tt>
+<a name="L206"></a><tt class="py-lineno">206</tt>  <tt class="py-line">    <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L207"></a><tt class="py-lineno">207</tt>  <tt class="py-line">        <tt class="py-name">switchRotate</tt> </tt>
+<a name="L208"></a><tt class="py-lineno">208</tt>  <tt class="py-line">    <tt class="py-keyword">except</tt><tt class="py-op">:</tt> </tt>
+<a name="L209"></a><tt class="py-lineno">209</tt>  <tt class="py-line">        <tt class="py-name">switchRotate</tt> <tt class="py-op">=</tt> <tt class="py-number">1</tt> </tt>
+<a name="L210"></a><tt class="py-lineno">210</tt>  <tt class="py-line"> </tt>
+<a name="L211"></a><tt class="py-lineno">211</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-name">switchRotate</tt> <tt class="py-op">==</tt> <tt class="py-number">1</tt><tt class="py-op">:</tt> </tt>
+<a name="L212"></a><tt class="py-lineno">212</tt>  <tt class="py-line">        <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L213"></a><tt class="py-lineno">213</tt>  <tt class="py-line">            <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">setAttr</tt><tt class="py-op">(</tt><tt class="py-string">'|Neo|generator_outpost_01_dm|Asset|Model_Orig_00|scene_grp.ry'</tt><tt class="py-op">,</tt> <tt class="py-number">0.0</tt><tt class="py-op">)</tt> </tt>
+<a name="L214"></a><tt class="py-lineno">214</tt>  <tt class="py-line">            <tt class="py-name">switchRotate</tt> <tt class="py-op">=</tt> <tt class="py-number">0</tt> </tt>
+<a name="L215"></a><tt class="py-lineno">215</tt>  <tt class="py-line">        <tt class="py-keyword">except</tt><tt class="py-op">:</tt> </tt>
+<a name="L216"></a><tt class="py-lineno">216</tt>  <tt class="py-line">            <tt class="py-keyword">pass</tt> </tt>
+<a name="L217"></a><tt class="py-lineno">217</tt>  <tt class="py-line">         </tt>
+<a name="L218"></a><tt class="py-lineno">218</tt>  <tt class="py-line">    <tt class="py-keyword">elif</tt> <tt class="py-name">switchRotate</tt> <tt class="py-op">==</tt> <tt class="py-number">0</tt><tt class="py-op">:</tt> </tt>
+<a name="L219"></a><tt class="py-lineno">219</tt>  <tt class="py-line">        <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L220"></a><tt class="py-lineno">220</tt>  <tt class="py-line">            <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">setAttr</tt><tt class="py-op">(</tt><tt class="py-string">'|Neo|generator_outpost_01_dm|Asset|Model_Orig_00|scene_grp.ry'</tt><tt class="py-op">,</tt> <tt class="py-number">45.0</tt><tt class="py-op">)</tt> </tt>
+<a name="L221"></a><tt class="py-lineno">221</tt>  <tt class="py-line">            <tt class="py-name">switchRotate</tt> <tt class="py-op">=</tt> <tt class="py-number">1</tt> </tt>
+<a name="L222"></a><tt class="py-lineno">222</tt>  <tt class="py-line">        <tt class="py-keyword">except</tt><tt class="py-op">:</tt> </tt>
+<a name="L223"></a><tt class="py-lineno">223</tt>  <tt class="py-line">            <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L224"></a><tt class="py-lineno">224</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="dmptools-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >dmptools documentation</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Nov 02 15:43:10 2012
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

@@ -1,0 +1,2 @@
+/c/python25/python.exe /c/python25/scripts/epydoc.py --html /c/users/mhavart/documents/maya/scripts/dmptools/* \
+-o /u/workspace/dmptools/doc --name "dmptools documentation"
