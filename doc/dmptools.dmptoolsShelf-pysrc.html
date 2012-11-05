@@ -14,9 +14,6 @@
 <table class="navbar" border="0" width="100%" cellpadding="0"
        bgcolor="#a0c0ff" cellspacing="0">
   <tr valign="middle">
-  <!-- Home link -->
-      <th>&nbsp;&nbsp;&nbsp;<a
-        href="dmptools-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
 
   <!-- Tree link -->
       <th>&nbsp;&nbsp;&nbsp;<a
@@ -62,45 +59,47 @@
 <h1 class="epydoc">Source Code for <a href="dmptools.dmptoolsShelf-module.html">Module dmptools.dmptoolsShelf</a></h1>
 <pre class="py-src">
 <a name="L1"></a><tt class="py-lineno"> 1</tt>  <tt class="py-line"><tt class="py-comment">#======================================</tt> </tt>
-<a name="L2"></a><tt class="py-lineno"> 2</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#</tt> </tt>
-<a name="L3"></a><tt class="py-lineno"> 3</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># michael.havart@gmail.com</tt> </tt>
-<a name="L4"></a><tt class="py-lineno"> 4</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># create dmptools shelf</tt> </tt>
-<a name="L5"></a><tt class="py-lineno"> 5</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#</tt> </tt>
-<a name="L6"></a><tt class="py-lineno"> 6</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#======================================</tt> </tt>
-<a name="L7"></a><tt class="py-lineno"> 7</tt>  <tt class="py-line"><tt class="py-comment"></tt> </tt>
+<a name="L2"></a><tt class="py-lineno"> 2</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L3"></a><tt class="py-lineno"> 3</tt>  <tt class="py-line"><tt class="py-comment"># michael.havart@gmail.com</tt> </tt>
+<a name="L4"></a><tt class="py-lineno"> 4</tt>  <tt class="py-line"><tt class="py-comment"># create dmptools shelf</tt> </tt>
+<a name="L5"></a><tt class="py-lineno"> 5</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L6"></a><tt class="py-lineno"> 6</tt>  <tt class="py-line"><tt class="py-comment">#======================================</tt> </tt>
+<a name="L7"></a><tt class="py-lineno"> 7</tt>  <tt class="py-line"> </tt>
 <a name="L8"></a><tt class="py-lineno"> 8</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">maya</tt><tt class="py-op">.</tt><tt class="py-name">cmds</tt> <tt class="py-keyword">as</tt> <tt class="py-name">cmds</tt> </tt>
 <a name="L9"></a><tt class="py-lineno"> 9</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">maya</tt><tt class="py-op">.</tt><tt class="py-name">mel</tt> <tt class="py-keyword">as</tt> <tt class="py-name">mel</tt> </tt>
 <a name="L10"></a><tt class="py-lineno">10</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">os</tt> </tt>
 <a name="L11"></a><tt class="py-lineno">11</tt>  <tt class="py-line"> </tt>
-<a name="L12"></a><tt class="py-lineno">12</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-0" class="py-name" targets="Package dmptools=dmptools-module.html"><a title="dmptools" class="py-name" href="#" onclick="return doclink('link-0', 'dmptools', 'link-0');">dmptools</a></tt><tt class="py-op">.</tt><tt id="link-1" class="py-name" targets="Module dmptools.shelfButtons=dmptools.shelfButtons-module.html"><a title="dmptools.shelfButtons" class="py-name" href="#" onclick="return doclink('link-1', 'shelfButtons', 'link-1');">shelfButtons</a></tt> <tt class="py-keyword">as</tt> <tt id="link-2" class="py-name"><a title="dmptools.shelfButtons" class="py-name" href="#" onclick="return doclink('link-2', 'shelfButtons', 'link-1');">shelfButtons</a></tt> </tt>
+<a name="L12"></a><tt class="py-lineno">12</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-0" class="py-name" targets="Package dmptools=dmptools-module.html,Package nuke.dmptools=nuke.dmptools-module.html"><a title="dmptools
+nuke.dmptools" class="py-name" href="#" onclick="return doclink('link-0', 'dmptools', 'link-0');">dmptools</a></tt><tt class="py-op">.</tt><tt id="link-1" class="py-name" targets="Module dmptools.shelfButtons=dmptools.shelfButtons-module.html"><a title="dmptools.shelfButtons" class="py-name" href="#" onclick="return doclink('link-1', 'shelfButtons', 'link-1');">shelfButtons</a></tt> <tt class="py-keyword">as</tt> <tt id="link-2" class="py-name"><a title="dmptools.shelfButtons" class="py-name" href="#" onclick="return doclink('link-2', 'shelfButtons', 'link-1');">shelfButtons</a></tt> </tt>
 <a name="L13"></a><tt class="py-lineno">13</tt>  <tt class="py-line"> </tt>
 <a name="L14"></a><tt class="py-lineno">14</tt>  <tt class="py-line"><tt class="py-comment"># globals</tt> </tt>
-<a name="L15"></a><tt class="py-lineno">15</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt id="link-3" class="py-name" targets="Variable dmptools.dmptoolsShelf.CONFIGPATH=dmptools.dmptoolsShelf-module.html#CONFIGPATH"><a title="dmptools.dmptoolsShelf.CONFIGPATH" class="py-name" href="#" onclick="return doclink('link-3', 'CONFIGPATH', 'link-3');">CONFIGPATH</a></tt> <tt class="py-op">=</tt> <tt class="py-string">'C:\Users\mhavart/documents/maya//scripts/dmptools/pictures/shelf'</tt> </tt>
-<a name="L16"></a><tt class="py-lineno">16</tt>  <tt class="py-line"><tt id="link-4" class="py-name" targets="Variable dmptools.dmptoolsShelf.VERSION=dmptools.dmptoolsShelf-module.html#VERSION"><a title="dmptools.dmptoolsShelf.VERSION" class="py-name" href="#" onclick="return doclink('link-4', 'VERSION', 'link-4');">VERSION</a></tt> <tt class="py-op">=</tt> <tt class="py-string">'1.0.0'</tt> </tt>
-<a name="L17"></a><tt class="py-lineno">17</tt>  <tt class="py-line"><tt id="link-5" class="py-name" targets="Variable dmptools.dmptoolsShelf.ICONSPATH=dmptools.dmptoolsShelf-module.html#ICONSPATH"><a title="dmptools.dmptoolsShelf.ICONSPATH" class="py-name" href="#" onclick="return doclink('link-5', 'ICONSPATH', 'link-5');">ICONSPATH</a></tt> <tt class="py-op">=</tt> <tt class="py-string">'C:\Users\mhavart/documents/maya//scripts/dmptools/pictures/shelf'</tt> </tt>
+<a name="L15"></a><tt class="py-lineno">15</tt>  <tt class="py-line"><tt id="link-3" class="py-name" targets="Variable dmptools.dmptoolsShelf.CONFIGPATH=dmptools.dmptoolsShelf-module.html#CONFIGPATH"><a title="dmptools.dmptoolsShelf.CONFIGPATH" class="py-name" href="#" onclick="return doclink('link-3', 'CONFIGPATH', 'link-3');">CONFIGPATH</a></tt> <tt class="py-op">=</tt> <tt class="py-string">'C:\Users\mika/documents/maya//scripts/dmptools/pictures/shelf'</tt> </tt>
+<a name="L16"></a><tt class="py-lineno">16</tt>  <tt class="py-line"><tt id="link-4" class="py-name" targets="Variable dmptools.dmptoolsShelf.VERSION=dmptools.dmptoolsShelf-module.html#VERSION,Variable nuke.dmptools.menu.VERSION=nuke.dmptools.menu-module.html#VERSION"><a title="dmptools.dmptoolsShelf.VERSION
+nuke.dmptools.menu.VERSION" class="py-name" href="#" onclick="return doclink('link-4', 'VERSION', 'link-4');">VERSION</a></tt> <tt class="py-op">=</tt> <tt class="py-string">'1.0.0'</tt> </tt>
+<a name="L17"></a><tt class="py-lineno">17</tt>  <tt class="py-line"><tt id="link-5" class="py-name" targets="Variable dmptools.dmptoolsShelf.ICONSPATH=dmptools.dmptoolsShelf-module.html#ICONSPATH"><a title="dmptools.dmptoolsShelf.ICONSPATH" class="py-name" href="#" onclick="return doclink('link-5', 'ICONSPATH', 'link-5');">ICONSPATH</a></tt> <tt class="py-op">=</tt> <tt class="py-string">'C:\Users\mika/documents/maya//scripts/dmptools/pictures/shelf'</tt> </tt>
 <a name="L18"></a><tt class="py-lineno">18</tt>  <tt class="py-line"><tt id="link-6" class="py-name" targets="Variable dmptools.dmptoolsShelf.BUTTONS=dmptools.dmptoolsShelf-module.html#BUTTONS,Variable dmptools.shelfButtons.BUTTONS=dmptools.shelfButtons-module.html#BUTTONS"><a title="dmptools.dmptoolsShelf.BUTTONS
 dmptools.shelfButtons.BUTTONS" class="py-name" href="#" onclick="return doclink('link-6', 'BUTTONS', 'link-6');">BUTTONS</a></tt> <tt class="py-op">=</tt> <tt id="link-7" class="py-name"><a title="dmptools.shelfButtons" class="py-name" href="#" onclick="return doclink('link-7', 'shelfButtons', 'link-1');">shelfButtons</a></tt><tt class="py-op">.</tt><tt id="link-8" class="py-name"><a title="dmptools.dmptoolsShelf.BUTTONS
 dmptools.shelfButtons.BUTTONS" class="py-name" href="#" onclick="return doclink('link-8', 'BUTTONS', 'link-6');">BUTTONS</a></tt> </tt>
 <a name="L19"></a><tt class="py-lineno">19</tt>  <tt class="py-line"> </tt>
 <a name="createShelf"></a><div id="createShelf-def"><a name="L20"></a><tt class="py-lineno">20</tt> <a class="py-toggle" href="#" id="createShelf-toggle" onclick="return toggle('createShelf');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="dmptools.dmptoolsShelf-module.html#createShelf">createShelf</a><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
 </div><div id="createShelf-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="createShelf-expanded"><a name="L21"></a><tt class="py-lineno">21</tt>  <tt class="py-line">    <tt class="py-comment"># delete the shelf is already exists</tt> </tt>
-<a name="L22"></a><tt class="py-lineno">22</tt>  <tt class="py-line"><tt class="py-comment"></tt>    <tt class="py-keyword">if</tt> <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">shelfLayout</tt><tt class="py-op">(</tt><tt class="py-string">'dmptools'</tt><tt class="py-op">,</tt> <tt class="py-name">ex</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L22"></a><tt class="py-lineno">22</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">shelfLayout</tt><tt class="py-op">(</tt><tt class="py-string">'dmptools'</tt><tt class="py-op">,</tt> <tt class="py-name">ex</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
 <a name="L23"></a><tt class="py-lineno">23</tt>  <tt class="py-line">        <tt class="py-name">fullname</tt> <tt class="py-op">=</tt> <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">shelfLayout</tt><tt class="py-op">(</tt><tt class="py-string">'dmptools'</tt><tt class="py-op">,</tt> <tt class="py-name">fpn</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">,</tt> <tt class="py-name">q</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">)</tt> </tt>
 <a name="L24"></a><tt class="py-lineno">24</tt>  <tt class="py-line">        <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">deleteUI</tt><tt class="py-op">(</tt><tt class="py-name">fullname</tt><tt class="py-op">)</tt> </tt>
 <a name="L25"></a><tt class="py-lineno">25</tt>  <tt class="py-line">    <tt class="py-comment"># create the shelf</tt> </tt>
-<a name="L26"></a><tt class="py-lineno">26</tt>  <tt class="py-line"><tt class="py-comment"></tt>    <tt class="py-name">shelfParent</tt> <tt class="py-op">=</tt> <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">shelfTabLayout</tt><tt class="py-op">(</tt><tt class="py-string">'ShelfLayout'</tt><tt class="py-op">,</tt> <tt class="py-name">fpn</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">,</tt> <tt class="py-name">q</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">)</tt> </tt>
+<a name="L26"></a><tt class="py-lineno">26</tt>  <tt class="py-line">    <tt class="py-name">shelfParent</tt> <tt class="py-op">=</tt> <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">shelfTabLayout</tt><tt class="py-op">(</tt><tt class="py-string">'ShelfLayout'</tt><tt class="py-op">,</tt> <tt class="py-name">fpn</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">,</tt> <tt class="py-name">q</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">)</tt> </tt>
 <a name="L27"></a><tt class="py-lineno">27</tt>  <tt class="py-line">    <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">shelfLayout</tt><tt class="py-op">(</tt><tt class="py-string">'dmptools'</tt><tt class="py-op">,</tt> <tt class="py-name">p</tt><tt class="py-op">=</tt><tt class="py-name">shelfParent</tt><tt class="py-op">)</tt> </tt>
 <a name="L28"></a><tt class="py-lineno">28</tt>  <tt class="py-line">    <tt class="py-comment"># create shelf buttons</tt> </tt>
-<a name="L29"></a><tt class="py-lineno">29</tt>  <tt class="py-line"><tt class="py-comment"></tt>    <tt class="py-keyword">for</tt> <tt class="py-name">button</tt> <tt class="py-keyword">in</tt> <tt id="link-9" class="py-name"><a title="dmptools.dmptoolsShelf.BUTTONS
+<a name="L29"></a><tt class="py-lineno">29</tt>  <tt class="py-line">    <tt class="py-keyword">for</tt> <tt class="py-name">button</tt> <tt class="py-keyword">in</tt> <tt id="link-9" class="py-name"><a title="dmptools.dmptoolsShelf.BUTTONS
 dmptools.shelfButtons.BUTTONS" class="py-name" href="#" onclick="return doclink('link-9', 'BUTTONS', 'link-6');">BUTTONS</a></tt><tt class="py-op">:</tt> </tt>
 <a name="L30"></a><tt class="py-lineno">30</tt>  <tt class="py-line">        <tt class="py-name">b</tt> <tt class="py-op">=</tt> <tt id="link-10" class="py-name" targets="Function dmptools.dmptoolsShelf.addButton()=dmptools.dmptoolsShelf-module.html#addButton"><a title="dmptools.dmptoolsShelf.addButton" class="py-name" href="#" onclick="return doclink('link-10', 'addButton', 'link-10');">addButton</a></tt><tt class="py-op">(</tt><tt class="py-name">button</tt><tt class="py-op">)</tt> </tt>
 <a name="L31"></a><tt class="py-lineno">31</tt>  <tt class="py-line">    <tt class="py-comment"># select the last created shelf </tt> </tt>
-<a name="L32"></a><tt class="py-lineno">32</tt>  <tt class="py-line"><tt class="py-comment"></tt>    <tt class="py-name">i</tt> <tt class="py-op">=</tt> <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">shelfTabLayout</tt><tt class="py-op">(</tt><tt class="py-name">shelfParent</tt><tt class="py-op">,</tt> <tt class="py-name">numberOfChildren</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">,</tt> <tt class="py-name">q</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">)</tt> </tt>
+<a name="L32"></a><tt class="py-lineno">32</tt>  <tt class="py-line">    <tt class="py-name">i</tt> <tt class="py-op">=</tt> <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">shelfTabLayout</tt><tt class="py-op">(</tt><tt class="py-name">shelfParent</tt><tt class="py-op">,</tt> <tt class="py-name">numberOfChildren</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">,</tt> <tt class="py-name">q</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">)</tt> </tt>
 <a name="L33"></a><tt class="py-lineno">33</tt>  <tt class="py-line">    <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">shelfTabLayout</tt><tt class="py-op">(</tt><tt class="py-name">shelfParent</tt><tt class="py-op">,</tt> <tt class="py-name">selectTabIndex</tt><tt class="py-op">=</tt><tt class="py-name">i</tt><tt class="py-op">,</tt> <tt class="py-name">e</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">)</tt> </tt>
 </div><a name="L34"></a><tt class="py-lineno">34</tt>  <tt class="py-line"> </tt>
 <a name="addButton"></a><div id="addButton-def"><a name="L35"></a><tt class="py-lineno">35</tt> <a class="py-toggle" href="#" id="addButton-toggle" onclick="return toggle('addButton');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="dmptools.dmptoolsShelf-module.html#addButton">addButton</a><tt class="py-op">(</tt><tt class="py-param">button</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
 </div><div id="addButton-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="addButton-expanded"><a name="L36"></a><tt class="py-lineno">36</tt>  <tt class="py-line">    <tt class="py-comment"># create dmptools shelf button</tt> </tt>
-<a name="L37"></a><tt class="py-lineno">37</tt>  <tt class="py-line"><tt class="py-comment"></tt>    <tt class="py-name">b</tt> <tt class="py-op">=</tt> <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">shelfButton</tt><tt class="py-op">(</tt><tt class="py-name">button</tt><tt class="py-op">[</tt><tt class="py-string">'name'</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> </tt>
+<a name="L37"></a><tt class="py-lineno">37</tt>  <tt class="py-line">    <tt class="py-name">b</tt> <tt class="py-op">=</tt> <tt class="py-name">cmds</tt><tt class="py-op">.</tt><tt class="py-name">shelfButton</tt><tt class="py-op">(</tt><tt class="py-name">button</tt><tt class="py-op">[</tt><tt class="py-string">'name'</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> </tt>
 <a name="L38"></a><tt class="py-lineno">38</tt>  <tt class="py-line">                    <tt class="py-name">enableCommandRepeat</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">,</tt> </tt>
 <a name="L39"></a><tt class="py-lineno">39</tt>  <tt class="py-line">                    <tt class="py-name">enable</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">,</tt> </tt>
 <a name="L40"></a><tt class="py-lineno">40</tt>  <tt class="py-line">                    <tt class="py-name">width</tt><tt class="py-op">=</tt><tt class="py-number">34</tt><tt class="py-op">,</tt> </tt>
@@ -120,13 +119,14 @@ dmptools.shelfButtons.BUTTONS" class="py-name" href="#" onclick="return doclink(
 </div><div id="main-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="main-expanded"><a name="L54"></a><tt class="py-lineno">54</tt>  <tt class="py-line">    <tt id="link-12" class="py-name" targets="Function dmptools.dmptoolsShelf.createShelf()=dmptools.dmptoolsShelf-module.html#createShelf"><a title="dmptools.dmptoolsShelf.createShelf" class="py-name" href="#" onclick="return doclink('link-12', 'createShelf', 'link-12');">createShelf</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
 </div><a name="L55"></a><tt class="py-lineno">55</tt>  <tt class="py-line"> </tt>
 <a name="L56"></a><tt class="py-lineno">56</tt>  <tt class="py-line"><tt class="py-keyword">if</tt> <tt class="py-name">__name__</tt> <tt class="py-op">==</tt> <tt class="py-string">'__main__'</tt><tt class="py-op">:</tt> </tt>
-<a name="L57"></a><tt class="py-lineno">57</tt>  <tt class="py-line">    <tt id="link-13" class="py-name" targets="Function dmptools.checkColors.main()=dmptools.checkColors-module.html#main,Function dmptools.createHotkeys.main()=dmptools.createHotkeys-module.html#main,Function dmptools.dmptoolsShelf.main()=dmptools.dmptoolsShelf-module.html#main,Function dmptools.extract.main()=dmptools.extract-module.html#main,Function dmptools.mayaToNuke.launcher.main()=dmptools.mayaToNuke.launcher-module.html#main,Function dmptools.modeling.main()=dmptools.modeling-module.html#main,Function dmptools.ratioCalculator.main()=dmptools.ratioCalculator-module.html#main"><a title="dmptools.checkColors.main
+<a name="L57"></a><tt class="py-lineno">57</tt>  <tt class="py-line">    <tt id="link-13" class="py-name" targets="Function dmptools.checkColors.main()=dmptools.checkColors-module.html#main,Function dmptools.createHotkeys.main()=dmptools.createHotkeys-module.html#main,Function dmptools.dmptoolsShelf.main()=dmptools.dmptoolsShelf-module.html#main,Function dmptools.extract.main()=dmptools.extract-module.html#main,Function dmptools.mayaToNuke.launcher.main()=dmptools.mayaToNuke.launcher-module.html#main,Function dmptools.modeling.main()=dmptools.modeling-module.html#main,Function dmptools.ratioCalculator.main()=dmptools.ratioCalculator-module.html#main,Function nuke.dmptools.tools.nukePopulate.main()=nuke.dmptools.tools.nukePopulate-module.html#main"><a title="dmptools.checkColors.main
 dmptools.createHotkeys.main
 dmptools.dmptoolsShelf.main
 dmptools.extract.main
 dmptools.mayaToNuke.launcher.main
 dmptools.modeling.main
-dmptools.ratioCalculator.main" class="py-name" href="#" onclick="return doclink('link-13', 'main', 'link-13');">main</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+dmptools.ratioCalculator.main
+nuke.dmptools.tools.nukePopulate.main" class="py-name" href="#" onclick="return doclink('link-13', 'main', 'link-13');">main</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
 <a name="L58"></a><tt class="py-lineno">58</tt>  <tt class="py-line"> </tt><script type="text/javascript">
 <!--
 expandto(location.href);
@@ -138,9 +138,6 @@ expandto(location.href);
 <table class="navbar" border="0" width="100%" cellpadding="0"
        bgcolor="#a0c0ff" cellspacing="0">
   <tr valign="middle">
-  <!-- Home link -->
-      <th>&nbsp;&nbsp;&nbsp;<a
-        href="dmptools-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
 
   <!-- Tree link -->
       <th>&nbsp;&nbsp;&nbsp;<a
@@ -165,7 +162,7 @@ expandto(location.href);
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Fri Nov 02 15:43:10 2012
+    Generated by Epydoc 3.0.1 on Sat Nov 03 11:12:47 2012
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

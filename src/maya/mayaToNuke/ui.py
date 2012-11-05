@@ -16,7 +16,7 @@ class MayaToNukeUI(object):
         # get stuff from presets
         textFieldValue = PRESETS.getPreset('mtn_textField')
         if not textFieldValue:
-            self.textFieldValue = 'c:/tmp/'
+            self.textFieldValue = UTILS.tempPath()
         else:
             self.textFieldValue = textFieldValue[0]
         # stuff

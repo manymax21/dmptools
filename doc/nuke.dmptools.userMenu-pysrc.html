@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>nuke.dmptools.userMenu</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >dmptools documentation</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        Package&nbsp;nuke ::
+        <a href="nuke.dmptools-module.html">Package&nbsp;dmptools</a> ::
+        Module&nbsp;userMenu
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="nuke.dmptools.userMenu-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="nuke.dmptools.userMenu-module.html">Module nuke.dmptools.userMenu</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno"> 1</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">nuke</tt> </tt>
+<a name="L2"></a><tt class="py-lineno"> 2</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">os</tt> </tt>
+<a name="L3"></a><tt class="py-lineno"> 3</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">random</tt> </tt>
+<a name="L4"></a><tt class="py-lineno"> 4</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-0" class="py-name" targets="Package dmptools=dmptools-module.html,Package nuke.dmptools=nuke.dmptools-module.html"><a title="dmptools
+nuke.dmptools" class="py-name" href="#" onclick="return doclink('link-0', 'dmptools', 'link-0');">dmptools</a></tt><tt class="py-op">.</tt><tt id="link-1" class="py-name" targets="Module nuke.dmptools.tf2classes=nuke.dmptools.tf2classes-module.html"><a title="nuke.dmptools.tf2classes" class="py-name" href="#" onclick="return doclink('link-1', 'tf2classes', 'link-1');">tf2classes</a></tt> <tt class="py-keyword">as</tt> <tt class="py-name">tf2</tt> </tt>
+<a name="L5"></a><tt class="py-lineno"> 5</tt>  <tt class="py-line"> </tt>
+<a name="L6"></a><tt class="py-lineno"> 6</tt>  <tt class="py-line"><tt id="link-2" class="py-name" targets="Variable nuke.dmptools.menu.NUKE_SHARE=nuke.dmptools.menu-module.html#NUKE_SHARE,Variable nuke.dmptools.userMenu.NUKE_SHARE=nuke.dmptools.userMenu-module.html#NUKE_SHARE"><a title="nuke.dmptools.menu.NUKE_SHARE
+nuke.dmptools.userMenu.NUKE_SHARE" class="py-name" href="#" onclick="return doclink('link-2', 'NUKE_SHARE', 'link-2');">NUKE_SHARE</a></tt> <tt class="py-op">=</tt> <tt class="py-string">'C:\Users\mika/.nuke/dmptools/pictures'</tt> </tt>
+<a name="L7"></a><tt class="py-lineno"> 7</tt>  <tt class="py-line"><tt id="link-3" class="py-name" targets="Variable nuke.dmptools.userMenu.TF2CLASSES=nuke.dmptools.userMenu-module.html#TF2CLASSES"><a title="nuke.dmptools.userMenu.TF2CLASSES" class="py-name" href="#" onclick="return doclink('link-3', 'TF2CLASSES', 'link-3');">TF2CLASSES</a></tt> <tt class="py-op">=</tt> <tt class="py-name">tf2</tt><tt class="py-op">.</tt><tt id="link-4" class="py-name" targets="Variable nuke.dmptools.tf2classes.CLASSES=nuke.dmptools.tf2classes-module.html#CLASSES"><a title="nuke.dmptools.tf2classes.CLASSES" class="py-name" href="#" onclick="return doclink('link-4', 'CLASSES', 'link-4');">CLASSES</a></tt> </tt>
+<a name="L8"></a><tt class="py-lineno"> 8</tt>  <tt class="py-line">     </tt>
+<a name="L9"></a><tt class="py-lineno"> 9</tt>  <tt class="py-line"><tt class="py-comment"># randomly get toolbar icon</tt> </tt>
+<a name="L10"></a><tt class="py-lineno">10</tt>  <tt class="py-line"><tt id="link-5" class="py-name" targets="Variable nuke.dmptools.userMenu.iconPrefix=nuke.dmptools.userMenu-module.html#iconPrefix"><a title="nuke.dmptools.userMenu.iconPrefix" class="py-name" href="#" onclick="return doclink('link-5', 'iconPrefix', 'link-5');">iconPrefix</a></tt> <tt class="py-op">=</tt> <tt id="link-6" class="py-name"><a title="nuke.dmptools.userMenu.TF2CLASSES" class="py-name" href="#" onclick="return doclink('link-6', 'TF2CLASSES', 'link-3');">TF2CLASSES</a></tt><tt class="py-op">.</tt><tt class="py-name">keys</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">[</tt><tt class="py-name">random</tt><tt class="py-op">.</tt><tt class="py-name">randint</tt><tt class="py-op">(</tt><tt class="py-number">0</tt><tt class="py-op">,</tt><tt class="py-name">len</tt><tt class="py-op">(</tt><tt id="link-7" class="py-name"><a title="nuke.dmptools.userMenu.TF2CLASSES" class="py-name" href="#" onclick="return doclink('link-7', 'TF2CLASSES', 'link-3');">TF2CLASSES</a></tt><tt class="py-op">)</tt><tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">)</tt><tt class="py-op">]</tt> </tt>
+<a name="L11"></a><tt class="py-lineno">11</tt>  <tt class="py-line"><tt id="link-8" class="py-name" targets="Variable nuke.dmptools.userMenu.iconTooltip=nuke.dmptools.userMenu-module.html#iconTooltip"><a title="nuke.dmptools.userMenu.iconTooltip" class="py-name" href="#" onclick="return doclink('link-8', 'iconTooltip', 'link-8');">iconTooltip</a></tt> <tt class="py-op">=</tt> <tt id="link-9" class="py-name"><a title="nuke.dmptools.userMenu.TF2CLASSES" class="py-name" href="#" onclick="return doclink('link-9', 'TF2CLASSES', 'link-3');">TF2CLASSES</a></tt><tt class="py-op">[</tt><tt id="link-10" class="py-name"><a title="nuke.dmptools.userMenu.iconPrefix" class="py-name" href="#" onclick="return doclink('link-10', 'iconPrefix', 'link-5');">iconPrefix</a></tt><tt class="py-op">]</tt><tt class="py-op">[</tt><tt class="py-name">random</tt><tt class="py-op">.</tt><tt class="py-name">randint</tt><tt class="py-op">(</tt><tt class="py-number">0</tt><tt class="py-op">,</tt><tt class="py-name">len</tt><tt class="py-op">(</tt><tt id="link-11" class="py-name"><a title="nuke.dmptools.userMenu.TF2CLASSES" class="py-name" href="#" onclick="return doclink('link-11', 'TF2CLASSES', 'link-3');">TF2CLASSES</a></tt><tt class="py-op">[</tt><tt id="link-12" class="py-name"><a title="nuke.dmptools.userMenu.iconPrefix" class="py-name" href="#" onclick="return doclink('link-12', 'iconPrefix', 'link-5');">iconPrefix</a></tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">)</tt><tt class="py-op">]</tt> </tt>
+<a name="L12"></a><tt class="py-lineno">12</tt>  <tt class="py-line"><tt id="link-13" class="py-name" targets="Variable nuke.dmptools.userMenu.iconPath=nuke.dmptools.userMenu-module.html#iconPath"><a title="nuke.dmptools.userMenu.iconPath" class="py-name" href="#" onclick="return doclink('link-13', 'iconPath', 'link-13');">iconPath</a></tt> <tt class="py-op">=</tt> <tt id="link-14" class="py-name"><a title="nuke.dmptools.menu.NUKE_SHARE
+nuke.dmptools.userMenu.NUKE_SHARE" class="py-name" href="#" onclick="return doclink('link-14', 'NUKE_SHARE', 'link-2');">NUKE_SHARE</a></tt><tt class="py-op">+</tt><tt class="py-string">'/tf2avatars/'</tt><tt class="py-op">+</tt><tt id="link-15" class="py-name"><a title="nuke.dmptools.userMenu.iconPrefix" class="py-name" href="#" onclick="return doclink('link-15', 'iconPrefix', 'link-5');">iconPrefix</a></tt><tt class="py-op">+</tt><tt class="py-string">'.jpg'</tt> </tt>
+<a name="L13"></a><tt class="py-lineno">13</tt>  <tt class="py-line"> </tt>
+<a name="L14"></a><tt class="py-lineno">14</tt>  <tt class="py-line"><tt class="py-keyword">print</tt> <tt id="link-16" class="py-name"><a title="nuke.dmptools.userMenu.iconTooltip" class="py-name" href="#" onclick="return doclink('link-16', 'iconTooltip', 'link-8');">iconTooltip</a></tt> </tt>
+<a name="L15"></a><tt class="py-lineno">15</tt>  <tt class="py-line"> </tt>
+<a name="L16"></a><tt class="py-lineno">16</tt>  <tt class="py-line"><tt id="link-17" class="py-name" targets="Variable nuke.dmptools.userMenu.m=nuke.dmptools.userMenu-module.html#m"><a title="nuke.dmptools.userMenu.m" class="py-name" href="#" onclick="return doclink('link-17', 'm', 'link-17');">m</a></tt> <tt class="py-op">=</tt> <tt class="py-name">nuke</tt><tt class="py-op">.</tt><tt id="link-18" class="py-name" targets="Variable nuke.dmptools.menu.toolbar=nuke.dmptools.menu-module.html#toolbar"><a title="nuke.dmptools.menu.toolbar" class="py-name" href="#" onclick="return doclink('link-18', 'toolbar', 'link-18');">toolbar</a></tt><tt class="py-op">(</tt><tt class="py-string">"Nodes"</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">addMenu</tt><tt class="py-op">(</tt><tt class="py-string">'dmptools/Misc'</tt><tt class="py-op">,</tt> <tt class="py-name">tooltip</tt> <tt class="py-op">=</tt> <tt id="link-19" class="py-name"><a title="nuke.dmptools.userMenu.iconTooltip" class="py-name" href="#" onclick="return doclink('link-19', 'iconTooltip', 'link-8');">iconTooltip</a></tt><tt class="py-op">,</tt> <tt class="py-name">icon</tt> <tt class="py-op">=</tt> <tt id="link-20" class="py-name"><a title="nuke.dmptools.userMenu.iconPath" class="py-name" href="#" onclick="return doclink('link-20', 'iconPath', 'link-13');">iconPath</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L17"></a><tt class="py-lineno">17</tt>  <tt class="py-line"> </tt>
+<a name="L18"></a><tt class="py-lineno">18</tt>  <tt class="py-line"><tt class="py-comment"># 3D</tt> </tt>
+<a name="L19"></a><tt class="py-lineno">19</tt>  <tt class="py-line"><tt id="link-21" class="py-name"><a title="nuke.dmptools.userMenu.m" class="py-name" href="#" onclick="return doclink('link-21', 'm', 'link-17');">m</a></tt><tt class="py-op">.</tt><tt class="py-name">addCommand</tt><tt class="py-op">(</tt><tt class="py-string">'3d/Shadow Generator'</tt><tt class="py-op">,</tt> <tt class="py-string">'nuke.createNode("shadow_generator")'</tt><tt class="py-op">)</tt> </tt>
+<a name="L20"></a><tt class="py-lineno">20</tt>  <tt class="py-line"> </tt>
+<a name="L21"></a><tt class="py-lineno">21</tt>  <tt class="py-line"><tt class="py-comment"># 2D</tt> </tt>
+<a name="L22"></a><tt class="py-lineno">22</tt>  <tt class="py-line"><tt id="link-22" class="py-name"><a title="nuke.dmptools.userMenu.m" class="py-name" href="#" onclick="return doclink('link-22', 'm', 'link-17');">m</a></tt><tt class="py-op">.</tt><tt class="py-name">addCommand</tt><tt class="py-op">(</tt><tt class="py-string">'2d/Nuke Image Converter...'</tt><tt class="py-op">,</tt> <tt class="py-string">'execfile("/usr/people/michael-ha/python/env/nukeImageConverter.py");makeProxyUI()'</tt><tt class="py-op">)</tt> </tt>
+<a name="L23"></a><tt class="py-lineno">23</tt>  <tt class="py-line"><tt id="link-23" class="py-name"><a title="nuke.dmptools.userMenu.m" class="py-name" href="#" onclick="return doclink('link-23', 'm', 'link-17');">m</a></tt><tt class="py-op">.</tt><tt class="py-name">addCommand</tt><tt class="py-op">(</tt><tt class="py-string">'2d/Buf Clone'</tt><tt class="py-op">,</tt> <tt class="py-string">'import dmptools.macros.nukeCommands as nukeCommands;nukeCommands.bclone()'</tt><tt class="py-op">)</tt> </tt>
+<a name="L24"></a><tt class="py-lineno">24</tt>  <tt class="py-line"><tt id="link-24" class="py-name"><a title="nuke.dmptools.userMenu.m" class="py-name" href="#" onclick="return doclink('link-24', 'm', 'link-17');">m</a></tt><tt class="py-op">.</tt><tt class="py-name">addCommand</tt><tt class="py-op">(</tt><tt class="py-string">'2d/Connect Selection '</tt><tt class="py-op">,</tt> <tt class="py-string">'import dmptools.macros.nukeCommands as nukeCommands;nukeCommands.connectSel()'</tt><tt class="py-op">,</tt> <tt class="py-string">"CTRL+Shift+Y"</tt><tt class="py-op">)</tt> </tt>
+<a name="L25"></a><tt class="py-lineno">25</tt>  <tt class="py-line"><tt id="link-25" class="py-name"><a title="nuke.dmptools.userMenu.m" class="py-name" href="#" onclick="return doclink('link-25', 'm', 'link-17');">m</a></tt><tt class="py-op">.</tt><tt class="py-name">addCommand</tt><tt class="py-op">(</tt><tt class="py-string">'2d/Clear Animation'</tt><tt class="py-op">,</tt> <tt class="py-string">'import dmptools.macros.nukeCommands as nukeCommands;nukeCommands.clearAnim()'</tt><tt class="py-op">)</tt> </tt>
+<a name="L26"></a><tt class="py-lineno">26</tt>  <tt class="py-line"><tt id="link-26" class="py-name"><a title="nuke.dmptools.userMenu.m" class="py-name" href="#" onclick="return doclink('link-26', 'm', 'link-17');">m</a></tt><tt class="py-op">.</tt><tt class="py-name">addCommand</tt><tt class="py-op">(</tt><tt class="py-string">'2d/Show-Hide inputs'</tt><tt class="py-op">,</tt> <tt class="py-string">'import dmptools.macros.nukeCommands as nukeCommands;nukeCommands.hideInputs()'</tt><tt class="py-op">,</tt><tt class="py-string">"Alt+T"</tt><tt class="py-op">)</tt> </tt>
+<a name="L27"></a><tt class="py-lineno">27</tt>  <tt class="py-line"><tt id="link-27" class="py-name"><a title="nuke.dmptools.userMenu.m" class="py-name" href="#" onclick="return doclink('link-27', 'm', 'link-17');">m</a></tt><tt class="py-op">.</tt><tt class="py-name">addCommand</tt><tt class="py-op">(</tt><tt class="py-string">'2d/Set Selected or All Read Frame Range...'</tt><tt class="py-op">,</tt> <tt class="py-string">'import dmptools.macros.nukeCommands as nukeCommands;nukeCommands.setReadFrameRange()'</tt><tt class="py-op">)</tt> </tt>
+<a name="L28"></a><tt class="py-lineno">28</tt>  <tt class="py-line"><tt id="link-28" class="py-name"><a title="nuke.dmptools.userMenu.m" class="py-name" href="#" onclick="return doclink('link-28', 'm', 'link-17');">m</a></tt><tt class="py-op">.</tt><tt class="py-name">addCommand</tt><tt class="py-op">(</tt><tt class="py-string">'2d/Set frame range from selection'</tt><tt class="py-op">,</tt> <tt class="py-string">'import dmptools.macros.nukeCommands as nukeCommands;nukeCommands.setFrameRangeFromSel()'</tt><tt class="py-op">,</tt> <tt class="py-string">"Ctrl+Shift+R"</tt><tt class="py-op">)</tt> </tt>
+<a name="L29"></a><tt class="py-lineno">29</tt>  <tt class="py-line"><tt id="link-29" class="py-name"><a title="nuke.dmptools.userMenu.m" class="py-name" href="#" onclick="return doclink('link-29', 'm', 'link-17');">m</a></tt><tt class="py-op">.</tt><tt class="py-name">addCommand</tt><tt class="py-op">(</tt><tt class="py-string">'2d/Rename label according the dependance node'</tt><tt class="py-op">,</tt> <tt class="py-string">'import dmptools.macros.nukeCommands as nukeCommands;nukeCommands.renameLabel()'</tt><tt class="py-op">,</tt> <tt class="py-string">"Ctrl+Alt+Shift+R"</tt><tt class="py-op">)</tt> </tt>
+<a name="L30"></a><tt class="py-lineno">30</tt>  <tt class="py-line"><tt id="link-30" class="py-name"><a title="nuke.dmptools.userMenu.m" class="py-name" href="#" onclick="return doclink('link-30', 'm', 'link-17');">m</a></tt><tt class="py-op">.</tt><tt class="py-name">addCommand</tt><tt class="py-op">(</tt><tt class="py-string">'2d/Switch crop format'</tt><tt class="py-op">,</tt> <tt class="py-string">'import dmptools.macros.nukeCommands as nukeCommands;nukeCommands.switchCrop()'</tt><tt class="py-op">,</tt> <tt class="py-string">"Ctrl+Alt+Shift+O"</tt><tt class="py-op">)</tt> </tt>
+<a name="L31"></a><tt class="py-lineno">31</tt>  <tt class="py-line"><tt id="link-31" class="py-name"><a title="nuke.dmptools.userMenu.m" class="py-name" href="#" onclick="return doclink('link-31', 'm', 'link-17');">m</a></tt><tt class="py-op">.</tt><tt class="py-name">addCommand</tt><tt class="py-op">(</tt><tt class="py-string">'2d/Switch 0 - 1'</tt><tt class="py-op">,</tt> <tt class="py-string">'import dmptools.macros.nukeCommands as nukeCommands;nukeCommands.switchUV_PROJ()'</tt><tt class="py-op">,</tt> <tt class="py-string">"Ctrl+Alt+Shift+S"</tt><tt class="py-op">)</tt> </tt>
+<a name="L32"></a><tt class="py-lineno">32</tt>  <tt class="py-line"><tt id="link-32" class="py-name"><a title="nuke.dmptools.userMenu.m" class="py-name" href="#" onclick="return doclink('link-32', 'm', 'link-17');">m</a></tt><tt class="py-op">.</tt><tt class="py-name">addCommand</tt><tt class="py-op">(</tt><tt class="py-string">'2d/Create read from write'</tt><tt class="py-op">,</tt> <tt class="py-string">'import dmptools.macros.nukeCommands as nukeCommands;nukeCommands.createReadFromWrite()'</tt><tt class="py-op">,</tt> <tt class="py-string">"Ctrl+Alt+Shift+R"</tt><tt class="py-op">)</tt> </tt>
+<a name="L33"></a><tt class="py-lineno">33</tt>  <tt class="py-line"><tt id="link-33" class="py-name"><a title="nuke.dmptools.userMenu.m" class="py-name" href="#" onclick="return doclink('link-33', 'm', 'link-17');">m</a></tt><tt class="py-op">.</tt><tt class="py-name">addCommand</tt><tt class="py-op">(</tt><tt class="py-string">'2d/Toggle postage stamp on read nodes'</tt><tt class="py-op">,</tt> <tt class="py-string">'import dmptools.macros.nukeCommands as nukeCommands;nukeCommands.togglePostageStamps()'</tt><tt class="py-op">,</tt> <tt class="py-string">"Ctrl+Alt+P"</tt><tt class="py-op">)</tt> </tt>
+<a name="L34"></a><tt class="py-lineno">34</tt>  <tt class="py-line"><tt id="link-34" class="py-name"><a title="nuke.dmptools.userMenu.m" class="py-name" href="#" onclick="return doclink('link-34', 'm', 'link-17');">m</a></tt><tt class="py-op">.</tt><tt class="py-name">addCommand</tt><tt class="py-op">(</tt><tt class="py-string">'2d/Bezier'</tt><tt class="py-op">,</tt> <tt class="py-string">'import dmptools.macros.nukeCommands as nukeCommands;nukeCommands.switchNode()'</tt><tt class="py-op">,</tt> <tt class="py-string">"Ctrl+Alt+Shift+S"</tt><tt class="py-op">)</tt> </tt>
+<a name="L35"></a><tt class="py-lineno">35</tt>  <tt class="py-line"><tt id="link-35" class="py-name"><a title="nuke.dmptools.userMenu.m" class="py-name" href="#" onclick="return doclink('link-35', 'm', 'link-17');">m</a></tt><tt class="py-op">.</tt><tt class="py-name">addCommand</tt><tt class="py-op">(</tt><tt class="py-string">'2d/Switch node'</tt><tt class="py-op">,</tt> <tt class="py-string">'nuke.tcl("Bezier")'</tt><tt class="py-op">,</tt> <tt class="py-string">"Shift+B"</tt><tt class="py-op">)</tt> </tt>
+<a name="L36"></a><tt class="py-lineno">36</tt>  <tt class="py-line"> </tt>
+<a name="L37"></a><tt class="py-lineno">37</tt>  <tt class="py-line"><tt class="py-comment"># other</tt> </tt>
+<a name="L38"></a><tt class="py-lineno">38</tt>  <tt class="py-line"><tt id="link-36" class="py-name"><a title="nuke.dmptools.userMenu.m" class="py-name" href="#" onclick="return doclink('link-36', 'm', 'link-17');">m</a></tt><tt class="py-op">.</tt><tt class="py-name">addCommand</tt><tt class="py-op">(</tt><tt class="py-string">'Other/Centralize script...'</tt><tt class="py-op">,</tt> <tt class="py-string">'execfile("/usr/people/michael-ha/python/centralizeNukeScript.py");makeLocalUI()'</tt><tt class="py-op">)</tt> </tt>
+<a name="L39"></a><tt class="py-lineno">39</tt>  <tt class="py-line"><tt id="link-37" class="py-name"><a title="nuke.dmptools.userMenu.m" class="py-name" href="#" onclick="return doclink('link-37', 'm', 'link-17');">m</a></tt><tt class="py-op">.</tt><tt class="py-name">addCommand</tt><tt class="py-op">(</tt><tt class="py-string">'Other/Archive script...'</tt><tt class="py-op">,</tt> <tt class="py-string">'execfile("/usr/people/michael-ha/python/archive_v1.0.py");ai.interface()'</tt><tt class="py-op">)</tt> </tt>
+<a name="L40"></a><tt class="py-lineno">40</tt>  <tt class="py-line"><tt id="link-38" class="py-name"><a title="nuke.dmptools.userMenu.m" class="py-name" href="#" onclick="return doclink('link-38', 'm', 'link-17');">m</a></tt><tt class="py-op">.</tt><tt class="py-name">addCommand</tt><tt class="py-op">(</tt><tt class="py-string">'Other/Copy special'</tt><tt class="py-op">,</tt> <tt class="py-string">'import dmptools.macros.nukeCommands as nukeCommands;nukeCommands.copySpecial()'</tt><tt class="py-op">,</tt> <tt class="py-string">"CTRL+SHIFT+C"</tt><tt class="py-op">)</tt> </tt>
+<a name="L41"></a><tt class="py-lineno">41</tt>  <tt class="py-line"><tt id="link-39" class="py-name"><a title="nuke.dmptools.userMenu.m" class="py-name" href="#" onclick="return doclink('link-39', 'm', 'link-17');">m</a></tt><tt class="py-op">.</tt><tt class="py-name">addCommand</tt><tt class="py-op">(</tt><tt class="py-string">'Other/list knobs'</tt><tt class="py-op">,</tt> <tt class="py-string">'import dmptools.macros.nukeCommands as nukeCommands;nukeCommands.listKnobs()'</tt><tt class="py-op">,</tt><tt class="py-string">"Ctrl+Alt+Shift+I"</tt><tt class="py-op">)</tt> </tt>
+<a name="L42"></a><tt class="py-lineno">42</tt>  <tt class="py-line"><tt id="link-40" class="py-name"><a title="nuke.dmptools.userMenu.m" class="py-name" href="#" onclick="return doclink('link-40', 'm', 'link-17');">m</a></tt><tt class="py-op">.</tt><tt class="py-name">addCommand</tt><tt class="py-op">(</tt><tt class="py-string">'Other/Play'</tt><tt class="py-op">,</tt> <tt class="py-string">'import dmptools.macros.nukeCommands as nukeCommands;nukeCommands.nukePlay()'</tt><tt class="py-op">,</tt> <tt class="py-string">"Alt+V"</tt><tt class="py-op">)</tt> </tt>
+<a name="L43"></a><tt class="py-lineno">43</tt>  <tt class="py-line"><tt id="link-41" class="py-name"><a title="nuke.dmptools.userMenu.m" class="py-name" href="#" onclick="return doclink('link-41', 'm', 'link-17');">m</a></tt><tt class="py-op">.</tt><tt class="py-name">addCommand</tt><tt class="py-op">(</tt><tt class="py-string">'Other/Goto first frame'</tt><tt class="py-op">,</tt> <tt class="py-string">'import dmptools.macros.nukeCommands as nukeCommands;nukeCommands.goToFirstFrame()'</tt><tt class="py-op">,</tt> <tt class="py-string">"Alt+Shift+V"</tt><tt class="py-op">)</tt> </tt>
+<a name="L44"></a><tt class="py-lineno">44</tt>  <tt class="py-line"><tt id="link-42" class="py-name"><a title="nuke.dmptools.userMenu.m" class="py-name" href="#" onclick="return doclink('link-42', 'm', 'link-17');">m</a></tt><tt class="py-op">.</tt><tt class="py-name">addCommand</tt><tt class="py-op">(</tt><tt class="py-string">'Other/Replace string in file knob...'</tt><tt class="py-op">,</tt> <tt class="py-string">'import dmptools.macros.nukeCommands as nukeCommands;nukeCommands.replaceStringInFile()'</tt><tt class="py-op">)</tt> </tt>
+<a name="L45"></a><tt class="py-lineno">45</tt>  <tt class="py-line"><tt id="link-43" class="py-name"><a title="nuke.dmptools.userMenu.m" class="py-name" href="#" onclick="return doclink('link-43', 'm', 'link-17');">m</a></tt><tt class="py-op">.</tt><tt class="py-name">addCommand</tt><tt class="py-op">(</tt><tt class="py-string">'Other/Set selected Write the only active write'</tt><tt class="py-op">,</tt> <tt class="py-string">'import dmptools.macros.nukeCommands as nukeCommands;nukeCommands.setSelWriteActive()'</tt><tt class="py-op">)</tt> </tt>
+<a name="L46"></a><tt class="py-lineno">46</tt>  <tt class="py-line"><tt id="link-44" class="py-name"><a title="nuke.dmptools.userMenu.m" class="py-name" href="#" onclick="return doclink('link-44', 'm', 'link-17');">m</a></tt><tt class="py-op">.</tt><tt class="py-name">addCommand</tt><tt class="py-op">(</tt><tt class="py-string">'Other/How many nodes'</tt><tt class="py-op">,</tt> <tt class="py-string">'nuke.message(str(len(nuke.allNodes()))+" nodes in comp.")'</tt><tt class="py-op">,</tt> <tt class="py-string">"Ctrl+Shift+Alt+A"</tt><tt class="py-op">)</tt> </tt>
+<a name="L47"></a><tt class="py-lineno">47</tt>  <tt class="py-line"><tt id="link-45" class="py-name"><a title="nuke.dmptools.userMenu.m" class="py-name" href="#" onclick="return doclink('link-45', 'm', 'link-17');">m</a></tt><tt class="py-op">.</tt><tt class="py-name">addCommand</tt><tt class="py-op">(</tt><tt class="py-string">'Other/Expression arrows'</tt><tt class="py-op">,</tt> <tt class="py-string">'_internal_expression_arrow_cmd()'</tt><tt class="py-op">,</tt> <tt class="py-string">"Alt+Shift+E"</tt><tt class="py-op">)</tt> </tt>
+<a name="L48"></a><tt class="py-lineno">48</tt>  <tt class="py-line"><tt id="link-46" class="py-name"><a title="nuke.dmptools.userMenu.m" class="py-name" href="#" onclick="return doclink('link-46', 'm', 'link-17');">m</a></tt><tt class="py-op">.</tt><tt class="py-name">addCommand</tt><tt class="py-op">(</tt><tt class="py-string">'Other/Unselect All'</tt><tt class="py-op">,</tt> <tt class="py-string">'import dmptools.macros.nukeCommands as nukeCommands ; nukeCommands.unselectAll();nukeCommands.closeAllControlPanel()'</tt><tt class="py-op">,</tt> <tt class="py-string">"Ctrl+Space"</tt><tt class="py-op">)</tt> </tt>
+<a name="L49"></a><tt class="py-lineno">49</tt>  <tt class="py-line"> </tt>
+<a name="L50"></a><tt class="py-lineno">50</tt>  <tt class="py-line"><tt class="py-comment">#root</tt> </tt>
+<a name="L51"></a><tt class="py-lineno">51</tt>  <tt class="py-line"><tt id="link-47" class="py-name"><a title="nuke.dmptools.userMenu.m" class="py-name" href="#" onclick="return doclink('link-47', 'm', 'link-17');">m</a></tt><tt class="py-op">.</tt><tt class="py-name">addCommand</tt><tt class="py-op">(</tt><tt class="py-string">'Execute'</tt><tt class="py-op">,</tt> <tt class="py-string">'import dmptools.macros.nukeCommands as nukeCommands;nukeCommands.nukeExecute()'</tt><tt class="py-op">,</tt> <tt class="py-string">"Alt+E"</tt><tt class="py-op">)</tt> </tt>
+<a name="L52"></a><tt class="py-lineno">52</tt>  <tt class="py-line"><tt id="link-48" class="py-name"><a title="nuke.dmptools.userMenu.m" class="py-name" href="#" onclick="return doclink('link-48', 'm', 'link-17');">m</a></tt><tt class="py-op">.</tt><tt class="py-name">addCommand</tt><tt class="py-op">(</tt><tt class="py-string">'Import exported file'</tt><tt class="py-op">,</tt> <tt class="py-string">'import dmptools.macros.nukeCommands as nukeCommands;nukeCommands.importScript()'</tt><tt class="py-op">,</tt> <tt class="py-string">"Ctrl+Shift+I"</tt><tt class="py-op">)</tt> </tt>
+<a name="L53"></a><tt class="py-lineno">53</tt>  <tt class="py-line"><tt id="link-49" class="py-name"><a title="nuke.dmptools.userMenu.m" class="py-name" href="#" onclick="return doclink('link-49', 'm', 'link-17');">m</a></tt><tt class="py-op">.</tt><tt class="py-name">addCommand</tt><tt class="py-op">(</tt><tt class="py-string">'Open terminal from selection'</tt><tt class="py-op">,</tt> <tt class="py-string">'import dmptools.macros.nukeCommands as nukeCommands;nukeCommands.openTerminal()'</tt><tt class="py-op">,</tt> <tt class="py-string">"Alt+X"</tt><tt class="py-op">)</tt> </tt>
+<a name="L54"></a><tt class="py-lineno">54</tt>  <tt class="py-line"><tt id="link-50" class="py-name"><a title="nuke.dmptools.userMenu.m" class="py-name" href="#" onclick="return doclink('link-50', 'm', 'link-17');">m</a></tt><tt class="py-op">.</tt><tt class="py-name">addCommand</tt><tt class="py-op">(</tt><tt class="py-string">'Start server'</tt><tt class="py-op">,</tt> <tt class="py-string">'execfile("/usr/people/michael-ha/python/nukeserver.py");threaded_server()'</tt><tt class="py-op">)</tt> </tt>
+<a name="L55"></a><tt class="py-lineno">55</tt>  <tt class="py-line"><tt id="link-51" class="py-name"><a title="nuke.dmptools.userMenu.m" class="py-name" href="#" onclick="return doclink('link-51', 'm', 'link-17');">m</a></tt><tt class="py-op">.</tt><tt class="py-name">addCommand</tt><tt class="py-op">(</tt><tt class="py-string">'Set Shot FrameRange'</tt><tt class="py-op">,</tt> <tt class="py-string">'import dmptools.macros.nukeCommands as nukeCommands;nukeCommands.setShotFrameRange()'</tt><tt class="py-op">)</tt> </tt>
+<a name="L56"></a><tt class="py-lineno">56</tt>  <tt class="py-line"><tt id="link-52" class="py-name"><a title="nuke.dmptools.userMenu.m" class="py-name" href="#" onclick="return doclink('link-52', 'm', 'link-17');">m</a></tt><tt class="py-op">.</tt><tt class="py-name">addCommand</tt><tt class="py-op">(</tt><tt class="py-string">'Show modules...'</tt><tt class="py-op">,</tt> <tt class="py-string">'import dmptools.macros.nukeCommands as nukeCommands;nukeCommands.showModules()'</tt><tt class="py-op">)</tt> </tt>
+<a name="L57"></a><tt class="py-lineno">57</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >dmptools documentation</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Sat Nov 03 11:12:47 2012
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

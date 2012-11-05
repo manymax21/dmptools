@@ -8,6 +8,8 @@ from dmptools.presets import PresetsManager
 
 PRESETS = PresetsManager()
 
+TEMPPATH = '!HOMEPATH!'
+
 class Utils(object):
     """
         some utility methods for mayaToNuke tool
@@ -123,6 +125,9 @@ class Utils(object):
         for panel in self.panelsDisplay.keys():
             for object, value in self.panelsDisplay[panel].items():
                 eval("cmds.modelEditor('"+panel+"', edit = True, "+object+" = False)")
+
+    def getNukeBin(self):
+        defaultNukePath = '/soft/nuke'
 
     def getNukeExe(self):
 

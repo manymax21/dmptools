@@ -14,9 +14,6 @@
 <table class="navbar" border="0" width="100%" cellpadding="0"
        bgcolor="#a0c0ff" cellspacing="0">
   <tr valign="middle">
-  <!-- Home link -->
-      <th>&nbsp;&nbsp;&nbsp;<a
-        href="dmptools-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
 
   <!-- Tree link -->
       <th>&nbsp;&nbsp;&nbsp;<a
@@ -62,17 +59,18 @@
 <h1 class="epydoc">Source Code for <a href="dmptools.presets-module.html">Module dmptools.presets</a></h1>
 <pre class="py-src">
 <a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment">#============================================</tt> </tt>
-<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#</tt> </tt>
-<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># presets.py</tt> </tt>
-<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># michael.havart@gmail.com</tt> </tt>
-<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># class used to manage various presets. </tt> </tt>
-<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#</tt> </tt>
-<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#============================================</tt> </tt>
-<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-comment"></tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-comment"># presets.py</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-comment"># michael.havart@gmail.com</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-comment"># class used to manage various presets. </tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-comment">#============================================</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"> </tt>
 <a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">os</tt> </tt>
 <a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">subprocess</tt> </tt>
 <a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"> </tt>
-<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt id="link-0" class="py-name" targets="Variable dmptools.presets.HOMEPATH=dmptools.presets-module.html#HOMEPATH"><a title="dmptools.presets.HOMEPATH" class="py-name" href="#" onclick="return doclink('link-0', 'HOMEPATH', 'link-0');">HOMEPATH</a></tt> <tt class="py-op">=</tt> <tt class="py-string">'C:\Users\mhavart'</tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt id="link-0" class="py-name" targets="Variable dmptools.presets.HOMEPATH=dmptools.presets-module.html#HOMEPATH,Variable nuke.dmptools.presets.HOMEPATH=nuke.dmptools.presets-module.html#HOMEPATH"><a title="dmptools.presets.HOMEPATH
+nuke.dmptools.presets.HOMEPATH" class="py-name" href="#" onclick="return doclink('link-0', 'HOMEPATH', 'link-0');">HOMEPATH</a></tt> <tt class="py-op">=</tt> <tt class="py-string">'C:\Users\mika'</tt> </tt>
 <a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"> </tt>
 <a name="PresetsManager"></a><div id="PresetsManager-def"><a name="L14"></a><tt class="py-lineno"> 14</tt> <a class="py-toggle" href="#" id="PresetsManager-toggle" onclick="return toggle('PresetsManager');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="dmptools.presets.PresetsManager-class.html">PresetsManager</a><tt class="py-op">(</tt><tt class="py-base-class">object</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
 </div><div id="PresetsManager-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="PresetsManager-expanded"><a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
@@ -100,16 +98,17 @@
 <a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line"><tt class="py-docstring">        if the preset file doesn't exists create it.</tt> </tt>
 <a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
 <a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line">        <tt class="py-comment"># create the presets file in homepath/.dmptools</tt> </tt>
-<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line"><tt class="py-comment"></tt>        <tt class="py-name">dmptoolspath</tt> <tt class="py-op">=</tt> <tt id="link-1" class="py-name"><a title="dmptools.presets.HOMEPATH" class="py-name" href="#" onclick="return doclink('link-1', 'HOMEPATH', 'link-0');">HOMEPATH</a></tt><tt class="py-op">+</tt><tt class="py-string">'/.dmptools'</tt> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line">        <tt class="py-name">dmptoolspath</tt> <tt class="py-op">=</tt> <tt id="link-1" class="py-name"><a title="dmptools.presets.HOMEPATH
+nuke.dmptools.presets.HOMEPATH" class="py-name" href="#" onclick="return doclink('link-1', 'HOMEPATH', 'link-0');">HOMEPATH</a></tt><tt class="py-op">+</tt><tt class="py-string">'/.dmptools'</tt> </tt>
 <a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">exists</tt><tt class="py-op">(</tt><tt class="py-name">dmptoolspath</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
 <a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line">            <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">mkdir</tt><tt class="py-op">(</tt><tt class="py-name">dmptoolspath</tt><tt class="py-op">)</tt> </tt>
 <a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line">        <tt class="py-name">PRESET_FILE</tt> <tt class="py-op">=</tt> <tt class="py-name">dmptoolspath</tt><tt class="py-op">+</tt><tt class="py-string">'/dmptools.presets'</tt> </tt>
 <a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line"> </tt>
 <a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line">        <tt class="py-comment"># create the preset file if it doesnt exists</tt> </tt>
-<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line"><tt class="py-comment"></tt>        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">presetfile</tt> <tt class="py-op">=</tt> <tt class="py-name">PRESET_FILE</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">presetfile</tt> <tt class="py-op">=</tt> <tt class="py-name">PRESET_FILE</tt> </tt>
 <a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">exists</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">presetfile</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
 <a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line">            <tt class="py-comment"># creating preset file</tt> </tt>
-<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line"><tt class="py-comment"></tt>            <tt class="py-keyword">print</tt> <tt class="py-string">'&gt; creating preset file'</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line">            <tt class="py-keyword">print</tt> <tt class="py-string">'&gt; creating preset file'</tt> </tt>
 <a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line">            <tt class="py-keyword">with</tt> <tt class="py-name">open</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">presetfile</tt><tt class="py-op">,</tt> <tt class="py-string">'w'</tt><tt class="py-op">)</tt> <tt class="py-keyword">as</tt> <tt class="py-name">FILE</tt><tt class="py-op">:</tt> </tt>
 <a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line">                <tt class="py-name">FILE</tt><tt class="py-op">.</tt><tt class="py-name">write</tt><tt class="py-op">(</tt><tt class="py-string">''</tt><tt class="py-op">)</tt> </tt>
 </div><a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line"> </tt>
@@ -123,7 +122,8 @@
 <a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
 <a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line">        <tt class="py-name">dic</tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt><tt class="py-name">key</tt><tt class="py-op">:</tt><tt class="py-name">value</tt><tt class="py-op">}</tt> </tt>
 <a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line">        <tt class="py-comment"># checking if the preset already exists</tt> </tt>
-<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line"><tt class="py-comment"></tt>        <tt class="py-name">presetList</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-2" class="py-name" targets="Method dmptools.presets.PresetsManager.getPresets()=dmptools.presets.PresetsManager-class.html#getPresets"><a title="dmptools.presets.PresetsManager.getPresets" class="py-name" href="#" onclick="return doclink('link-2', 'getPresets', 'link-2');">getPresets</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line">        <tt class="py-name">presetList</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-2" class="py-name" targets="Method dmptools.presets.PresetsManager.getPresets()=dmptools.presets.PresetsManager-class.html#getPresets,Method nuke.dmptools.presets.PresetsManager.getPresets()=nuke.dmptools.presets.PresetsManager-class.html#getPresets"><a title="dmptools.presets.PresetsManager.getPresets
+nuke.dmptools.presets.PresetsManager.getPresets" class="py-name" href="#" onclick="return doclink('link-2', 'getPresets', 'link-2');">getPresets</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
 <a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line">        <tt class="py-name">newPresetList</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
 <a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">presetList</tt><tt class="py-op">:</tt> </tt>
 <a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line">            <tt class="py-keyword">for</tt> <tt class="py-name">preset</tt> <tt class="py-keyword">in</tt> <tt class="py-name">presetList</tt><tt class="py-op">:</tt> </tt>
@@ -132,12 +132,13 @@
 <a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line">        <tt class="py-name">newPresetList</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">dic</tt><tt class="py-op">)</tt> </tt>
 <a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line"> </tt>
 <a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line">        <tt class="py-comment"># remove the preset file to re-create the new one</tt> </tt>
-<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line"><tt class="py-comment"></tt>        <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">remove</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">presetfile</tt><tt class="py-op">)</tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line">        <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">remove</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">presetfile</tt><tt class="py-op">)</tt> </tt>
 <a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line">        <tt class="py-keyword">with</tt> <tt class="py-name">open</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">presetfile</tt><tt class="py-op">,</tt> <tt class="py-string">'w'</tt><tt class="py-op">)</tt> <tt class="py-keyword">as</tt> <tt class="py-name">FILE</tt><tt class="py-op">:</tt> </tt>
 <a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line">            <tt class="py-keyword">for</tt> <tt class="py-name">preset</tt> <tt class="py-keyword">in</tt> <tt class="py-name">newPresetList</tt><tt class="py-op">:</tt> </tt>
 <a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line">                <tt class="py-name">FILE</tt><tt class="py-op">.</tt><tt class="py-name">write</tt><tt class="py-op">(</tt><tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">preset</tt><tt class="py-op">)</tt><tt class="py-op">+</tt><tt class="py-string">'\n'</tt><tt class="py-op">)</tt> </tt>
 <a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line"> </tt>
-<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-3" class="py-name"><a title="dmptools.presets.PresetsManager.getPresets" class="py-name" href="#" onclick="return doclink('link-3', 'getPresets', 'link-2');">getPresets</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-3" class="py-name"><a title="dmptools.presets.PresetsManager.getPresets
+nuke.dmptools.presets.PresetsManager.getPresets" class="py-name" href="#" onclick="return doclink('link-3', 'getPresets', 'link-2');">getPresets</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
 </div><a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line"> </tt>
 <a name="PresetsManager.removePreset"></a><div id="PresetsManager.removePreset-def"><a name="L79"></a><tt class="py-lineno"> 79</tt> <a class="py-toggle" href="#" id="PresetsManager.removePreset-toggle" onclick="return toggle('PresetsManager.removePreset');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dmptools.presets.PresetsManager-class.html#removePreset">removePreset</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">key</tt><tt class="py-op">=</tt><tt class="py-string">''</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
 </div><div id="PresetsManager.removePreset-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="PresetsManager.removePreset-expanded"><a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
@@ -145,7 +146,8 @@
 <a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
 <a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line"><tt class="py-docstring">        returns a list of all the presets in the file.</tt> </tt>
 <a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
-<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">        <tt class="py-name">presetList</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-4" class="py-name"><a title="dmptools.presets.PresetsManager.getPresets" class="py-name" href="#" onclick="return doclink('link-4', 'getPresets', 'link-2');">getPresets</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">        <tt class="py-name">presetList</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-4" class="py-name"><a title="dmptools.presets.PresetsManager.getPresets
+nuke.dmptools.presets.PresetsManager.getPresets" class="py-name" href="#" onclick="return doclink('link-4', 'getPresets', 'link-2');">getPresets</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
 <a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line">        <tt class="py-name">newPresetList</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
 <a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">presetList</tt><tt class="py-op">:</tt> </tt>
 <a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line">            <tt class="py-keyword">for</tt> <tt class="py-name">preset</tt> <tt class="py-keyword">in</tt> <tt class="py-name">presetList</tt><tt class="py-op">:</tt> </tt>
@@ -153,12 +155,13 @@
 <a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line">                    <tt class="py-name">newPresetList</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">preset</tt><tt class="py-op">)</tt> </tt>
 <a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line"> </tt>
 <a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line">        <tt class="py-comment"># remove the preset file to re-create the new one</tt> </tt>
-<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line"><tt class="py-comment"></tt>        <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">remove</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">presetfile</tt><tt class="py-op">)</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line">        <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">remove</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">presetfile</tt><tt class="py-op">)</tt> </tt>
 <a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line">        <tt class="py-keyword">with</tt> <tt class="py-name">open</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">presetfile</tt><tt class="py-op">,</tt> <tt class="py-string">'w'</tt><tt class="py-op">)</tt> <tt class="py-keyword">as</tt> <tt class="py-name">FILE</tt><tt class="py-op">:</tt> </tt>
 <a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line">            <tt class="py-keyword">for</tt> <tt class="py-name">preset</tt> <tt class="py-keyword">in</tt> <tt class="py-name">newPresetList</tt><tt class="py-op">:</tt> </tt>
 <a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line">                <tt class="py-name">FILE</tt><tt class="py-op">.</tt><tt class="py-name">write</tt><tt class="py-op">(</tt><tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">preset</tt><tt class="py-op">)</tt><tt class="py-op">+</tt><tt class="py-string">'\n'</tt><tt class="py-op">)</tt> </tt>
 <a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line"> </tt>
-<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-5" class="py-name"><a title="dmptools.presets.PresetsManager.getPresets" class="py-name" href="#" onclick="return doclink('link-5', 'getPresets', 'link-2');">getPresets</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-5" class="py-name"><a title="dmptools.presets.PresetsManager.getPresets
+nuke.dmptools.presets.PresetsManager.getPresets" class="py-name" href="#" onclick="return doclink('link-5', 'getPresets', 'link-2');">getPresets</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
 </div><a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line"> </tt>
 <a name="PresetsManager.getPreset"></a><div id="PresetsManager.getPreset-def"><a name="L100"></a><tt class="py-lineno">100</tt> <a class="py-toggle" href="#" id="PresetsManager.getPreset-toggle" onclick="return toggle('PresetsManager.getPreset');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dmptools.presets.PresetsManager-class.html#getPreset">getPreset</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">key</tt><tt class="py-op">=</tt><tt class="py-string">''</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
 </div><div id="PresetsManager.getPreset-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="PresetsManager.getPreset-expanded"><a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
@@ -205,10 +208,14 @@
 <a name="L142"></a><tt class="py-lineno">142</tt>  <tt class="py-line"><tt class="py-docstring">        convert presets dicts to str</tt> </tt>
 <a name="L143"></a><tt class="py-lineno">143</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
 <a name="L144"></a><tt class="py-lineno">144</tt>  <tt class="py-line">        <tt class="py-keyword">global</tt> <tt class="py-name">presetsStr</tt> </tt>
-<a name="L145"></a><tt class="py-lineno">145</tt>  <tt class="py-line">        <tt id="link-6" class="py-name" targets="Module dmptools.presets=dmptools.presets-module.html"><a title="dmptools.presets" class="py-name" href="#" onclick="return doclink('link-6', 'presets', 'link-6');">presets</a></tt> <tt class="py-op">=</tt> <tt id="link-7" class="py-name" targets="Class dmptools.presets.PresetsManager=dmptools.presets.PresetsManager-class.html"><a title="dmptools.presets.PresetsManager" class="py-name" href="#" onclick="return doclink('link-7', 'PresetsManager', 'link-7');">PresetsManager</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
-<a name="L146"></a><tt class="py-lineno">146</tt>  <tt class="py-line">        <tt class="py-name">presetsL</tt> <tt class="py-op">=</tt> <tt id="link-8" class="py-name"><a title="dmptools.presets" class="py-name" href="#" onclick="return doclink('link-8', 'presets', 'link-6');">presets</a></tt><tt class="py-op">.</tt><tt id="link-9" class="py-name"><a title="dmptools.presets.PresetsManager.getPresets" class="py-name" href="#" onclick="return doclink('link-9', 'getPresets', 'link-2');">getPresets</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L145"></a><tt class="py-lineno">145</tt>  <tt class="py-line">        <tt id="link-6" class="py-name" targets="Module dmptools.presets=dmptools.presets-module.html,Module nuke.dmptools.presets=nuke.dmptools.presets-module.html"><a title="dmptools.presets
+nuke.dmptools.presets" class="py-name" href="#" onclick="return doclink('link-6', 'presets', 'link-6');">presets</a></tt> <tt class="py-op">=</tt> <tt id="link-7" class="py-name" targets="Class dmptools.presets.PresetsManager=dmptools.presets.PresetsManager-class.html,Class nuke.dmptools.presets.PresetsManager=nuke.dmptools.presets.PresetsManager-class.html"><a title="dmptools.presets.PresetsManager
+nuke.dmptools.presets.PresetsManager" class="py-name" href="#" onclick="return doclink('link-7', 'PresetsManager', 'link-7');">PresetsManager</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L146"></a><tt class="py-lineno">146</tt>  <tt class="py-line">        <tt class="py-name">presetsL</tt> <tt class="py-op">=</tt> <tt id="link-8" class="py-name"><a title="dmptools.presets
+nuke.dmptools.presets" class="py-name" href="#" onclick="return doclink('link-8', 'presets', 'link-6');">presets</a></tt><tt class="py-op">.</tt><tt id="link-9" class="py-name"><a title="dmptools.presets.PresetsManager.getPresets
+nuke.dmptools.presets.PresetsManager.getPresets" class="py-name" href="#" onclick="return doclink('link-9', 'getPresets', 'link-2');">getPresets</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
 <a name="L147"></a><tt class="py-lineno">147</tt>  <tt class="py-line">        <tt class="py-comment"># recursive method</tt> </tt>
-<a name="L148"></a><tt class="py-lineno">148</tt>  <tt class="py-line"><tt class="py-comment"></tt>        <tt class="py-keyword">def</tt> <tt class="py-def-name">setStr</tt><tt class="py-op">(</tt><tt class="py-param">preset</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L148"></a><tt class="py-lineno">148</tt>  <tt class="py-line">        <tt class="py-keyword">def</tt> <tt class="py-def-name">setStr</tt><tt class="py-op">(</tt><tt class="py-param">preset</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
 <a name="L149"></a><tt class="py-lineno">149</tt>  <tt class="py-line">            <tt class="py-keyword">global</tt> <tt class="py-name">presetsStr</tt> </tt>
 <a name="L150"></a><tt class="py-lineno">150</tt>  <tt class="py-line">            <tt class="py-keyword">for</tt> <tt class="py-name">key</tt> <tt class="py-keyword">in</tt> <tt class="py-name">preset</tt><tt class="py-op">.</tt><tt class="py-name">keys</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
 <a name="L151"></a><tt class="py-lineno">151</tt>  <tt class="py-line">                <tt class="py-name">presetsStr</tt> <tt class="py-op">+=</tt> <tt class="py-string">"-"</tt><tt class="py-op">+</tt><tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">key</tt><tt class="py-op">)</tt><tt class="py-op">+</tt><tt class="py-string">":\n"</tt> </tt>
@@ -221,7 +228,7 @@
 </div><a name="L158"></a><tt class="py-lineno">158</tt>  <tt class="py-line">                         </tt>
 <a name="L159"></a><tt class="py-lineno">159</tt>  <tt class="py-line">        <tt class="py-name">presetsStr</tt> <tt class="py-op">=</tt> <tt class="py-string">"Presets:\n"</tt> </tt>
 <a name="L160"></a><tt class="py-lineno">160</tt>  <tt class="py-line">        <tt class="py-comment"># go through all the presets</tt> </tt>
-<a name="L161"></a><tt class="py-lineno">161</tt>  <tt class="py-line"><tt class="py-comment"></tt>        <tt class="py-keyword">for</tt> <tt class="py-name">preset</tt> <tt class="py-keyword">in</tt> <tt class="py-name">presetsL</tt><tt class="py-op">:</tt> </tt>
+<a name="L161"></a><tt class="py-lineno">161</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">preset</tt> <tt class="py-keyword">in</tt> <tt class="py-name">presetsL</tt><tt class="py-op">:</tt> </tt>
 <a name="L162"></a><tt class="py-lineno">162</tt>  <tt class="py-line">            <tt class="py-name">setStr</tt><tt class="py-op">(</tt><tt class="py-name">preset</tt><tt class="py-op">)</tt> </tt>
 <a name="L163"></a><tt class="py-lineno">163</tt>  <tt class="py-line">         </tt>
 <a name="L164"></a><tt class="py-lineno">164</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">presetsStr</tt> </tt>
@@ -236,9 +243,6 @@ expandto(location.href);
 <table class="navbar" border="0" width="100%" cellpadding="0"
        bgcolor="#a0c0ff" cellspacing="0">
   <tr valign="middle">
-  <!-- Home link -->
-      <th>&nbsp;&nbsp;&nbsp;<a
-        href="dmptools-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
 
   <!-- Tree link -->
       <th>&nbsp;&nbsp;&nbsp;<a
@@ -263,7 +267,7 @@ expandto(location.href);
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Fri Nov 02 15:43:10 2012
+    Generated by Epydoc 3.0.1 on Sat Nov 03 11:12:47 2012
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"
