@@ -14,10 +14,35 @@ import fnmatch
 from dmptools.presets import PresetsManager
 
 # globals
-normalAngle = 35
+normalAngle = 85
 perspNear = 1
 perspFar = 20000
 
+def createCameraUVProj():
+    sel = cmds.ls(sl=True)
+    if sel:
+        for node in sel:
+            if cmds.polyEvaluate(node, fc=True) == 0:
+                cmds.select(node+'.f[*]', add=True)
+        cmds.polyProjection(cmds.ls(sl=True), ch=True, type='Planar', ibd=True, kir=True, md='c')
+
+def averageNormals():
+    try:
+        cmds.polyNormalPerVertex(ufn=True)
+        cmds.polyAverageNormal(
+                                prenormalize=False,
+                                allowZeroNormal=False,
+                                postnormalize=True,
+                                distance=0.1,
+                                replaceNormalXYZ=(1,0,0))
+    except:
+        cmds.polyAverageNormal(
+                                prenormalize=False,
+                                allowZeroNormal=False,
+                                postnormalize=True,
+                                distance=0.1,
+                                replaceNormalXYZ=(1,0,0))
+       
 def setPerspPreset():
     if cmds.ls('perspShape'):
         cmds.setAttr('perspShape.nearClipPlane', perspNear)

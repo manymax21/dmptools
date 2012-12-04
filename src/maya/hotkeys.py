@@ -2,6 +2,15 @@
 HOTKEYS = \
 [
     {
+        'name':'createCameraUVProj',
+        'key':'P',
+        'alt':False,
+        'ctrl':True,
+        'release':False,
+        'command':'python("import dmptools.mayaCommands as mayaCommands;\
+            reload(mayaCommands);mayaCommands.createCameraUVProj()");'
+    },
+    {
         'name':'switchColors',
         'key':'c',
         'alt':True,
