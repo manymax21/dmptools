@@ -294,17 +294,18 @@ class MayaToNukeUI(object):
         settingsC = self.settingsUI
         cmds.menuItem(label='Settings', c=settingsC) 
         # exit button
-        exitC = 'import maya.cmds as cmds;cmds.deleteUI('+WINDOW_NAME+', window = True)'
+        print 'import maya.cmds as cmds;cmds.deleteUI("'+WINDOW_NAME+'", window = True)'
+        exitC = 'import maya.cmds as cmds;cmds.deleteUI("'+WINDOW_NAME+'", window = True)'
         cmds.menuItem(label = 'Exit', c = exitC)
         # add help menu
         cmds.menu(label = 'Help', helpMenu = True)
-        helpC = 'print HELP!'
+        helpC = 'import webbrowser;webbrowser.open("http://github.com/michael-ha/dmptools/blob/master/README")'
         cmds.menuItem(label = 'Intranet Help', c = helpC)
         
-        fun1C = 'import os;os.system("firefox http://www.google.com/images?q=mecha &")'
+        fun1C = 'import webbrowser;webbrowser.open("http://www.google.com/images?q=mecha &")'
         cmds.menuItem(label = 'Bonus: Mechas !!', c = fun1C)
         
-        fun2C = 'import os;os.system("firefox http://www.google.com/images?q=kittens &")'
+        fun2C = 'import webbrowser;webbrowser.open("http://www.google.com/images?q=kittens &")'
         cmds.menuItem(label = 'Bonus: Kittens !!', c = fun2C)
         
         aboutC = 'import maya.cmds as cmds;cmds.confirmDialog(title = "about", message = "version v1.0", button = "OK")'

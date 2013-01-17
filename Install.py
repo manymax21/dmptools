@@ -256,17 +256,6 @@ def install(src, dst, symlinks=False, ignore=None):
     if errors:
         raise Error(errors)
 
-def errorMsg(message):
-    """
-    dislpays a message on screen
-    """
-    from ctypes import c_int, WINFUNCTYPE, windll
-    from ctypes.wintypes import HWND, LPCSTR, UINT
-    prototype = WINFUNCTYPE(c_int, HWND, LPCSTR, LPCSTR, UINT)
-    paramflags = (1, "hwnd", 0), (1, "text", message), (1, "caption", None), (1, "flags", 0)
-    MessageBox = prototype(("MessageBoxA", windll.user32), paramflags)
-    MessageBox(text=message)
-
 def main():
     # if the platform is Windows,
     # if the project name is 'dmptools'

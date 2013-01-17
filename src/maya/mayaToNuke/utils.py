@@ -8,8 +8,6 @@ from dmptools.presets import PresetsManager
 
 PRESETS = PresetsManager()
 
-TEMPPATH = '!HOMEPATH!'
-
 class Utils(object):
     """
         some utility methods for mayaToNuke tool
@@ -20,6 +18,7 @@ class Utils(object):
         self.platform = sys.platform
         self.user = os.getenv('USERNAME')
         self.computer = os.getenv('COMPUTERNAME')
+        self.temp_path = os.getenv('TEMP')
         self.nukeexe = self.getNukeExe()
         # maya display infos
         self.panelsDisplay = {}
@@ -127,19 +126,21 @@ class Utils(object):
                 eval("cmds.modelEditor('"+panel+"', edit = True, "+object+" = False)")
 
     def getNukeBin(self):
+        # get nuke path on linux
+        defaultNukePath = os.environ['NUKE_PATH']
         defaultNukePath = '/soft/nuke'
 
     def getNukeExe(self):
-
+        # get nuke path on windows
         defaultNukePath = [
         'C:/Program Files/Nuke6.0v5/Nuke6.0.exe',
         'C:/Program Files/Nuke6.3v4/Nuke6.3.exe',
         'C:/Program Files (x86)/Nuke6.3v4/Nuke6.3.exe',
-        ]
+                            ]
         for path in defaultNukePath:
             if os.path.exists(path):
                 PRESETS.addPreset('nukeexe', path)
-                
+        
         # get the nuke path preset if exists
         nukeexe = PRESETS.getPreset('nukeexe')
         if nukeexe:
