@@ -9,6 +9,21 @@ import maya.mel as mel
 
 import dmptools.mayaCommands as mayaCommands
 
+def replaceTexturePath():
+    visceralPath = "S:/assets/shared/"
+    mikaPath = "S:/work/_EA_VISCERALGAMES/DS3/"
+    if cmds.ls(type='file'):
+        for node in cmds.ls(type='file'):
+            try:
+                fileTextureName = cmds.getAttr(node+'.fileTextureName')
+                newfileTextureName = fileTextureName.replace(visceralPath, mikaPath)
+                cmds.setAttr(node+'.fileTextureName', newfileTextureName, type="string")
+                print 'changed', node
+            except:
+                print 'failed to change', node
+    else:
+        print 'file node not found...'
+
 def hideCollisions():
     """hide collisions models"""
 

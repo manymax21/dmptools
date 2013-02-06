@@ -11,6 +11,9 @@ class Exporter(object):
         generate a nuke script (.nk) from a selection.
     """
     def __init__(self, items={}, outputFile='', framerange={}):
+        # get  utils stuff
+        self.temp_path = UTILS.temp_path
+        self.os = UTILS.os
         # get the stuff to export and the outputFile
         self.items = items
         self.outputFile = outputFile
@@ -24,24 +27,30 @@ class Exporter(object):
         self.timeStr = timeInfo['str']
         # get the nuke.exe path
         self.nukeexe = UTILS.nukeexe
-
+        
     def startExport(self):
         """
             write the python file which will be used
             to generate the nuke script.
         """
         print "----------------| start |----------------"
-
-        pyFile = "c:/tmp/"+self.outputFile.split('/')[-1].split('.')[-2]+"_"+self.currTime+".py"
-        generateNukeScript = '"'+self.nukeexe+'" -t '+pyFile+''
+        # python tmp file used to generate the nk file
+        pyFile = self.temp_path+"/"+self.outputFile.split('/')[-1].split('.')[-2]+"_"+self.currTime+".py"
+        # nuke command to generate the nk file from the py file
+        if self.os == 'nt':
+            generateNukeScript = '"'+self.nukeexe+'" -t '+pyFile+''
+        if self.os == 'posix':
+            generateNukeScript = 'nuke -t '+pyFile+' &'
 
         # writing header of the python file
         self.filePy = open(pyFile, "a")
         
         self.filePy.write("# this python file is generated automatically by the mayaToNuke.py tool.\n")
         self.filePy.write("# it will be processed by mayapy and will create a .nk file.\n\n")
+        self.filePy.write("# path of nuke binary: "+self.nukeexe+"\n")
         self.filePy.write("# name of the python file: "+pyFile+"\n")
-        self.filePy.write("# name of the maya file: "+self.outputFile+"\n")
+        self.filePy.write("# name of the nuke file: "+self.outputFile+"\n")
+        self.filePy.write("# command to execute: "+generateNukeScript+"\n")
         self.filePy.write("# generated the : "+self.timeStr+"\n\n")
         self.filePy.write('import nuke\n\n')
         self.filePy.write('nuke.root().knob("first_frame").setValue('+str(self.firstFrame)+')\n')
@@ -53,6 +62,7 @@ class Exporter(object):
         locators = self.items['locators']
         lights = self.items['lights']
 
+        # if items found, write the exported items to the tmp python file
         if objects:
             print "-exporting "+str(len(objects))+" objects:"
             self.writeObjectsToPyFile(objects, self.filePy)
@@ -64,7 +74,7 @@ class Exporter(object):
         if locators:
             print "-exporting "+str(len(locators))+" locators:"
             self.writeLocatorsToPyFile(locators, self.filePy)
-            
+        
         self.filePy.write('\n')
         self.filePy.write('nuke.frame('+str(self.currentFrame)+')\n\n')             
         self.filePy.write('nuke.scriptSave("'+self.outputFile+'")\n\n\n') 
@@ -81,10 +91,7 @@ class Exporter(object):
                 print ' > time spent: '+str(t)+' second(s)...'
                 # generating the nuke script in the first iteration of the wait loop
                 if t == 0:
-                    if os.name == 'nt':
-                        subprocess.Popen(generateNukeScript)
-                    else:
-                        subprocess.Popen('nuke -t '+pyFile+' &')
+                    subprocess.Popen(generateNukeScript)
                 if os.path.exists(self.outputFile):
                         break
                 if t == 10:
@@ -175,6 +182,7 @@ class Exporter(object):
                     rotList = ["XYZ","YZX","ZXY","XZY","YXZ","ZYX"]
                     meshRot = cmds.getAttr(mesh+".rotateOrder")
                     meshRotationOrder = rotList[meshRot]
+                    meshPivot = cmds.xform(mesh, t = True, ws=True, q = True)
                     # set name
                     meshClean = mesh.replace(':', '_').replace('|', '_')
                     meshname = meshPath+meshClean+'.obj'
@@ -186,7 +194,11 @@ class Exporter(object):
                     filePy.write('readGeo.setName("'+meshClean+'")\n')
                     filePy.write('readGeo.knob("selected").setValue(False)\n')
                     filePy.write('readGeo.knob("rot_order").setValue("'+meshRotationOrder+'")\n\n')
-                    
+                    # set pivot
+                    filePy.write('readGeo.knob("pivot").setValue('+str(float(meshPivot[0]))+', 0)\n')
+                    filePy.write('readGeo.knob("pivot").setValue('+str(float(meshPivot[1]))+', 1)\n')
+                    filePy.write('readGeo.knob("pivot").setValue('+str(float(meshPivot[2]))+', 2)\n\n')
+
             # DEFORMED MESHES 
             if deformedMeshes:
                 # first write the nuke node 
@@ -231,9 +243,12 @@ class Exporter(object):
             cameraRotationOrder = rotList[camRot]
             nearClip = float(cmds.getAttr(cameraShape+".nearClipPlane"))
             farClip = float(cmds.getAttr(cameraShape+".farClipPlane"))
+            # set clean name
+            cameraClean = camera.replace(':', '_').replace('|', '_')
+
             # write to pyFile
             filePy.write('camera = nuke.createNode("Camera2")\n')
-            filePy.write('camera.setName("'+camera+'")\n')
+            filePy.write('camera.setName("'+cameraClean+'")\n')
             filePy.write('camera.knob("selected").setValue(False)\n')
             filePy.write('camera.knob("rot_order").setValue("'+cameraRotationOrder+'")\n\n')
             filePy.write('camera.knob("near").setValue('+str(nearClip)+')\n')
@@ -244,6 +259,9 @@ class Exporter(object):
             filePy.write('nuke.frame('+str(int(frame))+')\n')
             cmds.currentTime(frame)
             for camera in cameras:
+                # set clean name
+                cameraClean = camera.replace(':', '_').replace('|', '_')
+
                 # get shape
                 cameraShape = cmds.listRelatives(camera)[0]
                 # get worldspace attributes
@@ -255,7 +273,7 @@ class Exporter(object):
                 hap = float(cmds.getAttr(cameraShape+".horizontalFilmAperture"))/ 0.0393700787
                 vap = float(cmds.getAttr(cameraShape+".verticalFilmAperture"))/ 0.0393700787
                 # write to file
-                filePy.write('cameraToAnimate = nuke.toNode("'+camera+'")\n')
+                filePy.write('cameraToAnimate = nuke.toNode("'+cameraClean+'")\n')
                 # set translate
                 filePy.write('cameraToAnimate.knob("translate").setValueAt('+str(float(xformT[0]))+',\
                             '+str(float(frame))+', 0)\n')

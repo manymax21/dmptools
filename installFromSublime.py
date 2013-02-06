@@ -37,19 +37,23 @@ VERSION = '1.0.0'
 PROJECT_NAME = sys.argv[-1] == 'dmptools.sublime-project'
 ACTIVE_FILE_PATH = sys.argv[-2]
 ACTIVE_FILE = os.path.basename(ACTIVE_FILE_PATH)
-INSTALL = ACTIVE_FILE.split('.')[0] == 'Install'
 MODULE_PATH = sys.argv[-3]
 PYTHON_SOURCE_PATH = MODULE_PATH+'/src/'
 # ACTIVE_FILE_IN_PROJECT set to False by default
 ACTIVE_FILE_IN_PROJECT = False
 # check if the active file is in the project path
-for root, dirs, files in os.walk(MODULE_PATH):
-    for dir in dirs:
-        if os.path.dirname(ACTIVE_FILE_PATH) in root+dir:
-            for f in files:
-                if ACTIVE_FILE in f:
-                    ACTIVE_FILE_IN_PROJECT = True
-                    break
+for root, dirs, files in os.walk('C:/workspace/dmptools/'):
+    for f in files:
+        if 'ui.py' in f:
+            ACTIVE_FILE_IN_PROJECT = True
+            break
+if ACTIVE_FILE_IN_PROJECT:
+    for root, dirs, files in os.walk(MODULE_PATH):
+        for d in dirs:
+            if os.path.normpath(os.path.dirname(ACTIVE_FILE_PATH)) == os.path.normpath(root+'/'+d):
+                ACTIVE_FILE_IN_PROJECT = True
+                break
+# exclude directories from install
 EXCLUDE_DIRS = \
     [
         '.git',
@@ -270,17 +274,6 @@ def install(src, dst, symlinks=False, ignore=None):
     if errors:
         raise Error(errors)
 
-def errorMsg(message):
-    """
-    dislpays a message on screen
-    """
-    from ctypes import c_int, WINFUNCTYPE, windll
-    from ctypes.wintypes import HWND, LPCSTR, UINT
-    prototype = WINFUNCTYPE(c_int, HWND, LPCSTR, LPCSTR, UINT)
-    paramflags = (1, "hwnd", 0), (1, "text", message), (1, "caption", None), (1, "flags", 0)
-    MessageBox = prototype(("MessageBoxA", windll.user32), paramflags)
-    MessageBox(text=message)
-
 def main():
     # if the platform is Windows,
     # if the project name is 'dmptools'
@@ -303,11 +296,8 @@ def main():
 
         print ' >> installed at', str(time.strftime('%H:%M:%S the %d/%m/%y'))
     else:
-        # yield a windows error message
-        errorMsg('You need to install from here:\n\
-            '+MODULE_PATH+'\n\
-            You run from:\n\
-            '+ACTIVE_FILE_PATH+'')
+        # pritn error message
+        raise UserWarning('\n----\nYou need to install from here: '+MODULE_PATH+'\nYou run from:'+ACTIVE_FILE_PATH+'\n----')
 
 if __name__ == '__main__':
     main()
