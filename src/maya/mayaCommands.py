@@ -324,7 +324,7 @@ def mergeVertex():
         try:
             for node in sel:
                 cmds.select(node, r=True)
-                cmds.polyMergeVertex(distance=0.01, am=True, ch=True)
+                cmds.polyMergeVertex(distance=0.007, am=True, ch=True)
         except:
             pass
         cmds.select(sel, r=True)

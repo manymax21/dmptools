@@ -98,7 +98,12 @@ def assignArtblockShader():
 
     cmds.hyperShade(objects='lambert1')
     if cmds.ls(sl=True):
-        cmds.hyperShade(assign='ar_blockworldGrey01')
+        try:
+            cmds.hyperShade(assign='ar_blockworldGrey01')
+        except:
+            cmds.hyperShade(assign='gen_blockworldGrey01')
+        finally:
+            print 'no artblock shader!!'
 
 def fixColladaAttributes():
     """fix dead space collada shader attributes"""
