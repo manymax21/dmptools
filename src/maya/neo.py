@@ -29,8 +29,10 @@ def hideCollisions():
 
     global switchCollisions
 
-    mel.eval('source NEO_hideUnhideCollision;')
-    mel.eval('NEO_hideCollision;')
+    #mel.eval('source NEO_hideUnhideCollision;')
+    #mel.eval('NEO_hideCollision;')
+    for node in cmds.ls("*_collision"):
+        cmds.setAttr(node+".visibility", False)
 
     mayaCommands.headsUpDisplayMessage('hidding collisions !')
 
@@ -40,14 +42,16 @@ def unhideCollisions():
     """unhide collisions models"""
 
     global switchCollisions
-
-    mel.eval('source NEO_hideUnhideCollision;')
-    mel.eval('NEO_unhideCollision();')
+    
+    #mel.eval('source NEO_hideUnhideCollision;')
+    #mel.eval('NEO_unhideCollision();')
+    for node in cmds.ls("*_collision"):
+        cmds.setAttr(node+".visibility", True)
 
     mayaCommands.headsUpDisplayMessage('showing collisions !')
 
     switchCollisions = 1
-
+    
 def switchCollisionsVisibility():
     global switchCollisions
 
